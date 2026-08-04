@@ -20,7 +20,7 @@ function loadGeminiApiKey() {
 export const GEMINI_API_KEY = loadGeminiApiKey();
 
 const BATCH_SIZE = 20;
-const MODEL = 'gemini-2.5-flash-lite';
+const MODEL = 'gemini-3.5-flash-lite';
 const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
 
 const SYSTEM_PROMPT = `You are a geographic location extractor for live camera video titles.
