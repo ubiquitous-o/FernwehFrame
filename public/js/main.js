@@ -34,8 +34,8 @@ ctx.applyAll();
 const calibration = initCalibration(ctx);
 initInput({ windows, calibration });
 
-// 起動直後から全窓砂嵐
-windows.forEach((w) => w.showNoise());
+// 起動直後から全窓曇らせておく
+windows.forEach((w) => w.showFrost());
 
 // --- 毎時スタガー切替 ---
 function msUntilMinute(minute) {

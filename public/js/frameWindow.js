@@ -1,4 +1,4 @@
-// 1窓 = 1コントローラ。プレイヤー生成・砂嵐遷移・リトライ・矩形適用・キャプション表示を担当。
+// 1窓 = 1コントローラ。プレイヤー生成・すりガラス遷移・リトライ・矩形適用・キャプション表示を担当。
 // 3窓それぞれが独立に動き、切替タイミングはmain.jsがスタガーさせる。
 //
 // 窓の中身は「ポストカード」レイアウト:
@@ -6,12 +6,13 @@
 //   上部: 16:9原寸比の動画（クロップなし、セーフエリアから更にマージン）
 //   下部: タイトル / 地名 / 現地時間
 import { createPlayer, destroyPlayer } from './player.js';
-import { createNoise } from './noise.js';
 import { fetchNext } from './videoPool.js';
 import { RODALM } from './layout.js';
 
-// YT embedが切替時に出すタイトル/ロゴ等のintro UIが消えるまで砂嵐で覆う時間
+// YT embedが切替時に出すタイトル/ロゴ等のintro UIが消えるまで曇りで覆う時間
 const POST_LOAD_HOLD_MS = 3700;
+// ガラスが曇り切る/晴れるまでの時間（CSSのtransitionと合わせる）
+const FROST_MS = 900;
 const MAX_ATTEMPTS = 4;       // 1回の切替で試す動画数
 const RETRY_DELAY_MS = 500;
 const FAIL_RETRY_MS = 15000;  // 全滅時に再挑戦するまでの待ち
@@ -64,8 +65,7 @@ export class FrameWindow {
     this.locationEl = rootEl.querySelector('.win-location');
     this.timeEl = rootEl.querySelector('.win-time');
     this.captionEl = rootEl.querySelector('.win-caption');
-    this.canvasEl = rootEl.querySelector('.win-noise');
-    this.noise = createNoise(this.canvasEl);
+    this.frostEl = rootEl.querySelector('.win-frost');
     this.getExcludeIds = getExcludeIds;
 
     this.player = null;
@@ -133,17 +133,14 @@ export class FrameWindow {
     pc.width = `${cardW}px`;
     pc.height = `${cardH}px`;
 
-    if (this.noise) this.noise.resize();
   }
 
-  showNoise() {
-    if (this.noise) this.noise.start();
-    this.canvasEl.classList.add('active');
+  showFrost() {
+    this.frostEl.classList.add('active');
   }
 
-  hideNoise() {
-    this.canvasEl.classList.remove('active');
-    if (this.noise) this.noise.stop();
+  hideFrost() {
+    this.frostEl.classList.remove('active');
   }
 
   // --- キャプション ---
@@ -185,7 +182,10 @@ export class FrameWindow {
   async switchNext() {
     if (this.isSwitching) return;
     this.isSwitching = true;
-    this.showNoise();
+
+    // ガラスが曇り切るのを待ってから旧映像を破棄（曇りの途中は旧映像が透けている）
+    this.showFrost();
+    await new Promise((r) => setTimeout(r, FROST_MS));
     this.clearCaption();
 
     destroyPlayer(this.player, this.videoEl);
@@ -219,10 +219,10 @@ export class FrameWindow {
       return;
     }
 
-    // intro UIが消えるまで砂嵐のまま待ち、キャプションを整えてから開ける
+    // intro UIが消えるまで曇ったまま待ち、キャプションを整えてからゆっくり晴らす
     await new Promise((r) => setTimeout(r, POST_LOAD_HOLD_MS));
     this.setCaption(data);
-    this.hideNoise();
+    this.hideFrost();
     this.isSwitching = false;
   }
 }
