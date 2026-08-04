@@ -19,7 +19,11 @@ const windows = [0, 1, 2].map((i) => {
   const getExcludeIds = () =>
     windows.filter((w) => w && w.index !== i && w.current)
       .map((w) => w.current.videoId);
-  return new FrameWindow(i, rootEl, getExcludeIds);
+  // 他の窓の現在の書体も避ける（3枚のはがきが同じ筆跡にならないように）
+  const getExcludeFonts = () =>
+    windows.filter((w) => w && w.index !== i && w.currentFont)
+      .map((w) => w.currentFont);
+  return new FrameWindow(i, rootEl, getExcludeIds, getExcludeFonts);
 });
 
 const ctx = {

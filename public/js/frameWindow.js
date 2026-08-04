@@ -32,6 +32,45 @@ const MM = {
   fontMeta: 2.6,
 };
 
+// キャプション用フォント（Google Fonts）。ポストカード1枚 = 1書体、切替ごとにランダム。
+// 追加するときは css/styles.css の @import にも同じ書体を足すこと。
+// Latin専用書体が多いため、日本語タイトルはフォールバック（Hiragino）で描画される。
+const FONTS = [
+  // Expressive / Innovative
+  'Sonsie One',
+  // Expressive / Happy
+  'Slackey',
+  // Expressive / Business
+  'Merriweather',
+  'Roboto Flex',
+  // Expressive / Fancy
+  'Lobster',
+  // Expressive / Artistic
+  'Bitcount',
+  'Permanent Marker',
+  // Serif / Transitional
+  'Newsreader',
+  'Gilda Display',
+  'Gupter',
+  // Theme / Brush
+  'Knewave',
+  'Margarine',
+  'Coming Soon',
+  'Vampiro One',
+  // Theme / Art Deco
+  'Ribeye',
+  // Theme / Tuscan
+  'Sancreek',
+  // Theme / Techno
+  'Audiowide',
+];
+
+// 除外リスト（自窓の直前の書体＋他窓の現在の書体）を避けて選ぶ
+function pickFont(exclude) {
+  const pool = FONTS.filter((f) => !exclude.includes(f));
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
 // 切手のミシン目風クリップパス: 矩形の全周に半円ノッチを等間隔で刻む
 function stampPath(w, h, r, step) {
   const f = (v) => v.toFixed(2);
@@ -53,9 +92,10 @@ function stampPath(w, h, r, step) {
 }
 
 export class FrameWindow {
-  constructor(index, rootEl, getExcludeIds) {
+  constructor(index, rootEl, getExcludeIds, getExcludeFonts) {
     this.index = index;
     this.rootEl = rootEl;
+    this.getExcludeFonts = getExcludeFonts;
     this.cardEl = rootEl.querySelector('.win-card');
     this.apertureEl = rootEl.querySelector('.cal-aperture');
     this.postcardEl = rootEl.querySelector('.cal-postcard');
@@ -70,6 +110,7 @@ export class FrameWindow {
 
     this.player = null;
     this.current = null;      // 再生中の動画メタデータ
+    this.currentFont = null;  // このポストカードの現在の書体
     this.isSwitching = false;
     this.clockTimer = null;
     this.rect = { x: 0, y: 0, w: 100, h: 100 };
@@ -153,6 +194,10 @@ export class FrameWindow {
   }
 
   setCaption(data) {
+    const exclude = [this.currentFont, ...this.getExcludeFonts()].filter(Boolean);
+    this.currentFont = pickFont(exclude);
+    console.log(`[win${this.index}] font: ${this.currentFont}`);
+    this.captionEl.style.fontFamily = `'${this.currentFont}', 'Hiragino Sans', sans-serif`;
     this.titleEl.textContent = data.title || '';
     this.titleEl.title = data.title || '';
     this.locationEl.textContent = data.locationName || 'Location unknown';

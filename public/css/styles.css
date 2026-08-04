@@ -1,4 +1,7 @@
+/* Silkscreen はキャリブレーションUI専用 */
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+/* ポストカードのキャプション用フォント群（切替ごとにJSがランダムに1つ選ぶ） */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Bitcount&family=Coming+Soon&family=Gilda+Display&family=Gupter&family=Knewave&family=Lobster&family=Margarine&family=Merriweather&family=Newsreader&family=Permanent+Marker&family=Ribeye&family=Roboto+Flex&family=Sancreek&family=Slackey&family=Sonsie+One&family=Vampiro+One&display=swap');
 
 :root {
   --accent: rgba(80, 255, 120, 0.9);
@@ -67,9 +70,8 @@ body.calibrating { cursor: default; }
   color: #1d1a15;
 }
 
+/* フォントは.win-captionにJSが設定し、タイトル・地名・時刻すべて継承する */
 .win-title {
-  font-family: -apple-system, 'Helvetica Neue', 'Hiragino Sans', sans-serif;
-  font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -94,6 +96,8 @@ body.calibrating { cursor: default; }
 .win-time {
   color: #2b4a8b; /* 消印インク風の濃紺 */
   flex-shrink: 0;
+  /* 筆記系書体は字形が送り幅をはみ出すため、caption右端のクリップから逃がす */
+  padding-right: 0.25em;
 }
 
 /* --- すりガラス遷移 --- */
