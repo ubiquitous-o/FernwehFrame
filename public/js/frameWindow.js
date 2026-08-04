@@ -18,7 +18,7 @@ const FAIL_RETRY_MS = 15000;  // 全滅時に再挑戦するまでの待ち
 const CLOCK_TICK_MS = 30000;
 
 // 切手のミシン目 (mm)
-const PERF = { r: 1, step: 2.8 };
+const PERF = { r: 1, step: 3.5 };
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
