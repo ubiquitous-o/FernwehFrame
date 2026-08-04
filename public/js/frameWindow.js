@@ -180,7 +180,9 @@ export class FrameWindow {
     if (!timezone) { this.timeEl.textContent = ''; return; }
     let fmt;
     try {
+      // 消印風: "04 Aug 2026, 19:15"（カメラ現地の日付・時刻）
       fmt = new Intl.DateTimeFormat('en-GB', {
+        day: '2-digit', month: 'short', year: 'numeric',
         hour: '2-digit', minute: '2-digit', hour12: false, timeZone: timezone,
       });
     } catch {
