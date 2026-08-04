@@ -1,8 +1,6 @@
-# FernwehFrame
+# Fernweh Frame
 
-> Three live windows to elsewhere.
-
-A single monitor hides behind an [IKEA RÖDALM frame for 3 pictures](https://www.ikea.com/jp/ja/p/roedalm-frame-for-3-pictures-white-10553726/) (57×30 cm, three 13×18 cm openings), hung in portrait orientation — three 18×13 landscape windows stacked vertically. Each opening becomes a live window: three different YouTube live cameras from around the world, rotating on the hour.
+A single monitor (Newsoul 22MT01-S, 22-inch 2560×1440) hides behind an [IKEA RÖDALM frame for 3 pictures](https://www.ikea.com/jp/ja/p/roedalm-frame-for-3-pictures-white-10553726/) (57×30 cm, three 13×18 cm openings), hung in portrait orientation — three 18×13 landscape windows stacked vertically. Each opening becomes a live window: three different YouTube live cameras from around the world, rotating on the hour.
 
 Based on [Fernweh](https://github.com/ubiquitous-o/Fernweh) — the video discovery pipeline (GitHub Actions → YouTube Data API → `videos.json`) is inherited as-is; the frontend is rebuilt as a triptych kiosk view.
 
@@ -81,6 +79,8 @@ The layout is saved to `localStorage` and survives reboots. Tip: put a real phot
 ### 4. Kiosk
 
 Point a fullscreen Chromium at the deployed page (or local server), put the monitor behind the frame, press `C`, and line up the windows.
+
+Production monitor: **Newsoul 22MT01-S** (22-inch, 2560×1440) in portrait orientation. After mounting, press `C` → `M` and enter the measured visible width in mm for true physical scale.
 
 ```bash
 # Local development
