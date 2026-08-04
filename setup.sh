@@ -1,8 +1,8 @@
 #!/bin/bash
-# NowWhereFrom setup script
+# FernwehFrame setup script
 set -e
 
-echo "🪟 NowWhereFrom setup"
+echo "🪟 FernwehFrame setup"
 echo ""
 
 # Node.js チェック

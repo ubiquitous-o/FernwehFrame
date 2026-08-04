@@ -2,7 +2,7 @@
 // 3窓共有のプール。excludeIdsで「他の窓が今流している動画」を避ける。
 import { guessLocation } from './locations.js';
 
-const WATCHED_KEY = 'nwf_watched';
+const WATCHED_KEY = 'ff_watched';
 const MAX_WATCHED = 150;
 const POOL_REFRESH_INTERVAL = 2 * 60 * 60 * 1000; // 2時間（サーバ更新間隔に合わせる）
 

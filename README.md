@@ -1,4 +1,4 @@
-# NowWhereFrom
+# FernwehFrame
 
 > Three live windows to elsewhere.
 
@@ -6,7 +6,7 @@ A single monitor hides behind an [IKEA RÖDALM frame for 3 pictures](https://www
 
 Based on [Fernweh](https://github.com/ubiquitous-o/Fernweh) — the video discovery pipeline (GitHub Actions → YouTube Data API → `videos.json`) is inherited as-is; the frontend is rebuilt as a triptych kiosk view.
 
-**🪟🪟🪟Live Demo:** https://ubiquitous-o.github.io/NowWhereFrom/ 🪟🪟🪟
+**🪟🪟🪟Live Demo:** https://ubiquitous-o.github.io/FernwehFrame/ 🪟🪟🪟
 
 ## How it works
 
@@ -88,12 +88,12 @@ YOUTUBE_API_KEY=your_key node scripts/fetch-videos.js   # fetch videos locally
 npx serve public                                        # serve the static site
 ```
 
-For dedicated hardware (N100 kiosk, Raspberry Pi, etc.) see `setup.sh` / `autostart.sh` / `nowwherefrom@.service`.
+For dedicated hardware (N100 kiosk, Raspberry Pi, etc.) see `setup.sh` / `autostart.sh` / `fernwehframe@.service`.
 
 ## Project Structure
 
 ```
-nowwherefrom/
+fernwehframe/
 ├── public/                       # Static site root
 │   ├── index.html                # 3 window containers + calibration UI
 │   ├── css/styles.css            # Postcard styling, calibration overlay

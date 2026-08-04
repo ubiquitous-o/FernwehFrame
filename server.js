@@ -243,7 +243,7 @@ app.get('/api/search-live', async (req, res) => {
 app.listen(PORT, () => {
   console.log('');
   console.log('┌─────────────────────────────────────────┐');
-  console.log('│  🌍  Fernweh                             │');
+  console.log('│  🪟  FernwehFrame                        │');
   console.log(`│  http://localhost:${PORT}                  │`);
   console.log('│  Ctrl+C to quit                          │');
   console.log('└─────────────────────────────────────────┘');

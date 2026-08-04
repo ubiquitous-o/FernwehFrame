@@ -1,12 +1,12 @@
 [Unit]
-Description=NowWhereFrom - Live Camera Triptych Display
+Description=FernwehFrame - Live Camera Triptych Display
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 Type=simple
 User=%i
-WorkingDirectory=/home/%i/nowwherefrom
+WorkingDirectory=/home/%i/fernwehframe
 ExecStart=/usr/bin/node server.js
 Restart=always
 RestartSec=10

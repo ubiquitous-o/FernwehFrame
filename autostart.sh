@@ -1,5 +1,5 @@
 #!/bin/bash
-# NowWhereFrom - Kiosk Mode Autostart
+# FernwehFrame - Kiosk Mode Autostart
 # Ubuntu上でChromiumをキオスクモードで起動する
 
 APP_URL="http://localhost:3333"
@@ -37,7 +37,7 @@ if [ -z "$BROWSER" ]; then
   exit 1
 fi
 
-echo "🪟 NowWhereFrom starting: $BROWSER"
+echo "🪟 FernwehFrame starting: $BROWSER"
 
 exec $BROWSER \
   --kiosk \

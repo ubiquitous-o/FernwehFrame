@@ -32,9 +32,9 @@ export function apertureMm() {
 }
 
 // ジオメトリ（RODALM定数・窓配置）を変えたらキーのバージョンを上げて古い保存値を無効化する
-const STORAGE_KEY = 'nwf_layout_v2';
+const STORAGE_KEY = 'ff_layout_v1';
 // モニタの物理サイズ（表示領域の横幅mm）。実寸表示のためのpx/mm算出に使う
-const DISPLAY_KEY = 'nwf_display_v1';
+const DISPLAY_KEY = 'ff_display_v1';
 
 export function getDisplayWidthMm() {
   const mm = parseFloat(localStorage.getItem(DISPLAY_KEY));
