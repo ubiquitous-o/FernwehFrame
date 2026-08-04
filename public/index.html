@@ -10,19 +10,24 @@
 <meta property="og:url" content="https://ubiquitous-o.github.io/NowWhereFrom/">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪟</text></svg>">
-<!-- 砂嵐短縮: 起動で必ず叩くホストの握手(DNS+TCP+TLS)を前倒し + 必須JSONを並行取得 -->
+<!-- 起動で必ず叩くホストの握手(DNS+TCP+TLS)を前倒し + 必須JSONを並行取得 -->
 <link rel="preconnect" href="https://www.youtube.com">
 <link rel="preconnect" href="https://s.ytimg.com">
 <link rel="preconnect" href="https://i.ytimg.com">
 <link rel="preconnect" href="https://www.google.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="videos.json" as="fetch" crossorigin>
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<!-- RÖDALM 3窓。位置・サイズはlayout.jsがmm実寸→pxで算出し、Cキーのキャリブレーションで追い込む -->
-<div id="stage">
-  <div class="frame-window" id="win-0">
+<!-- RÖDALM 3窓のステージ。窓DOMは#window-templateからmain.jsが生成し、
+     位置・サイズはlayout.jsがmm実寸→pxで算出、Cキーのキャリブレーションで追い込む -->
+<div id="stage"></div>
+
+<template id="window-template">
+  <div class="frame-window">
     <div class="win-card">
       <div class="win-video-box"><div class="win-video"></div></div>
       <div class="win-caption">
@@ -34,43 +39,10 @@
       </div>
     </div>
     <div class="cal-rect cal-aperture"></div>
-    <div class="cal-rect cal-postcard"></div>
     <div class="win-frost"></div>
-    <div class="win-label">1</div>
+    <div class="win-label"></div>
   </div>
-  <div class="frame-window" id="win-1">
-    <div class="win-card">
-      <div class="win-video-box"><div class="win-video"></div></div>
-      <div class="win-caption">
-        <div class="win-title"></div>
-        <div class="win-meta">
-          <span class="win-location"></span>
-          <span class="win-time"></span>
-        </div>
-      </div>
-    </div>
-    <div class="cal-rect cal-aperture"></div>
-    <div class="cal-rect cal-postcard"></div>
-    <div class="win-frost"></div>
-    <div class="win-label">2</div>
-  </div>
-  <div class="frame-window" id="win-2">
-    <div class="win-card">
-      <div class="win-video-box"><div class="win-video"></div></div>
-      <div class="win-caption">
-        <div class="win-title"></div>
-        <div class="win-meta">
-          <span class="win-location"></span>
-          <span class="win-time"></span>
-        </div>
-      </div>
-    </div>
-    <div class="cal-rect cal-aperture"></div>
-    <div class="cal-rect cal-postcard"></div>
-    <div class="win-frost"></div>
-    <div class="win-label">3</div>
-  </div>
-</div>
+</template>
 
 <!-- キャリブレーションUI（Cキーでトグル）。額縁で隠れないよう窓2の上にJSが配置する -->
 <div id="cal-help">
@@ -88,12 +60,8 @@ arrows   move        (+Shift x10)
 [ / ]    height
 M        monitor width (mm) = true scale
 R        reset
-C / Esc  save &amp; exit
-
-guides:
-green    180x130 render
-cyan     170x120 aperture
-orange   148x100 postcard</pre>
+C / Esc  save &amp; exit</pre>
+  <pre id="cal-guides" class="cal-keys"></pre>
 </div>
 
 <script type="module" src="js/main.js"></script>

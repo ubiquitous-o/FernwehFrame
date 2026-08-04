@@ -9,7 +9,7 @@ function toggleFullscreen() {
   }
 }
 
-export function initInput({ windows, calibration }) {
+export function initInput({ windows, calibration, switchAll }) {
   let mouseTimer = null;
 
   document.addEventListener('mousemove', () => {
@@ -27,11 +27,6 @@ export function initInput({ windows, calibration }) {
       w.switchNext();
     });
   });
-
-  function switchAll() {
-    // 同時にAPIを叩かないよう軽くずらす
-    windows.forEach((w, i) => setTimeout(() => w.switchNext(), i * 400));
-  }
 
   document.addEventListener('keydown', (e) => {
     // キャリブレーション中はそちらを優先

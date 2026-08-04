@@ -1,7 +1,8 @@
 // エントリーポイント：3窓（RÖDALMトリプティク）を初期化して回す。
+// 窓のDOMは#window-templateからここで生成する（マークアップの単一ソース）。
 // 窓ごとに独立したプレイヤーを持ち、毎時 :00 / :20 / :40 にスタガー切替する。
 import { loadLayout, windowRects } from './layout.js';
-import { FrameWindow } from './frameWindow.js';
+import { FrameWindow, FONTS } from './frameWindow.js';
 import { initCalibration } from './calibration.js';
 import { initInput } from './input.js';
 
@@ -9,20 +10,34 @@ import { initInput } from './input.js';
 const SWITCH_MINUTES = [0, 20, 40];
 // 起動時のロードをずらしてAPIバーストを避ける
 const INITIAL_STAGGER_MS = 2500;
+// 手動の全窓切替のずらし幅
+const SWITCH_ALL_STAGGER_MS = 400;
 
 let ytApiReady = false;
 
+// --- キャプション用フォントのロード ---
+// FONTS（frameWindow.js）が唯一のソース。ここでcss2 URLを組み立てて注入する。
+const fontsLink = document.createElement('link');
+fontsLink.rel = 'stylesheet';
+fontsLink.href = 'https://fonts.googleapis.com/css2?'
+  + FONTS.map((f) => `family=${f.replaceAll(' ', '+')}`).join('&')
+  + '&display=swap';
+document.head.appendChild(fontsLink);
+
 // --- 3窓のセットアップ ---
+const $stage = document.getElementById('stage');
+const $template = document.getElementById('window-template');
+
 const windows = [0, 1, 2].map((i) => {
-  const rootEl = document.getElementById(`win-${i}`);
-  // 他の窓が再生中/切替中の動画IDを除外リストとして渡す
-  const getExcludeIds = () =>
-    windows.filter((w) => w && w.index !== i && w.current)
-      .map((w) => w.current.videoId);
-  // 他の窓の現在の書体も避ける（3枚のはがきが同じ筆跡にならないように）
-  const getExcludeFonts = () =>
-    windows.filter((w) => w && w.index !== i && w.currentFont)
-      .map((w) => w.currentFont);
+  const rootEl = $template.content.firstElementChild.cloneNode(true);
+  rootEl.id = `win-${i}`;
+  rootEl.querySelector('.win-label').textContent = String(i + 1);
+  $stage.appendChild(rootEl);
+
+  const others = () => windows.filter((w) => w.index !== i);
+  // 他の窓が再生中/切替中の動画・書体は避ける
+  const getExcludeIds = () => others().map((w) => w.current?.videoId).filter(Boolean);
+  const getExcludeFonts = () => others().map((w) => w.currentFont).filter(Boolean);
   return new FrameWindow(i, rootEl, getExcludeIds, getExcludeFonts);
 });
 
@@ -35,8 +50,13 @@ const ctx = {
 };
 ctx.applyAll();
 
+// 全窓切替（同時にAPIを叩かないよう窓ごとにずらす）
+function switchAll(staggerMs = SWITCH_ALL_STAGGER_MS) {
+  windows.forEach((w, i) => setTimeout(() => w.switchNext(), i * staggerMs));
+}
+
 const calibration = initCalibration(ctx);
-initInput({ windows, calibration });
+initInput({ windows, calibration, switchAll });
 
 // 起動直後から全窓曇らせておく
 windows.forEach((w) => w.showFrost());
@@ -61,10 +81,8 @@ function scheduleSwitch(i) {
 // ESモジュールはdefer扱いなので、コールバック定義後に動的ロードする
 window.onYouTubeIframeAPIReady = () => {
   ytApiReady = true;
-  windows.forEach((w, i) => {
-    setTimeout(() => w.switchNext(), i * INITIAL_STAGGER_MS);
-    scheduleSwitch(i);
-  });
+  switchAll(INITIAL_STAGGER_MS);
+  windows.forEach((_, i) => scheduleSwitch(i));
 };
 
 const ytApiScript = document.createElement('script');

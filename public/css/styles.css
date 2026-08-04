@@ -1,11 +1,12 @@
-/* Silkscreen はキャリブレーションUI専用 */
+/* Silkscreen はキャリブレーションUI専用。
+   キャプション用フォントはmain.jsがFONTSリスト（frameWindow.js）から<link>を注入する */
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
-/* ポストカードのキャプション用フォント群（切替ごとにJSがランダムに1つ選ぶ） */
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Bitcount&family=Coming+Soon&family=Gilda+Display&family=Gupter&family=Knewave&family=Lobster&family=Margarine&family=Merriweather&family=Newsreader&family=Permanent+Marker&family=Ribeye&family=Roboto+Flex&family=Sancreek&family=Slackey&family=Sonsie+One&family=Vampiro+One&display=swap');
 
 :root {
   --accent: rgba(80, 255, 120, 0.9);
   --text-primary: rgba(255, 255, 255, 0.92);
+  /* すりガラスが曇り切る/晴れるまでの時間。JS(frameWindow.js)もこの値を読む */
+  --frost-ms: 900ms;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,7 +28,7 @@ body.calibrating { cursor: default; }
 
 /* --- 窓（ポストカード） --- */
 /* .frame-window: RÖDALM開口部に対応するクリップ枠。位置・サイズはJSがpx指定。
-   .win-card: 紙のカード面。動画(16:9原寸比)とキャプションはJSがmm定数から配置。 */
+   .win-card: 紙のカード面。動画(16:9原寸比)とキャプションはlayout.jsの算出値で配置。 */
 .frame-window {
   position: absolute;
   overflow: hidden;
@@ -60,6 +61,7 @@ body.calibrating { cursor: default; }
 }
 
 /* --- キャプション --- */
+/* フォントは.win-captionにJSが設定し、タイトル・地名・時刻すべて継承する */
 .win-caption {
   position: absolute;
   overflow: hidden;
@@ -70,7 +72,6 @@ body.calibrating { cursor: default; }
   color: #1d1a15;
 }
 
-/* フォントは.win-captionにJSが設定し、タイトル・地名・時刻すべて継承する */
 .win-title {
   white-space: nowrap;
   overflow: hidden;
@@ -101,17 +102,22 @@ body.calibrating { cursor: default; }
 }
 
 /* --- すりガラス遷移 --- */
-/* 切替時にガラスが徐々に曇り、曇り切った下でロード、完了後にゆっくり晴れる */
+/* 切替時にガラスが徐々に曇り、曇り切った下でロード、完了後にゆっくり晴れる。
+   backdrop-filterは動画上で常時GPUコストがかかるため、遷移中(.frost-on)のみ持たせる */
 .win-frost {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 2;
   background: rgba(242, 238, 228, 0);
+  transition: backdrop-filter var(--frost-ms) ease,
+    -webkit-backdrop-filter var(--frost-ms) ease,
+    background-color var(--frost-ms) ease;
+}
+
+.win-frost.frost-on {
   -webkit-backdrop-filter: blur(0px);
   backdrop-filter: blur(0px);
-  transition: backdrop-filter 0.9s ease, -webkit-backdrop-filter 0.9s ease,
-    background-color 0.9s ease;
 }
 
 .win-frost.active {
@@ -120,8 +126,8 @@ body.calibrating { cursor: default; }
   backdrop-filter: blur(24px) saturate(0.85);
 }
 
-/* --- キャリブレーション用ガイド矩形（Cキー中のみ表示） --- */
-/* 緑=描画180×130（.frame-windowのoutline） / シアン=開口170×120 / オレンジ=はがき148×100 */
+/* --- キャリブレーション用ガイド（Cキー中のみ表示） --- */
+/* 緑=描画180×130（.frame-windowのoutline） / シアン=開口 / オレンジ=はがき(.win-card) */
 .cal-rect {
   position: absolute;
   display: none;
@@ -133,7 +139,11 @@ body.calibrating { cursor: default; }
 body.calibrating .cal-rect { display: block; }
 
 .cal-aperture { border: 1px dashed rgba(80, 220, 255, 0.9); }
-.cal-postcard { border: 1px dashed rgba(255, 170, 60, 0.9); }
+
+body.calibrating .win-card {
+  outline: 1px dashed rgba(255, 170, 60, 0.9);
+  outline-offset: -1px;
+}
 
 /* --- キャリブレーションUI --- */
 .win-label {
@@ -180,6 +190,8 @@ body.calibrating.cal-all .frame-window {
   overflow: auto;
 }
 
+body.calibrating #cal-help { display: block; }
+
 #cal-input-row {
   display: none;
   margin-top: 8px;
@@ -200,8 +212,6 @@ body.calibrating.cal-all .frame-window {
   padding: 2px 6px;
   outline: none;
 }
-
-#cal-help.visible { display: block; }
 
 .cal-title {
   color: var(--accent);

@@ -1,41 +1,31 @@
-// 1窓 = 1コントローラ。プレイヤー生成・すりガラス遷移・リトライ・矩形適用・キャプション表示を担当。
+// 1窓 = 1コントローラ。プレイヤー生成・すりガラス遷移・リトライ・キャプション表示を担当。
+// mm→px のレイアウト計算は layout.js（postcardLayout）に集約されており、
+// ここでは返ってきた矩形をスタイルに流すだけ。
 // 3窓それぞれが独立に動き、切替タイミングはmain.jsがスタガーさせる。
-//
-// 窓の中身は「ポストカード」レイアウト:
-//   描画領域180×130mm / 額縁の開口実寸170×120mm（四辺5mmブリード）
-//   上部: 16:9原寸比の動画（クロップなし、セーフエリアから更にマージン）
-//   下部: タイトル / 地名 / 現地時間
 import { createPlayer, destroyPlayer } from './player.js';
 import { fetchNext } from './videoPool.js';
-import { RODALM } from './layout.js';
+import { setRectPx, postcardLayout } from './layout.js';
 
 // YT embedが切替時に出すタイトル/ロゴ等のintro UIが消えるまで曇りで覆う時間
 const POST_LOAD_HOLD_MS = 3700;
-// ガラスが曇り切る/晴れるまでの時間（CSSのtransitionと合わせる）
-const FROST_MS = 900;
+// ガラスが曇り切る/晴れるまでの時間。CSS変数 --frost-ms が唯一のソース。
+const FROST_MS = parseFloat(
+  getComputedStyle(document.documentElement).getPropertyValue('--frost-ms'),
+) || 900;
 const MAX_ATTEMPTS = 4;       // 1回の切替で試す動画数
 const RETRY_DELAY_MS = 500;
 const FAIL_RETRY_MS = 15000;  // 全滅時に再挑戦するまでの待ち
 const CLOCK_TICK_MS = 30000;
 
-// ポストカードレイアウト定数 (mm)
-// 描画領域180×130 ⊃ 開口実寸170×120（四辺5mmブリード） ⊃ はがき実寸148×100（中央）
-const MM = {
-  bleed: 5,     // 描画領域 → 開口実寸のブリード
-  cardW: 148,   // はがき実寸
-  cardH: 100,
-  pad: 3,       // はがき端 → コンテンツのマージン
-  gap: 3,       // 動画とキャプションの間
-  perfR: 1,     // ミシン目の半径
-  perfStep: 2.8, // ミシン目の間隔
-  fontTitle: 3.0,
-  fontMeta: 2.6,
-};
+// 切手のミシン目 (mm)
+const PERF = { r: 1, step: 2.8 };
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // キャプション用フォント（Google Fonts）。ポストカード1枚 = 1書体、切替ごとにランダム。
-// 追加するときは css/styles.css の @import にも同じ書体を足すこと。
+// このリストが唯一のソース：main.jsがここからcss2 URLを組み立てて<link>を注入する。
 // Latin専用書体が多いため、日本語タイトルはフォールバック（Hiragino）で描画される。
-const FONTS = [
+export const FONTS = [
   // Expressive / Innovative
   'Sonsie One',
   // Expressive / Happy
@@ -95,99 +85,80 @@ export class FrameWindow {
   constructor(index, rootEl, getExcludeIds, getExcludeFonts) {
     this.index = index;
     this.rootEl = rootEl;
-    this.getExcludeFonts = getExcludeFonts;
     this.cardEl = rootEl.querySelector('.win-card');
     this.apertureEl = rootEl.querySelector('.cal-aperture');
-    this.postcardEl = rootEl.querySelector('.cal-postcard');
     this.videoBoxEl = rootEl.querySelector('.win-video-box');
     this.videoEl = rootEl.querySelector('.win-video');
     this.titleEl = rootEl.querySelector('.win-title');
     this.locationEl = rootEl.querySelector('.win-location');
     this.timeEl = rootEl.querySelector('.win-time');
+    this.metaEl = rootEl.querySelector('.win-meta');
     this.captionEl = rootEl.querySelector('.win-caption');
     this.frostEl = rootEl.querySelector('.win-frost');
     this.getExcludeIds = getExcludeIds;
+    this.getExcludeFonts = getExcludeFonts;
 
     this.player = null;
     this.current = null;      // 再生中の動画メタデータ
     this.currentFont = null;  // このポストカードの現在の書体
     this.isSwitching = false;
     this.clockTimer = null;
-    this.rect = { x: 0, y: 0, w: 100, h: 100 };
+    this.retryTimer = null;
+    this.frostOffTimer = null;
+    this.clipKey = null;      // stampPath再生成を省くためのサイズキー
   }
 
-  // 画面px矩形を適用し、ポストカード内部（動画・キャプション）をmm定数から配置する。
+  // 画面px矩形を適用。内部レイアウトはlayout.jsが導出した矩形を流し込むだけ。
   applyRect(rect) {
-    this.rect = rect;
-    const s = this.rootEl.style;
-    s.left = `${rect.x}px`;
-    s.top = `${rect.y}px`;
-    s.width = `${rect.w}px`;
-    s.height = `${rect.h}px`;
+    setRectPx(this.rootEl, rect);
+    const L = postcardLayout(rect);
+    setRectPx(this.cardEl, L.card);
+    setRectPx(this.videoBoxEl, L.video);
+    setRectPx(this.captionEl, L.caption);
+    setRectPx(this.apertureEl, L.aperture);
+    this.titleEl.style.fontSize = `${L.fontTitle}px`;
+    this.metaEl.style.fontSize = `${L.fontMeta}px`;
 
-    // px/mm はこの窓の実描画幅から導出（キャリブレーションのdw/dhにも追従）
-    const pxMm = rect.w / RODALM.winW;
-
-    // はがき本体: 描画領域の中央に実寸配置
-    const cardX = ((RODALM.winW - MM.cardW) / 2) * pxMm;
-    const cardY = ((RODALM.winH - MM.cardH) / 2) * pxMm;
-    const cardW = MM.cardW * pxMm;
-    const cardH = MM.cardH * pxMm;
-    const card = this.cardEl.style;
-    card.left = `${cardX}px`;
-    card.top = `${cardY}px`;
-    card.width = `${cardW}px`;
-    card.height = `${cardH}px`;
-
-    // はがき内コンテンツ（座標はカード基準）
-    // 動画のフチ自体をミシン目でクリップする（白フチなし）
-    const pad = MM.pad * pxMm;
-    const videoW = cardW - 2 * pad;
-    const videoH = (videoW * 9) / 16;
-    const vb = this.videoBoxEl.style;
-    vb.left = `${pad}px`;
-    vb.top = `${pad}px`;
-    vb.width = `${videoW}px`;
-    vb.height = `${videoH}px`;
-    vb.clipPath = `path('${stampPath(videoW, videoH, MM.perfR * pxMm, MM.perfStep * pxMm)}')`;
-
-    const capTop = pad + videoH + MM.gap * pxMm;
-    const cap = this.captionEl.style;
-    cap.left = `${pad}px`;
-    cap.top = `${capTop}px`;
-    cap.width = `${videoW}px`;
-    cap.height = `${cardH - pad - capTop}px`;
-
-    this.titleEl.style.fontSize = `${MM.fontTitle * pxMm}px`;
-    this.rootEl.querySelector('.win-meta').style.fontSize = `${MM.fontMeta * pxMm}px`;
-
-    // キャリブレーション用ガイド矩形: 開口170×120（ブリード内側）とはがき148×100
-    const ap = this.apertureEl.style;
-    const bleed = MM.bleed * pxMm;
-    ap.left = `${bleed}px`;
-    ap.top = `${bleed}px`;
-    ap.width = `${rect.w - 2 * bleed}px`;
-    ap.height = `${rect.h - 2 * bleed}px`;
-    const pc = this.postcardEl.style;
-    pc.left = `${cardX}px`;
-    pc.top = `${cardY}px`;
-    pc.width = `${cardW}px`;
-    pc.height = `${cardH}px`;
-
+    // ミシン目パスはサイズが変わったときだけ再生成（キャリブレーションの移動連打対策）
+    const clipKey = `${L.video.w.toFixed(2)}x${L.video.h.toFixed(2)}`;
+    if (clipKey !== this.clipKey) {
+      this.clipKey = clipKey;
+      this.videoBoxEl.style.clipPath =
+        `path('${stampPath(L.video.w, L.video.h, PERF.r * L.pxMm, PERF.step * L.pxMm)}')`;
+    }
   }
+
+  // --- すりガラス ---
+  // アイドル時はbackdrop-filterを完全に外す（常時GPUコスト回避）。
+  // 遷移中のみ .frost-on でblur(0)を持たせ、.active への変化をtransitionさせる。
 
   showFrost() {
-    this.frostEl.classList.add('active');
+    clearTimeout(this.frostOffTimer);
+    this.frostEl.classList.add('frost-on');
+    // blur(0)が適用されたフレームを挟んでからactiveにしないとtransitionが発火しない
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      this.frostEl.classList.add('active');
+    }));
   }
 
   hideFrost() {
     this.frostEl.classList.remove('active');
+    this.frostOffTimer = setTimeout(() => {
+      this.frostEl.classList.remove('frost-on');
+    }, FROST_MS + 100);
   }
 
   // --- キャプション ---
 
+  stopClock() {
+    if (this.clockTimer) {
+      clearInterval(this.clockTimer);
+      this.clockTimer = null;
+    }
+  }
+
   clearCaption() {
-    if (this.clockTimer) { clearInterval(this.clockTimer); this.clockTimer = null; }
+    this.stopClock();
     this.titleEl.textContent = '';
     this.locationEl.textContent = '';
     this.timeEl.textContent = '';
@@ -205,7 +176,7 @@ export class FrameWindow {
   }
 
   startClock(timezone) {
-    if (this.clockTimer) { clearInterval(this.clockTimer); this.clockTimer = null; }
+    this.stopClock();
     if (!timezone) { this.timeEl.textContent = ''; return; }
     let fmt;
     try {
@@ -227,10 +198,11 @@ export class FrameWindow {
   async switchNext() {
     if (this.isSwitching) return;
     this.isSwitching = true;
+    clearTimeout(this.retryTimer);
 
     // ガラスが曇り切るのを待ってから旧映像を破棄（曇りの途中は旧映像が透けている）
     this.showFrost();
-    await new Promise((r) => setTimeout(r, FROST_MS));
+    await sleep(FROST_MS + 100);
     this.clearCaption();
 
     destroyPlayer(this.player, this.videoEl);
@@ -254,18 +226,18 @@ export class FrameWindow {
         break;
       } catch (err) {
         console.warn(`[win${this.index}] attempt ${attempt} failed:`, err?.message || err);
-        await new Promise((r) => setTimeout(r, RETRY_DELAY_MS));
+        await sleep(RETRY_DELAY_MS);
       }
     }
 
     if (!success) {
       this.isSwitching = false;
-      setTimeout(() => this.switchNext(), FAIL_RETRY_MS);
+      this.retryTimer = setTimeout(() => this.switchNext(), FAIL_RETRY_MS);
       return;
     }
 
     // intro UIが消えるまで曇ったまま待ち、キャプションを整えてからゆっくり晴らす
-    await new Promise((r) => setTimeout(r, POST_LOAD_HOLD_MS));
+    await sleep(POST_LOAD_HOLD_MS);
     this.setCaption(data);
     this.hideFrost();
     this.isSwitching = false;

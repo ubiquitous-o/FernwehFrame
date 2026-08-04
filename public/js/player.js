@@ -12,11 +12,8 @@ export function createPlayer(slotEl, videoId) {
     let player = null;
 
     const cleanup = () => {
-      if (player) {
-        try { player.destroy(); } catch {}
-        player = null;
-      }
-      slotEl.innerHTML = '';
+      destroyPlayer(player, slotEl);
+      player = null;
     };
 
     const timeoutId = setTimeout(() => {

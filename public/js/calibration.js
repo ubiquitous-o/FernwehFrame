@@ -1,20 +1,43 @@
 // キャリブレーションモード：モニタ上の3窓を物理フレームの開口部へ合わせ込む。
-// キー操作で全体（スケール・位置）と窓ごと（位置・サイズ・横パン）を調整し、
-// 変更のたびlocalStorageへ保存する。
+// キー操作で全体（スケール・位置）と窓ごと（位置・サイズ）を調整し、localStorageへ保存する。
 import {
-  saveLayout, resetLayout, RODALM, windowRect,
+  saveLayout, resetLayout, windowRect, centerOrigin,
+  RODALM, POSTCARD, apertureMm,
   getPxPerMm, setDisplayWidthMm, getDisplayWidthMm,
 } from './layout.js';
+
+// キー連打（オートリピート）ごとに書き込まないための保存デバウンス
+const SAVE_DEBOUNCE_MS = 300;
+
+// 矢印キー → 移動方向
+const MOVES = {
+  ArrowLeft: [-1, 0],
+  ArrowRight: [1, 0],
+  ArrowUp: [0, -1],
+  ArrowDown: [0, 1],
+};
 
 export function initCalibration(ctx) {
   // ctx: { layout, windows, applyAll() } — layoutは差し替わるのでctx経由で共有
   let active = false;
   let selected = 'all'; // 'all' | 0 | 1 | 2
+  let saveTimer = null;
+  let dirty = false;
 
   const $help = document.getElementById('cal-help');
   const $readout = document.getElementById('cal-readout');
+  const $guides = document.getElementById('cal-guides');
   const $inputRow = document.getElementById('cal-input-row');
   const $input = document.getElementById('cal-input');
+
+  // ガイド凡例はジオメトリ定数から生成（数値の二重管理を避ける）
+  const ap = apertureMm();
+  $guides.textContent = [
+    'guides:',
+    `green    ${RODALM.winW}x${RODALM.winH} render`,
+    `cyan     ${ap.w}x${ap.h} aperture`,
+    `orange   ${POSTCARD.w}x${POSTCARD.h} postcard`,
+  ].join('\n');
 
   // 額縁の外は物理的に見えないため、ヘルプパネルは窓2の矩形内に重ねる
   function positionHelp() {
@@ -55,6 +78,37 @@ export function initCalibration(ctx) {
     $readout.textContent = lines.join('\n');
   }
 
+  function flushSave() {
+    clearTimeout(saveTimer);
+    saveTimer = null;
+    if (dirty) {
+      saveLayout(ctx.layout);
+      dirty = false;
+    }
+  }
+
+  function refresh() {
+    ctx.applyAll();
+    dirty = true;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(flushSave, SAVE_DEBOUNCE_MS);
+    updateReadout();
+    positionHelp();
+  }
+
+  function toggle() {
+    active = !active;
+    document.body.classList.toggle('calibrating', active);
+    if (active) {
+      updateSelection();
+      updateReadout();
+      positionHelp();
+    } else {
+      hideMonitorInput();
+      flushSave();
+    }
+  }
+
   // モニタの表示領域横幅(mm)の入力欄（パネル内インライン。ネイティブprompt()は
   // 額縁の外＝見えない位置に出るため使わない）
   function showMonitorInput() {
@@ -75,10 +129,8 @@ export function initCalibration(ctx) {
     if (mm > 100 && mm < 3000) {
       setDisplayWidthMm(mm);
       // 真のpx/mmでスケール再設定＆モニタ中央に再配置
-      const L = ctx.layout;
-      L.scale = getPxPerMm();
-      L.originX = (screen.width - RODALM.frameW * L.scale) / 2;
-      L.originY = (screen.height - RODALM.frameH * L.scale) / 2;
+      ctx.layout.scale = getPxPerMm();
+      centerOrigin(ctx.layout);
       refresh();
     }
     hideMonitorInput();
@@ -91,26 +143,6 @@ export function initCalibration(ctx) {
     else if (e.key === 'Escape') hideMonitorInput();
   });
 
-  function refresh() {
-    ctx.applyAll();
-    saveLayout(ctx.layout);
-    updateReadout();
-    positionHelp();
-  }
-
-  function toggle() {
-    active = !active;
-    document.body.classList.toggle('calibrating', active);
-    $help.classList.toggle('visible', active);
-    if (active) {
-      updateSelection();
-      updateReadout();
-      positionHelp();
-    } else {
-      hideMonitorInput();
-    }
-  }
-
   // 有効中のキー入力を処理。処理したらtrueを返す（input.js側で他のキー処理を抑止）。
   function handleKey(e) {
     if (!active) return false;
@@ -118,6 +150,19 @@ export function initCalibration(ctx) {
     const big = e.shiftKey;
     const step = big ? 10 : 1;
     const L = ctx.layout;
+
+    const move = MOVES[e.key];
+    if (move) {
+      if (selected === 'all') {
+        L.originX += move[0] * step;
+        L.originY += move[1] * step;
+      } else {
+        L.wins[selected].dx += move[0] * step;
+        L.wins[selected].dy += move[1] * step;
+      }
+      refresh();
+      return true;
+    }
 
     switch (e.key) {
       case 'Escape':
@@ -129,18 +174,6 @@ export function initCalibration(ctx) {
         selected = 'all'; updateSelection(); updateReadout(); return true;
       case '1': case '2': case '3':
         selected = Number(e.key) - 1; updateSelection(); updateReadout(); return true;
-      case 'ArrowLeft':
-        if (selected === 'all') L.originX -= step; else L.wins[selected].dx -= step;
-        refresh(); return true;
-      case 'ArrowRight':
-        if (selected === 'all') L.originX += step; else L.wins[selected].dx += step;
-        refresh(); return true;
-      case 'ArrowUp':
-        if (selected === 'all') L.originY -= step; else L.wins[selected].dy -= step;
-        refresh(); return true;
-      case 'ArrowDown':
-        if (selected === 'all') L.originY += step; else L.wins[selected].dy += step;
-        refresh(); return true;
       case '-': case '_':
         if (selected === 'all') L.scale *= big ? 0.98 : 0.995;
         else L.wins[selected].dw -= step;
@@ -160,8 +193,10 @@ export function initCalibration(ctx) {
         return true;
       case 'r': case 'R':
         ctx.layout = resetLayout();
+        dirty = false;
         ctx.applyAll();
         updateReadout();
+        positionHelp();
         return true;
       default:
         return false;
