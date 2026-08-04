@@ -5,6 +5,7 @@
 import { createPlayer, destroyPlayer } from './player.js';
 import { fetchNext } from './videoPool.js';
 import { setRectPx, postcardLayout } from './layout.js';
+import { pickDesign, designLayout, renderDecor } from './designs.js';
 
 // YT embedが切替時に出すタイトル/ロゴ等のintro UIが消えるまで曇りで覆う時間
 const POST_LOAD_HOLD_MS = 3700;
@@ -17,10 +18,15 @@ const RETRY_DELAY_MS = 500;
 const FAIL_RETRY_MS = 15000;  // 全滅時に再挑戦するまでの待ち
 const CLOCK_TICK_MS = 30000;
 
-// 切手のミシン目 (mm)
-const PERF = { r: 1, step: 3.5 };
-
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// YouTube API由来のタイトル等はHTMLエンティティ（&amp; &#39; 等）を含むことがある。
+// textareaのinnerHTML→valueでデコードする（スクリプトは実行されない）
+const entityDecoder = document.createElement('textarea');
+function decodeEntities(s) {
+  entityDecoder.innerHTML = s;
+  return entityDecoder.value;
+}
 
 // キャプション用フォント（Google Fonts）。ポストカード1枚 = 1書体、切替ごとにランダム。
 // このリストが唯一のソース：main.jsがここからcss2 URLを組み立てて<link>を注入する。
@@ -61,26 +67,6 @@ function pickFont(exclude) {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-// 切手のミシン目風クリップパス: 矩形の全周に半円ノッチを等間隔で刻む
-function stampPath(w, h, r, step) {
-  const f = (v) => v.toFixed(2);
-  let d = `M 0 0 `;
-  const edge = (len, point, arc) => {
-    const n = Math.max(2, Math.round(len / step));
-    const s = len / n;
-    for (let k = 1; k < n; k++) {
-      const c = k * s;
-      d += `L ${point(c - r)} A ${f(r)} ${f(r)} 0 0 0 ${point(c + r)} `;
-    }
-    d += `L ${arc} `;
-  };
-  edge(w, (c) => `${f(c)} 0`, `${f(w)} 0`);                    // 上（左→右）
-  edge(h, (c) => `${f(w)} ${f(c)}`, `${f(w)} ${f(h)}`);        // 右（上→下）
-  edge(w, (c) => `${f(w - c)} ${f(h)}`, `0 ${f(h)}`);          // 下（右→左）
-  edge(h, (c) => `0 ${f(h - c)}`, `0 0`);                      // 左（下→上）
-  return d + 'Z';
-}
-
 export class FrameWindow {
   constructor(index, rootEl, getExcludeIds, getExcludeFonts) {
     this.index = index;
@@ -94,6 +80,7 @@ export class FrameWindow {
     this.timeEl = rootEl.querySelector('.win-time');
     this.metaEl = rootEl.querySelector('.win-meta');
     this.captionEl = rootEl.querySelector('.win-caption');
+    this.decorEl = rootEl.querySelector('.win-decor');
     this.frostEl = rootEl.querySelector('.win-frost');
     this.getExcludeIds = getExcludeIds;
     this.getExcludeFonts = getExcludeFonts;
@@ -101,31 +88,57 @@ export class FrameWindow {
     this.player = null;
     this.current = null;      // 再生中の動画メタデータ
     this.currentFont = null;  // このポストカードの現在の書体
+    this.design = 'stamp';    // このポストカードの現在のデザイン
+    this.decorData = null;    // 装飾用の動画メタ（地名・タイムゾーン）
     this.isSwitching = false;
     this.clockTimer = null;
     this.retryTimer = null;
     this.frostOffTimer = null;
-    this.clipKey = null;      // stampPath再生成を省くためのサイズキー
+    this.designKey = null;    // クリップ/装飾の再生成を省くためのキー
+    this.lastL = null;        // 直近のpostcardLayout結果（デザイン切替時の再適用用）
   }
 
   // 画面px矩形を適用。内部レイアウトはlayout.jsが導出した矩形を流し込むだけ。
   applyRect(rect) {
     setRectPx(this.rootEl, rect);
     const L = postcardLayout(rect);
+    this.lastL = L;
     setRectPx(this.cardEl, L.card);
-    setRectPx(this.videoBoxEl, L.video);
-    setRectPx(this.captionEl, L.caption);
     setRectPx(this.apertureEl, L.aperture);
     this.titleEl.style.fontSize = `${L.fontTitle}px`;
     this.metaEl.style.fontSize = `${L.fontMeta}px`;
+    this.applyDesign();
+  }
 
-    // ミシン目パスはサイズが変わったときだけ再生成（キャリブレーションの移動連打対策）
-    const clipKey = `${L.video.w.toFixed(2)}x${L.video.h.toFixed(2)}`;
-    if (clipKey !== this.clipKey) {
-      this.clipKey = clipKey;
-      this.videoBoxEl.style.clipPath =
-        `path('${stampPath(L.video.w, L.video.h, PERF.r * L.pxMm, PERF.step * L.pxMm)}')`;
+  // 現在のデザインの矩形・クリップ・装飾を適用。
+  // クリップパスと装飾DOMはデザイン/サイズ/動画が変わったときだけ再生成
+  // （キャリブレーションの移動連打対策）。
+  applyDesign() {
+    const L = this.lastL;
+    if (!L) return;
+    const D = designLayout(this.design, L);
+    setRectPx(this.videoBoxEl, D.video);
+    setRectPx(this.captionEl, D.caption);
+    if (D.videoInner) {
+      setRectPx(this.videoEl, D.videoInner);
+    } else {
+      ['left', 'top', 'width', 'height'].forEach((k) => this.videoEl.style.removeProperty(k));
     }
+
+    const key = `${this.design}|${L.card.w.toFixed(2)}|${this.current?.videoId || ''}`;
+    if (key !== this.designKey) {
+      this.designKey = key;
+      this.videoBoxEl.style.clipPath = D.clip ? `path('${D.clip}')` : 'none';
+      this.decorEl.innerHTML = renderDecor(this.design, L, this.decorData, this.index);
+    }
+  }
+
+  // デザインを切り替えてrootElのクラスと矩形・装飾を更新
+  setDesign(name) {
+    this.rootEl.classList.remove(`design-${this.design}`);
+    this.design = name;
+    this.rootEl.classList.add(`design-${name}`);
+    this.applyDesign();
   }
 
   // --- すりガラス ---
@@ -222,6 +235,8 @@ export class FrameWindow {
       }
       try {
         this.player = await createPlayer(this.videoEl, data.videoId);
+        data.title = decodeEntities(data.title || '');
+        data.locationName = decodeEntities(data.locationName || '');
         this.current = data;
         success = true;
         console.log(`[win${this.index}] ▶ "${data.title}" (${data.channel})`);
@@ -238,8 +253,10 @@ export class FrameWindow {
       return;
     }
 
-    // intro UIが消えるまで曇ったまま待ち、キャプションを整えてからゆっくり晴らす
+    // intro UIが消えるまで曇ったまま待ち、デザインとキャプションを整えてからゆっくり晴らす
     await sleep(POST_LOAD_HOLD_MS);
+    this.decorData = { locationName: data.locationName, timezone: data.timezone };
+    this.setDesign(pickDesign(this.design));
     this.setCaption(data);
     this.hideFrost();
     this.isSwitching = false;

@@ -16,9 +16,9 @@ Based on [Fernweh](https://github.com/ubiquitous-o/Fernweh) — the video discov
 
 [Browser (kiosk, fullscreen behind the frame)]
   → 3 independent YouTube IFrame players
-  → each window is a "postcard": real hagaki-size (148×100 mm) textured card,
-    16:9 video with stamp-perforation edges on top (no crop),
-    title / location / camera-local time in the space below
+  → each window is a "postcard": real hagaki-size (148×100 mm) textured card
+  → 3 postcard designs (stamp / airmail / fullbleed), re-rolled on every switch
+    so a window never shows the same design twice in a row
   → rendered area 180×130 mm, aperture 170×120 mm (5 mm bleed on all sides)
   → windows stacked vertically (frame in portrait orientation)
   → window 1 switches at :00, window 2 at :20, window 3 at :40
@@ -35,6 +35,18 @@ Based on [Fernweh](https://github.com/ubiquitous-o/Fernweh) — the video discov
 | `Space` / `N` / `→` | Switch all three windows |
 | `F` / `F11` | Toggle fullscreen |
 | `C` | Toggle calibration mode |
+
+## Postcard designs
+
+Each switch picks a random design for the window — never the same one twice in a row (`public/js/designs.js`):
+
+| Name | Look |
+|------|------|
+| `stamp` | Stamp-perforation edges + circular postmark (location & camera-local date) |
+| `airmail` | Red/blue striped border to the card edge, centered video, title centered on top |
+| `fullbleed` | Video across the card with a thin even margin; title top-left, time top-right, location bottom-right |
+
+**Preview mode:** append `?design=<name>` to the URL (e.g. `?design=airmail`) to pin all three windows to one design while tweaking it. Omit the parameter for the normal random rotation.
 
 ## Calibration
 

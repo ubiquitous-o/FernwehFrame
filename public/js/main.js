@@ -35,7 +35,7 @@ const windows = [0, 1, 2].map((i) => {
   $stage.appendChild(rootEl);
 
   const others = () => windows.filter((w) => w.index !== i);
-  // 他の窓が再生中/切替中の動画・書体は避ける
+  // 他の窓が再生中/切替中の動画・書体は避ける（デザインは自窓の前回とだけ変える）
   const getExcludeIds = () => others().map((w) => w.current?.videoId).filter(Boolean);
   const getExcludeFonts = () => others().map((w) => w.currentFont).filter(Boolean);
   return new FrameWindow(i, rootEl, getExcludeIds, getExcludeFonts);

@@ -45,9 +45,11 @@ body.calibrating { cursor: default; }
   box-shadow: 0 1px 6px rgba(60, 45, 30, 0.3);
 }
 
-/* 動画のフチ自体をJS生成のミシン目パスでクリップする */
+/* 動画のフチ自体をJS生成のミシン目パスでクリップする。
+   overflow hiddenはクリップなしデザイン（フルブリードのカバークロップ等）の保険 */
 .win-video-box {
   position: absolute;
+  overflow: hidden;
   background: #000;
 }
 
@@ -99,6 +101,44 @@ body.calibrating { cursor: default; }
   flex-shrink: 0;
   /* 筆記系書体は字形が送り幅をはみ出すため、caption右端のクリップから逃がす */
   padding-right: 0.25em;
+}
+
+/* --- デザインバリアント（designs.js） --- */
+/* 消印・罫線・テープ等の装飾層。中身はdesigns.jsのrenderDecorが生成する */
+.win-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* フルブリード: キャプション枠ははがき全高。文字は余白の帯（高さ4% = 4mm）に置く。
+   タイトル=左上、時刻=右上、地名=右下 */
+.design-fullbleed .win-caption {
+  display: block;
+}
+
+.design-fullbleed .win-title,
+.design-fullbleed .win-time,
+.design-fullbleed .win-location {
+  position: absolute;
+  height: 4%;
+  display: flex;
+  align-items: center;
+}
+
+.design-fullbleed .win-title { top: 0; left: 0; max-width: 68%; }
+.design-fullbleed .win-time { top: 0; right: 0; }
+.design-fullbleed .win-location { bottom: 0; right: 0; max-width: 70%; }
+
+/* エアメール: キャプションがコンテンツ領域全体を覆い、
+   タイトルは動画上の余白に中央揃え、地名・時刻は動画下の余白に落とす */
+.design-airmail .win-caption {
+  justify-content: space-between;
+}
+
+.design-airmail .win-title {
+  text-align: center;
 }
 
 /* --- すりガラス遷移 --- */
