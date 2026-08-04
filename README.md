@@ -24,7 +24,7 @@ Based on [Fernweh](https://github.com/ubiquitous-o/Fernweh) — the video discov
   → rendered area 180×130 mm, aperture 170×120 mm (5 mm bleed on all sides)
   → windows stacked vertically (frame in portrait orientation)
   → window 1 switches at :00, window 2 at :20, window 3 at :40
-  → TV-static (WebGL shader) transition per window
+  → frosted-glass transition per window (fog in → load → clear)
   → no two windows show the same stream
 ```
 
@@ -101,10 +101,9 @@ nowwherefrom/
 │   ├── js/
 │   │   ├── main.js               # Entry — 3 windows, staggered hourly rotation
 │   │   ├── layout.js             # RÖDALM mm geometry → px rects + persistence
-│   │   ├── frameWindow.js        # Per-window controller (player, postcard layout, caption, noise)
+│   │   ├── frameWindow.js        # Per-window controller (player, postcard layout, caption, frost)
 │   │   ├── calibration.js        # Keyboard alignment mode
 │   │   ├── player.js             # YT.Player wrapper (slot-generic)
-│   │   ├── noise.js              # WebGL TV-static shader (per-canvas factory)
 │   │   ├── videoPool.js          # Shared pool, watched list, active-ID exclusion
 │   │   ├── locations.js          # Runtime location dictionary fallback
 │   │   └── input.js              # Click / keyboard handlers
