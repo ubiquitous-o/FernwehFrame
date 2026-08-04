@@ -1,8 +1,8 @@
 #!/bin/bash
-# Fernweh setup script
+# NowWhereFrom setup script
 set -e
 
-echo "🌍 Fernweh setup"
+echo "🪟 NowWhereFrom setup"
 echo ""
 
 # Node.js チェック

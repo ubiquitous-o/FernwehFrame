@@ -1,38 +1,39 @@
-// YouTube IFrame Player API のラッパー（2レイヤーcrossfade版）。
-// 切替時に inactive layer に新規 YT.Player を作成し、PLAYING になったら swap する。
-// 単一player + loadVideoById方式はbot検知に引っかかりやすいため避ける。
-import { getLayer } from './dom.js';
+// YouTube IFrame Player API のラッパー（3窓・スロット汎用版）。
+// 窓ごとのスロット要素に新規 YT.Player を作成し、PLAYING になったら resolve。
+// 単一player + loadVideoById方式はbot検知に引っかかりやすいため毎回作り直す。
 
 const PLAYBACK_TIMEOUT = 12000; // モバイル/低速回線で正常動画を巻き込まない程度に余裕
 
-// レイヤーIDごとのYT.Playerインスタンス
-export const players = { a: null, b: null };
-
-// 指定レイヤーに新規 YT.Player を作る。PLAYING に遷移したら resolve。
-export function createPlayer(layerId, videoId) {
+// スロット要素に新規 YT.Player を作る。PLAYING に遷移したら player を resolve。
+// 失敗・タイムアウト時は内部で破棄してから reject。
+export function createPlayer(slotEl, videoId) {
   return new Promise((resolve, reject) => {
-    const elementId = `player-${layerId}`;
     let settled = false;
+    let player = null;
+
+    const cleanup = () => {
+      if (player) {
+        try { player.destroy(); } catch {}
+        player = null;
+      }
+      slotEl.innerHTML = '';
+    };
 
     const timeoutId = setTimeout(() => {
       if (!settled) {
         settled = true;
         console.warn(`Playback timeout: ${videoId}`);
+        cleanup();
         reject(new Error('Playback timeout'));
       }
     }, PLAYBACK_TIMEOUT);
 
-    // 既存playerがあれば破棄
-    if (players[layerId]) {
-      try { players[layerId].destroy(); } catch {}
-      players[layerId] = null;
-    }
+    // プレーヤー用divを再生成（YT.Playerがこのdivをiframeに置換する）
+    slotEl.innerHTML = '';
+    const target = document.createElement('div');
+    slotEl.appendChild(target);
 
-    // プレーヤー用div再生成
-    const $layer = getLayer(layerId);
-    $layer.innerHTML = `<div id="${elementId}"></div>`;
-
-    players[layerId] = new YT.Player(elementId, {
+    player = new YT.Player(target, {
       videoId,
       playerVars: {
         autoplay: 1,
@@ -61,9 +62,9 @@ export function createPlayer(layerId, videoId) {
           if (e.data === 1 && !settled) {
             settled = true;
             clearTimeout(timeoutId);
-            resolve();
+            resolve(player);
           }
-          // 隠しiframeでの謎の自動pauseを検出したら即座に再開
+          // 謎の自動pauseを検出したら即座に再開
           if (e.data === 2) {
             try { e.target.playVideo(); } catch {}
           }
@@ -73,6 +74,7 @@ export function createPlayer(layerId, videoId) {
             settled = true;
             clearTimeout(timeoutId);
             console.warn(`Player error (code ${e.data}): ${videoId}`);
+            cleanup();
             reject(new Error(`Player error: ${e.data}`));
           }
         },
@@ -81,12 +83,10 @@ export function createPlayer(layerId, videoId) {
   });
 }
 
-// 指定レイヤーのplayerを破棄してdivを差し戻す。
-export function destroyPlayer(layerId) {
-  if (players[layerId]) {
-    try { players[layerId].destroy(); } catch {}
-    players[layerId] = null;
+// playerを破棄してスロットを空に戻す。
+export function destroyPlayer(player, slotEl) {
+  if (player) {
+    try { player.destroy(); } catch {}
   }
-  const $layer = getLayer(layerId);
-  $layer.innerHTML = `<div id="player-${layerId}"></div>`;
+  slotEl.innerHTML = '';
 }

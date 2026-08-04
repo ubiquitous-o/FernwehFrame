@@ -1,52 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
 
 :root {
-  --overlay-bg: rgba(0, 0, 0, 0.55);
+  --accent: rgba(80, 255, 120, 0.9);
   --text-primary: rgba(255, 255, 255, 0.92);
-  --text-secondary: rgba(255, 255, 255, 0.55);
-  --text-dim: rgba(255, 255, 255, 0.25);
-  --accent: rgba(255, 90, 60, 0.9);
-
-  /* レイアウト */
-  --edge-x: clamp(20px, 3.5vw, 50px);
-  --edge-y: clamp(16px, 2.5vh, 40px);
-  --globe-size: clamp(120px, 18vw, 225px);
-  --shift-x: 0px;
-  --shift-y: 0px;
-
-  /* Clock */
-  --clock-top: clamp(16px, 2.5vh, 30px);
-  --clock-font-time: clamp(28px, 4.5vw, 56px);
-  --clock-font-date: clamp(13px, 1.8vw, 22px);
-  --clock-padding-x: clamp(10px, 1.5vw, 20px);
-  --clock-padding-y: clamp(8px, 1.2vw, 16px);
-
-  /* Weather */
-  --weather-font: clamp(11px, 1.5vw, 18px);
-  --weather-location-font: clamp(9px, 1.1vw, 13px);
-
-  /* Info */
-  --info-font-title: clamp(14px, 1.8vw, 22px);
-  --info-font-channel: clamp(10px, 1.1vw, 13px);
-
-  /* Live badge */
-  --badge-top: clamp(20px, 3vh, 38px);
-  --badge-font: clamp(11px, 1.3vw, 16px);
-
-  /* Camera time */
-  --ct-font-clock: clamp(16px, 2.2vw, 28px);
-  --ct-font-diff: clamp(9px, 1.1vw, 13px);
-
-  /* Globe label */
-  --globe-label-font: clamp(11px, 1.6vw, 20px);
-
-  /* Controls */
-  --ctrl-btn-size: clamp(32px, 3.5vw, 42px);
-  --ctrl-btn-font: clamp(12px, 1.3vw, 16px);
-  --ctrl-right: clamp(16px, 2.5vw, 30px);
-
-  /* Progress */
-  --progress-height: clamp(2px, 0.35vh, 4px);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -61,446 +17,195 @@ html, body {
   user-select: none;
 }
 
-/* --- Video frame & layer --- */
-/* .video-frame: 中央16:9のクリップ枠。SVGフィルタのはみ出しはここでクリップする。
-   .video-layer: フレーム内に inset:0 で配置、フィルタ自体はこの要素に当てる。 */
-.video-frame {
+body.mouse-active,
+body.calibrating { cursor: default; }
+
+#stage { position: fixed; inset: 0; }
+
+/* --- 窓（ポストカード） --- */
+/* .frame-window: RÖDALM開口部に対応するクリップ枠。位置・サイズはJSがpx指定。
+   .win-card: 紙のカード面。動画(16:9原寸比)とキャプションはJSがmm定数から配置。 */
+.frame-window {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(100vw, calc(100vh * 16 / 9));
-  height: min(100vh, calc(100vw * 9 / 16));
-  transform: translate(-50%, -50%);
-  z-index: 1;
   overflow: hidden;
-}
-.video-layer {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-}
-/* visibility:hidden を使う：iframeをレンダリング状態に保ったまま不可視化
-   → display:noneによるYouTube playerの隠れ抑制を回避 */
-.video-layer.hidden { visibility: hidden; }
-.video-layer.visible { visibility: visible; }
-.video-layer iframe {
-  width: 100%; height: 100%;
-  border: none;
-  pointer-events: none;
+  background: #e7dfcc; /* 窓全体は落ち着いた生成り。はがきはこの上に浮かぶ */
 }
 
-/* --- Glitch effect (SVG filter: noise displacement + RGB shift, shadertoy XtK3W3 inspired) --- */
-.video-layer.glitch {
-  filter: url(#video-glitch-filter);
-  will-change: filter;
+/* はがき実寸(148×100mm)のカード。位置・サイズはJSがmm定数から算出。
+   紙テクスチャを敷く（ロード前・失敗時は近い無地色にフォールバック） */
+.win-card {
+  position: absolute;
+  /* multiplyでテクスチャに色を乗せる: この色を変えるだけで紙のトーンを調整できる */
+  background: #f9f4e9 url('../img/paper.jpg') center / cover no-repeat;
+  background-blend-mode: multiply;
+  box-shadow: 0 1px 6px rgba(60, 45, 30, 0.3);
 }
 
-/* --- TV Noise overlay --- */
-/* 動画の16:9枠内に収まるよう中央寄せ。ビューポートが16:9より広いときは左右、
-   高いときは上下に黒帯が残る（動画の letterbox/pillarbox と一致）。 */
-.noise-overlay {
+/* 動画のフチ自体をJS生成のミシン目パスでクリップする */
+.win-video-box {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(100vw, calc(100vh * 16 / 9));
-  height: min(100vh, calc(100vw * 9 / 16));
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  opacity: 0;
-  pointer-events: none;
-  /* キャンバスがレイアウト外に染み出ないよう保険 */
+  background: #000;
+}
+
+.win-video { position: absolute; inset: 0; }
+
+.win-video iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none; /* クリックは窓に落として切替に使う */
+}
+
+/* --- キャプション --- */
+.win-caption {
+  position: absolute;
   overflow: hidden;
-}
-.noise-overlay.active {
-  opacity: 1;
-}
-.noise-overlay canvas {
-  width: 100%; height: 100%;
-}
-
-/* --- Vignette overlay --- */
-.vignette {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%),
-    linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 20%),
-    linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 10%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.45em;
+  color: #1d1a15;
 }
 
-/* --- Info Overlay --- */
-.info-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  padding: calc(var(--edge-y) + var(--shift-y)) calc(var(--edge-x) + var(--shift-x));
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-.info-overlay.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.info-channel {
-  font-size: var(--info-font-channel);
-  font-weight: 300;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: 6px;
-}
-
-.info-title {
-  font-size: var(--info-font-title);
-  font-weight: 300;
-  line-height: 1.4;
-  color: var(--text-primary);
-  max-width: clamp(300px, 50vw, 700px);
+.win-title {
+  font-family: -apple-system, 'Helvetica Neue', 'Hiragino Sans', sans-serif;
+  font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-decoration: none;
-  display: block;
-}
-.info-title:hover { text-decoration: underline; }
-
-/* --- Top-right Clock --- */
-.clock-overlay {
-  position: absolute;
-  top: calc(var(--clock-top) + var(--shift-y));
-  right: calc(var(--edge-x) + var(--shift-x));
-  z-index: 10;
-  text-align: right;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-  background: var(--overlay-bg);
-  padding: var(--clock-padding-y) var(--clock-padding-x);
-  border-radius: 8px;
-  backdrop-filter: blur(6px);
-}
-.clock-overlay.show { opacity: 1; }
-
-.clock-time {
-  font-size: var(--clock-font-time);
-  font-weight: 200;
-  letter-spacing: clamp(2px, 0.3vw, 4px);
-  color: var(--text-primary);
-  line-height: 1;
-}
-.clock-date {
-  font-size: var(--clock-font-date);
-  font-weight: 300;
-  letter-spacing: clamp(2px, 0.3vw, 4px);
-  color: var(--text-secondary);
-  margin-top: 4px;
 }
 
-/* --- Weather location name --- */
-.weather-location {
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-dim);
-  font-size: var(--weather-location-font);
-  font-weight: 300;
-  letter-spacing: 3px;
-  text-align: right;
+.win-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1em;
+}
+
+.win-location {
+  color: #b3402e; /* 切手っぽい赤 */
   text-transform: uppercase;
-}
-
-/* --- Weather (below clock) --- */
-/* Grid layout: 4列がそれぞれ全行の最大幅に自動フィット。Silkscreenの不揃いな
-   字幅も絵文字幅差も「列単位の最大値」で吸収されるので、ピクセル揃え + 無駄余白なし。
-   .weather-day を display:contents にして、各<span>を直接grid cellとして参加させる。 */
-.weather-section {
-  margin-top: 6px;
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  row-gap: 4px;
-  column-gap: clamp(6px, 1vw, 12px);
-  justify-content: end;
-  font-size: var(--weather-font);
-  font-weight: 300;
-  letter-spacing: 1px;
-}
-
-.weather-day {
-  display: contents;
-}
-
-.weather-label {
-  color: var(--text-dim);
-  letter-spacing: 3px;
-  text-align: right;
-}
-
-/* Silkscreenは「1」が他数字より狭い等、純粋な等幅じゃない。各文字を 1ch
-   (= '0' の advance width) の固定幅boxに入れて、列単位での揃いを保証する。 */
-.weather-label .ch,
-.weather-temp .ch,
-.weather-precip .ch {
-  display: inline-block;
-  width: 1ch;
-  text-align: center;
-}
-
-/* 絵文字種別（U+2600帯 vs U+1F300+帯）でグリフ幅が変わるので幅を完全固定 + center寄せ。
-   min-width:0 と overflow:hidden は flex item デフォルトの min-content を抑える保険。 */
-.weather-icon {
-  line-height: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.6em;
-  min-width: 0;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
   overflow: hidden;
-  letter-spacing: 0;
+  text-overflow: ellipsis;
 }
 
-.weather-temp {
-  color: var(--text-secondary);
-  font-weight: 200;
-  font-variant-numeric: tabular-nums;
-  text-align: right;
+.win-time {
+  color: #2b4a8b; /* 消印インク風の濃紺 */
+  flex-shrink: 0;
 }
 
-.weather-precip {
-  color: var(--text-secondary);
-  text-align: right;
-}
-
-/* --- Globe --- */
-.globe-container {
+/* --- 砂嵐 --- */
+.win-noise {
   position: absolute;
-  bottom: calc(var(--edge-y) + var(--shift-y));
-  right: calc(var(--edge-x) + var(--shift-x));
-  z-index: 12;
-  width: var(--globe-size);
-  height: var(--globe-size);
-  opacity: 0;
-  transition: opacity 1.2s ease;
-  pointer-events: none;
-}
-.globe-container.show { opacity: 0.95; }
-.globe-label {
-  position: absolute;
-  width: max-content;
-  text-align: center;
-  transform: translate(-50%, -50%);
-  font-size: var(--globe-label-font);
-  font-weight: 600;
-  color: #fff;
-  background: rgba(51, 102, 255, 0.9);
-  padding: 1px 6px;
-  border-radius: 3px;
-  letter-spacing: 0;
-  white-space: pre-line;
-  line-height: 1.2;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-.globe-label.show { opacity: 1; }
-.globe-container canvas {
+  inset: 0;
   width: 100%;
   height: 100%;
-  filter: invert(1);
-}
-
-.camera-time {
-  position: absolute;
-  bottom: calc(var(--globe-size) + var(--edge-y) + 10px);
-  right: calc(var(--edge-x) + var(--shift-x));
-  z-index: 12;
-  text-align: right;
   opacity: 0;
-  transition: opacity 1.2s ease, bottom 0.4s ease;
+  transition: opacity 0.25s ease;
   pointer-events: none;
-}
-.camera-time.show { opacity: 1; }
-.camera-time-clock {
-  font-size: var(--ct-font-clock); font-weight: 200;
-  letter-spacing: 2px; color: var(--text-primary); line-height: 1;
-}
-.camera-time-diff {
-  font-size: var(--ct-font-diff); font-weight: 300;
-  letter-spacing: 2px; color: var(--text-secondary); margin-top: 2px;
+  z-index: 2;
 }
 
-/* --- Live indicator --- */
-.live-badge {
+.win-noise.active { opacity: 1; }
+
+/* --- キャリブレーション用ガイド矩形（Cキー中のみ表示） --- */
+/* 緑=描画180×130（.frame-windowのoutline） / シアン=開口170×120 / オレンジ=はがき148×100 */
+.cal-rect {
   position: absolute;
-  top: calc(var(--badge-top) + var(--shift-y));
-  left: calc(var(--edge-x) + var(--shift-x));
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-.live-badge.show { opacity: 1; }
-
-.live-dot {
-  width: clamp(6px, 0.8vw, 10px); height: clamp(6px, 0.8vw, 10px);
-  border-radius: 50%;
-  background: var(--accent);
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
-}
-
-.live-text {
-  font-size: var(--badge-font);
-  font-weight: 400;
-  letter-spacing: clamp(3px, 0.4vw, 5px);
-  text-transform: uppercase;
-  color: var(--text-secondary);
-}
-
-/* --- Progress bar (time until next switch) --- */
-.progress-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: var(--progress-height);
-  background: var(--accent);
-  z-index: 15;
-  transition: width 1s linear;
-  opacity: 0.6;
-}
-
-/* --- Controls (right edge, vertically centered) --- */
-.controls {
-  position: absolute;
-  top: 50%;
-  right: var(--ctrl-right);
-  transform: translateY(-50%) translateX(4px);
-  z-index: 20;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(8px, 1vw, 12px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-body.mouse-active .controls {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(-50%);
-}
-body.mouse-active { cursor: default; }
-
-.ctrl-btn {
-  width: var(--ctrl-btn-size); height: var(--ctrl-btn-size);
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.2);
-  background: var(--overlay-bg);
-  color: var(--text-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  font-size: var(--ctrl-btn-font);
-}
-.ctrl-btn:hover {
-  border-color: rgba(255,255,255,0.5);
-  color: var(--text-primary);
-  background: rgba(255,255,255,0.1);
-}
-a.ctrl-btn { text-decoration: none; }
-
-/* --- Loading state --- */
-.loading-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 30;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  transition: opacity 0.3s ease;
-}
-.loading-overlay.fade-out {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.loading-text {
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 10px 24px;
-  border-radius: 4px;
-  text-align: center;
-  animation: breathe 2s ease-in-out infinite;
-}
-@keyframes breathe {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
-}
-
-/* --- Noise期間中のオーバーレイ非表示 ---
-   オーバーレイ自身のopacity/transform transitionを使ってフェードout/in。
-   初回表示と同じ挙動: info-overlayだけ translateY(8px) で下にスライド。 */
-.noise-hidden {
-  opacity: 0 !important;
-}
-.info-overlay.noise-hidden {
-  transform: translateY(8px) !important;
-}
-
-/* --- Error --- */
-.error-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 25;
   display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.85);
-}
-.error-overlay.show {
-  display: flex;
-}
-.error-msg {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--text-secondary);
-  letter-spacing: 2px;
+  pointer-events: none;
+  box-sizing: border-box;
+  z-index: 4;
 }
 
-/* --- Responsive (width) --- */
-@media (min-width: 501px) and (max-width: 768px) {
-  .weather-section .weather-day:nth-child(n+3) { display: none; }
+body.calibrating .cal-rect { display: block; }
+
+.cal-aperture { border: 1px dashed rgba(80, 220, 255, 0.9); }
+.cal-postcard { border: 1px dashed rgba(255, 170, 60, 0.9); }
+
+/* --- キャリブレーションUI --- */
+.win-label {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  font-size: 20px;
+  color: var(--accent);
+  text-shadow: 0 0 4px #000;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
 }
-@media (max-width: 500px) {
-  .weather-section .weather-day:nth-child(n+4) { display: none; }
+
+body.calibrating .win-label { opacity: 1; }
+
+body.calibrating .frame-window {
+  outline: 1px dashed rgba(255, 255, 255, 0.5);
+  outline-offset: -1px;
 }
-@media (max-width: 500px) and (max-height: 500px) {
-  .weather-location { display: none; }
+
+body.calibrating .frame-window.cal-selected {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
 }
-/* --- Responsive (height) --- */
-@media (max-height: 700px) {
-  .weather-section .weather-day:nth-child(n+3) { display: none; }
+
+body.calibrating.cal-all .frame-window {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
 }
-@media (max-height: 500px) {
-  .weather-section { display: none; }
-  .weather-location { display: none; }
-  .clock-time { font-size: clamp(16px, 3.5vw, 24px); }
-  .clock-date { font-size: clamp(9px, 1.3vw, 12px); }
+
+/* 額縁で隠れないよう窓2の矩形内にJS(calibration.js)がleft/top/max-サイズを設定する */
+#cal-help {
+  position: fixed;
+  z-index: 10;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 14px;
+  font-size: 11px;
+  line-height: 1.6;
+  display: none;
+  white-space: pre;
+  overflow: auto;
+}
+
+#cal-input-row {
+  display: none;
+  margin-top: 8px;
+}
+
+#cal-input-row.visible { display: block; }
+
+#cal-input-label { color: var(--accent); }
+
+#cal-input {
+  width: 90px;
+  margin-left: 8px;
+  background: #000;
+  color: var(--text-primary);
+  border: 1px solid var(--accent);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 2px 6px;
+  outline: none;
+}
+
+#cal-help.visible { display: block; }
+
+.cal-title {
+  color: var(--accent);
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+#cal-readout {
+  font-family: inherit;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.cal-keys {
+  font-family: inherit;
+  color: rgba(255, 255, 255, 0.55);
 }

@@ -3,19 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fernweh</title>
-<script defer src="https://cloud.umami.is/script.js" data-website-id="c23583e8-01e5-46bd-aa13-8d875e042c39"></script>
-<meta name="description" content="An ache for distant places. Fullscreen live cameras from around the world, cycling every hour with a 3D globe and weather overlay.">
-<meta property="og:title" content="Fernweh">
-<meta property="og:description" content="An ache for distant places. Fullscreen live cameras from around the world, cycling every hour.">
-<meta property="og:url" content="https://ubiquitous-o.github.io/Fernweh/">
+<title>NowWhereFrom</title>
+<meta name="description" content="Three live windows to elsewhere. YouTube live cameras behind an IKEA RÖDALM triptych frame — one monitor, three views of the world.">
+<meta property="og:title" content="NowWhereFrom">
+<meta property="og:description" content="Three live windows to elsewhere. One monitor behind a triptych frame, three live cameras from around the world.">
+<meta property="og:url" content="https://ubiquitous-o.github.io/NowWhereFrom/">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://ubiquitous-o.github.io/Fernweh/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ubiquitous-o.github.io/Fernweh/og-image.png">
-<meta name="twitter:title" content="Fernweh">
-<meta name="twitter:description" content="An ache for distant places. Fullscreen live cameras from around the world, cycling every hour.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪟</text></svg>">
 <!-- 砂嵐短縮: 起動で必ず叩くホストの握手(DNS+TCP+TLS)を前倒し + 必須JSONを並行取得 -->
 <link rel="preconnect" href="https://www.youtube.com">
 <link rel="preconnect" href="https://s.ytimg.com">
@@ -26,124 +20,80 @@
 </head>
 <body>
 
-<!-- 16:9のフレーム枠（overflow:hiddenでSVGフィルタの染み出しをクリップ） -->
-<div class="video-frame" id="video-frame">
-  <!-- 2レイヤーcrossfade: 切替時はinactive layerに新規YT.Player作成 → swap -->
-  <div class="video-layer visible" id="layer-a">
-    <div id="player-a"></div>
+<!-- RÖDALM 3窓。位置・サイズはlayout.jsがmm実寸→pxで算出し、Cキーのキャリブレーションで追い込む -->
+<div id="stage">
+  <div class="frame-window" id="win-0">
+    <div class="win-card">
+      <div class="win-video-box"><div class="win-video"></div></div>
+      <div class="win-caption">
+        <div class="win-title"></div>
+        <div class="win-meta">
+          <span class="win-location"></span>
+          <span class="win-time"></span>
+        </div>
+      </div>
+    </div>
+    <div class="cal-rect cal-aperture"></div>
+    <div class="cal-rect cal-postcard"></div>
+    <canvas class="win-noise"></canvas>
+    <div class="win-label">1</div>
   </div>
-  <div class="video-layer hidden" id="layer-b">
-    <div id="player-b"></div>
+  <div class="frame-window" id="win-1">
+    <div class="win-card">
+      <div class="win-video-box"><div class="win-video"></div></div>
+      <div class="win-caption">
+        <div class="win-title"></div>
+        <div class="win-meta">
+          <span class="win-location"></span>
+          <span class="win-time"></span>
+        </div>
+      </div>
+    </div>
+    <div class="cal-rect cal-aperture"></div>
+    <div class="cal-rect cal-postcard"></div>
+    <canvas class="win-noise"></canvas>
+    <div class="win-label">2</div>
+  </div>
+  <div class="frame-window" id="win-2">
+    <div class="win-card">
+      <div class="win-video-box"><div class="win-video"></div></div>
+      <div class="win-caption">
+        <div class="win-title"></div>
+        <div class="win-meta">
+          <span class="win-location"></span>
+          <span class="win-time"></span>
+        </div>
+      </div>
+    </div>
+    <div class="cal-rect cal-aperture"></div>
+    <div class="cal-rect cal-postcard"></div>
+    <canvas class="win-noise"></canvas>
+    <div class="win-label">3</div>
   </div>
 </div>
 
-<!-- SVG glitch filter (Shadertoy XtK3W3 inspired: turbulence-driven horizontal displacement + RGB split) -->
-<svg style="position:absolute; width:0; height:0; pointer-events:none;" aria-hidden="true">
-  <defs>
-    <!-- filter領域を横2倍に拡張。SourceGraphicを±半幅ずつシフトして
-         右半分→左側、左半分→右側のラップアラウンドを作る（フル3倍タイリングより軽量）。 -->
-    <filter id="video-glitch-filter" x="-50%" y="0%" width="200%" height="100%" color-interpolation-filters="sRGB">
-      <!-- SourceGraphicを±半幅シフト: dxはJSで動的設定 -->
-      <feOffset in="SourceGraphic" dx="0" dy="0" result="leftCopy"/>
-      <feOffset in="SourceGraphic" dx="0" dy="0" result="rightCopy"/>
-      <!-- 描画順: 左右コピー → 最後にSourceGraphicを最前面に。
-           これで原画は元の位置を維持しつつ、両側に半幅の wrap が広がる。 -->
-      <feMerge result="extended">
-        <feMergeNode in="leftCopy"/>
-        <feMergeNode in="rightCopy"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-      <!-- WebGLで生成したフラクタルノイズをcanvas→blob URL経由で読み込む。
-           feTurbulenceの代わりに使うことでモバイルでのパフォーマンス向上。
-           shaderで big/fine 両方の周波数を1パスで合成。 -->
-      <feImage href="" result="noiseRaw" preserveAspectRatio="none"/>
-      <!-- アルファを定数0.5に固定 → yChannelSelector="A"でY変位を0にする -->
-      <feColorMatrix in="noiseRaw" type="matrix"
-        values="1 0 0 0 0
-                0 1 0 0 0
-                0 0 1 0 0
-                0 0 0 0 0.5" result="noise"/>
-      <feDisplacementMap in="extended" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="A" result="disp"/>
-      <feColorMatrix in="disp" type="matrix"
-        values="1 0 0 0 0
-                0 0 0 0 0
-                0 0 0 0 0
-                0 0 0 1 0" result="r"/>
-      <feOffset in="r" dx="0" dy="0" result="r2"/>
-      <feColorMatrix in="disp" type="matrix"
-        values="0 0 0 0 0
-                0 1 0 0 0
-                0 0 0 0 0
-                0 0 0 1 0" result="g"/>
-      <feColorMatrix in="disp" type="matrix"
-        values="0 0 0 0 0
-                0 0 0 0 0
-                0 0 1 0 0
-                0 0 0 1 0" result="b"/>
-      <feOffset in="b" dx="0" dy="0" result="b2"/>
-      <feBlend mode="screen" in="r2" in2="g" result="rg"/>
-      <feBlend mode="screen" in="rg" in2="b2"/>
-    </filter>
-  </defs>
-</svg>
+<!-- キャリブレーションUI（Cキーでトグル）。額縁で隠れないよう窓2の上にJSが配置する -->
+<div id="cal-help">
+  <div class="cal-title">CALIBRATION</div>
+  <pre id="cal-readout"></pre>
+  <div id="cal-input-row">
+    <label for="cal-input" id="cal-input-label">MONITOR WIDTH (mm):</label>
+    <input id="cal-input" type="number" min="100" max="3000" step="0.5">
+  </div>
+  <pre class="cal-keys">
+0        select all (frame)
+1 / 2 / 3  select window
+arrows   move        (+Shift x10)
+- / =    scale | width
+[ / ]    height
+M        monitor width (mm) = true scale
+R        reset
+C / Esc  save &amp; exit
 
-<!-- TV Noise -->
-<div class="noise-overlay" id="noise-overlay">
-  <canvas id="noise-canvas"></canvas>
-</div>
-
-<!-- Vignette -->
-<div class="vignette"></div>
-
-<!-- Live badge -->
-<div class="live-badge" id="live-badge">
-  <div class="live-dot"></div>
-  <span class="live-text">Live</span>
-</div>
-
-<!-- Clock -->
-<div class="clock-overlay" id="clock">
-  <div class="clock-time" id="clock-time"></div>
-  <div class="clock-date" id="clock-date"></div>
-  <div class="weather-location" id="weather-location"></div>
-  <div class="weather-section" id="weather"></div>
-</div>
-
-<div class="camera-time" id="camera-time">
-  <div class="camera-time-clock" id="camera-time-clock"></div>
-  <div class="camera-time-diff" id="camera-time-diff"></div>
-</div>
-
-<!-- Globe -->
-<div class="globe-container" id="globe-container">
-  <canvas id="globe-canvas"></canvas>
-  <div class="globe-label" id="globe-label"></div>
-</div>
-
-<!-- Controls (right edge, vertically centered) -->
-<div class="controls">
-  <div class="ctrl-btn" id="btn-skip" title="Skip">⏭</div>
-  <div class="ctrl-btn" id="btn-fullscreen" title="Fullscreen">⛶</div>
-  <a class="ctrl-btn" id="btn-info" title="About" href="https://github.com/ubiquitous-o/Fernweh" target="_blank" rel="noopener">ℹ</a>
-</div>
-
-<!-- Info -->
-<div class="info-overlay" id="info">
-  <div class="info-channel" id="info-channel"></div>
-  <a class="info-title" id="info-title" href="#" target="_blank" rel="noopener"></a>
-</div>
-
-<!-- Progress -->
-<div class="progress-bar" id="progress"></div>
-
-<!-- Loading -->
-<div class="loading-overlay" id="loading">
-  <div class="loading-text">Exploring the world live camera...</div>
-</div>
-
-<!-- Error -->
-<div class="error-overlay" id="error">
-  <div class="error-msg" id="error-msg">Connection error</div>
+guides:
+green    180x130 render
+cyan     170x120 aperture
+orange   148x100 postcard</pre>
 </div>
 
 <script type="module" src="js/main.js"></script>

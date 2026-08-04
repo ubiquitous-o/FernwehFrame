@@ -1,85 +1,57 @@
-# Fernweh
+# NowWhereFrom
 
-<p align="center">
-  <img src="public/og-image.png" alt="Fernweh" width="600">
-</p>
+> Three live windows to elsewhere.
 
-> **Fernweh** /ˈfɛʁnˌveː/ — German, *noun*
->
-> From *fern* ("far, distant") + *Weh* ("pain, ache"). Literally "far-sickness" — an ache for distant places, a longing for somewhere you have never been. The opposite of homesickness.
->
-> The term was coined by Prince Hermann von Pückler-Muskau in his 1835 book *The Penultimate Course of the World of Semilasso: Dream and Waking*, during the Romantic period when artists and writers were deeply drawn to exploring the boundaries of human emotion.
->
-> While *Wanderlust* describes a joyful desire to travel, *Fernweh* conveys something deeper — a pain, a pull toward the unknown. It is the feeling of being homesick for a place you have never visited.
->
-> — [BBC: The travel 'ache' you can’t translate](https://www.bbc.com/travel/article/20200323-the-travel-ache-you-cant-translate)
+A single monitor hides behind an [IKEA RÖDALM frame for 3 pictures](https://www.ikea.com/jp/ja/p/roedalm-frame-for-3-pictures-white-10553726/) (57×30 cm, three 13×18 cm openings), hung in portrait orientation — three 18×13 landscape windows stacked vertically. Each opening becomes a live window: three different YouTube live cameras from around the world, rotating on the hour.
 
----
+Based on [Fernweh](https://github.com/ubiquitous-o/Fernweh) — the video discovery pipeline (GitHub Actions → YouTube Data API → `videos.json`) is inherited as-is; the frontend is rebuilt as a triptych kiosk view.
 
-**🌍️🌍️🌍️Live Demo:** https://ubiquitous-o.github.io/Fernweh/ 🌍️🌍️🌍️
+## How it works
 
-A fullscreen web app that automatically cycles through YouTube live cameras at the top of every hour. Hosted on **GitHub Pages** with video data refreshed by **GitHub Actions**.
+```
+[GitHub Actions cron (every 2 hours)]
+  → YouTube Data API v3 search
+  → location resolution (dictionary → Gemini → Nominatim)
+  → public/videos.json → git push
+
+[Browser (kiosk, fullscreen behind the frame)]
+  → 3 independent YouTube IFrame players
+  → each window is a "postcard": real hagaki-size (148×100 mm) textured card,
+    16:9 video with stamp-perforation edges on top (no crop),
+    title / location / camera-local time in the space below
+  → rendered area 180×130 mm, aperture 170×120 mm (5 mm bleed on all sides)
+  → windows stacked vertically (frame in portrait orientation)
+  → window 1 switches at :00, window 2 at :20, window 3 at :40
+  → TV-static (WebGL shader) transition per window
+  → no two windows show the same stream
+```
 
 ## Controls
 
 | Key | Action |
 |-----|--------|
-| Click (screen) | Skip to next camera |
-| `Space` / `→` / `N` | Skip to next camera |
+| Click a window | Switch that window to the next camera |
+| `1` / `2` / `3` | Switch a specific window |
+| `Space` / `N` / `→` | Switch all three windows |
 | `F` / `F11` | Toggle fullscreen |
-| Mouse move | Show control buttons |
+| `C` | Toggle calibration mode |
 
-## Features
+## Calibration
 
-- TV static noise transition between live streams (WebGL shader)
-- Interactive 3D globe showing camera location ([COBE](https://github.com/shuding/cobe))
-- Location detection from video title/channel/description ([Gemini API](https://ai.google.dev/) batch extraction + dictionary-first matching + fallback) with [Nominatim](https://nominatim.openstreetmap.org/) geocoding
-- Dictionary-first optimization: skips Gemini API for known locations, saving RPD quota
-- Auto-learning from geocache: previously resolved locations are merged into the dictionary at startup, reducing Gemini calls over time
-- Full video description fetching via YouTube videos.list API for improved location accuracy
-- Camera local time & time difference from your timezone (via [geo-tz](https://github.com/evansiroky/timezone-boundary-builder) at build-time)
-- Clock and 7-day weather forecast overlay (via [Open-Meteo](https://open-meteo.com/))
-- Geolocation-based weather (browser Geolocation API → IP fallback → Tokyo fallback)
-- Randomized search queries with multiple patterns for maximum discovery (300+ locations, 50+ topics)
-- Clickable video title — links to original YouTube video, resumes on browser back
-- "City, Country" location labels on globe (auto line-break at comma)
-  - **Note:** Globe labels are best-effort — location detection relies on video titles, channel names, and AI extraction, so labels may be inaccurate or missing for some streams
-- Client-side video pool refresh every 2 hours (follows server-side updates)
-- Auto-switch at the top of each hour with progress bar
-- Auto-retry on playback failures
-- Kiosk-friendly — Silkscreen bitmap font, cursor auto-hides, burn-in prevention
+The three on-screen rectangles default to RÖDALM's real dimensions in portrait orientation (frame 300×570 mm, windows 180×130 mm; assuming even vertical spacing: 45 mm margins/gaps, 60 mm sides), scaled to fit the viewport. To align them with the physical openings, press `C`:
 
-## Architecture
+| Key | Action |
+|-----|--------|
+| `0` | Select the whole frame |
+| `1` / `2` / `3` | Select one window |
+| Arrow keys | Move selection (`Shift` = ×10) |
+| `-` / `=` | Scale (whole frame) / width (window) |
+| `[` / `]` | Height (window) |
+| `M` | Enter the monitor's visible width in mm → true physical scale (windows become real 180×130 mm) |
+| `R` | Reset to defaults |
+| `C` / `Esc` | Save & exit |
 
-```
-[GitHub Actions cron (every 2 hours)]
-  → YouTube Data API v3 search (8 queries/run)
-  → public/videos.json → git push
-
-[GitHub Pages (static hosting)]
-  → public/index.html + public/videos.json
-
-[Browser]
-  → Loads video candidates from videos.json
-  → YouTube IFrame Player API for playback
-  → COBE globe with pin-tracking label
-  → Camera local time + time difference (from timezone in videos.json)
-  → WebGL shader TV noise during loading
-  → Geolocation API / IP API → Open-Meteo for weather
-
-[Location Detection (build-time)]
-  → Load geocache.json → merge into dictionary (auto-learning)
-  → Dictionary match first (hardcoded + learned locations)
-  → Fetch full descriptions via YouTube videos.list API
-  → Unmatched items → Gemini API batch (gemini-2.5-flash-lite, 20/batch)
-  → Gemini result → dictionary coords or Nominatim geocoding
-  → Fallback → dictionary match on title/channel
-  → Nominatim cache → scripts/geocache.json (feeds next run's dictionary)
-  → geo-tz: coords → IANA timezone → videos.json
-
-[Location Detection (runtime fallback)]
-  → Title/channel → KNOWN_LOCATIONS dictionary match
-```
+The layout is saved to `localStorage` and survives reboots. Tip: put a real photo print in one opening while calibrating the others, or just nudge until the green outlines vanish behind the mat.
 
 ## Setup
 
@@ -90,7 +62,7 @@ A fullscreen web app that automatically cycles through YouTube live cameras at t
 3. Enable **YouTube Data API v3** under APIs & Services > Library
 4. Create an API key under APIs & Services > Credentials
 
-### 2. Get a Gemini API Key (Free)
+### 2. Get a Gemini API Key (Free, optional)
 
 1. Go to [Google AI Studio](https://aistudio.google.com/apikey)
 2. Create an API key (no credit card required)
@@ -101,93 +73,41 @@ A fullscreen web app that automatically cycles through YouTube live cameras at t
 2. Add secrets:
    - `YOUTUBE_API_KEY` = your YouTube API key
    - `GEMINI_API_KEY` = your Gemini API key (optional — falls back to dictionary-only matching)
-3. Go to **Settings > Pages** and set source to the `main` branch, `/public` folder (or `/ (root)`)
+3. Go to **Settings > Pages** and set source to the `main` branch
 4. Go to **Actions** and manually trigger "Fetch Live Videos" to seed initial data
 
-### 4. Done
+### 4. Kiosk
 
-The site will be live at `https://<username>.github.io/<repo>/`.
-Videos are refreshed every 2 hours automatically.
-
-## Local Development
+Point a fullscreen Chromium at the deployed page (or local server), put the monitor behind the frame, press `C`, and line up the windows.
 
 ```bash
-# Fetch videos locally
-YOUTUBE_API_KEY=your_key node scripts/fetch-videos.js
-
-# Serve the static site
-npx serve public
+# Local development
+YOUTUBE_API_KEY=your_key node scripts/fetch-videos.js   # fetch videos locally
+npx serve public                                        # serve the static site
 ```
 
-## Local Server Mode (Optional)
-
-For dedicated hardware (N100 kiosk, Raspberry Pi, etc.), the Express server is still available:
-
-```bash
-cp config.example.json config.json
-# Edit config.json with your API key
-npm install express
-npm run start:local
-```
-
-## API Quotas
-
-**YouTube Data API v3**
-- 8 searches/cron × 100 quota = 800 quota/run
-- 1 videos.list/cron × 1 quota/video ≈ 50–100 quota/run
-- Every 2 hours × 12 runs/day ≈ **~10,000 quota/day** (near free tier limit)
-
-**Gemini API (gemini-2.5-flash-lite)**
-- 0–1 batch request/run (skipped when all items are dictionary-matched)
-- Max 12 runs/day = **≤12 requests/day** (free tier: 20 RPD)
+For dedicated hardware (N100 kiosk, Raspberry Pi, etc.) see `setup.sh` / `autostart.sh` / `nowwherefrom@.service`.
 
 ## Project Structure
 
 ```
-fernweh/
-├── public/                       # GitHub Pages root (uploaded as-is by deploy-pages.yml)
-│   ├── index.html                # DOM + SVG glitch filter, loads css/styles.css and js/main.js
-│   ├── css/
-│   │   └── styles.css            # All styling
-│   ├── js/                       # ESM modules (no bundler; served as separate files)
-│   │   ├── main.js               # Entry — orchestrates init, dynamically loads YT IFrame API
-│   │   ├── state.js              # Shared mutable state
-│   │   ├── dom.js                # Cached DOM element refs
-│   │   ├── noise.js              # WebGL TV-noise shader
-│   │   ├── glitch.js             # SVG-filter video glitch animation
-│   │   ├── player.js             # Single YT.Player wrapper + loadVideoById
-│   │   ├── transitions.js        # switchVideo / resumeVideo flow (pre-glitch → noise → post-glitch)
-│   │   ├── videoPool.js          # videos.json pool, watched-list, fetchNext
-│   │   ├── locations.js          # Runtime KNOWN_LOCATIONS dictionary fallback
-│   │   ├── ui.js                 # Info / loading / error / fullscreen toggle
-│   │   ├── progress.js           # Hourly switch timer + progress bar
-│   │   ├── clock.js               # Local clock + camera local time
-│   │   ├── weather.js             # Geolocation → Open-Meteo 7-day forecast
-│   │   ├── globe.js               # COBE globe with pin-tracking label
-│   │   ├── input.js               # Mouse / keyboard / click handlers
-│   │   └── burnin.js              # Periodic overlay shift (kiosk burn-in prevention)
+nowwherefrom/
+├── public/                       # Static site root
+│   ├── index.html                # 3 window containers + calibration UI
+│   ├── css/styles.css            # Postcard styling, calibration overlay
+│   ├── img/paper.jpg             # Postcard paper texture
+│   ├── js/
+│   │   ├── main.js               # Entry — 3 windows, staggered hourly rotation
+│   │   ├── layout.js             # RÖDALM mm geometry → px rects + persistence
+│   │   ├── frameWindow.js        # Per-window controller (player, postcard layout, caption, noise)
+│   │   ├── calibration.js        # Keyboard alignment mode
+│   │   ├── player.js             # YT.Player wrapper (slot-generic)
+│   │   ├── noise.js              # WebGL TV-static shader (per-canvas factory)
+│   │   ├── videoPool.js          # Shared pool, watched list, active-ID exclusion
+│   │   ├── locations.js          # Runtime location dictionary fallback
+│   │   └── input.js              # Click / keyboard handlers
 │   └── videos.json               # Video candidates (generated by Actions)
-├── scripts/
-│   ├── fetch-videos.js           # Orchestrator: search → describe → resolve → write videos.json
-│   ├── lib/
-│   │   ├── youtube.js            # search / videos.list / filter / query generator
-│   │   ├── locations.js          # LOCATION_COORDS, LABELS, BLOCKLIST, dictionary matcher
-│   │   ├── geocode.js            # Nominatim client + geocache.json (with auto-learning)
-│   │   ├── gemini.js             # Batch location extraction via Gemini API
-│   │   ├── timezone.js           # geo-tz wrapper (coords → IANA timezone)
-│   │   └── resolveLocation.js    # 3-stage: Gemini → dict/geocode → title/channel fallback
-│   ├── geocache.json             # Nominatim cache (feeds next run's dictionary)
-│   └── test-single-video.js      # Debug helper: exercises the real lib path on one video
-├── .github/workflows/
-│   ├── fetch-videos.yml          # Cron workflow (every 2 hours)
-│   └── deploy-pages.yml          # GitHub Pages deployment
-├── server.js                     # Express server (optional local/kiosk mode)
-├── config.example.json           # Config template (local mode)
-├── setup.sh                      # Kiosk auto-start setup script
-├── autostart.sh                  # Kiosk launch script (chromium)
-├── fernweh@.service              # systemd service unit (kiosk mode)
-├── package.json
-└── README.md
+├── scripts/                      # Video discovery pipeline (inherited from Fernweh)
+├── .github/workflows/            # fetch-videos.yml (cron) + deploy-pages.yml
+└── server.js                     # Express server (optional local/kiosk mode)
 ```
-
-The frontend uses native ES modules (`<script type="module">`) — no build step. Files in `public/` are uploaded verbatim by `deploy-pages.yml`, so adding a new module is just dropping it into `public/js/` and importing it.

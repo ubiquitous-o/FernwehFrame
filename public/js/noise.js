@@ -1,5 +1,5 @@
 // WebGLシェーダーでテレビ砂嵐を描画（GPU処理、CPU負荷ほぼゼロ）。
-import { $noiseOverlay, $noiseCanvas } from './dom.js';
+// 3窓それぞれが自分のcanvasを持つため、canvasごとにレンダラーを生成するファクトリ。
 
 const VERTEX_SOURCE = `
   attribute vec2 a_pos;
@@ -28,8 +28,8 @@ const FRAGMENT_SOURCE = `
   }
 `;
 
-function createNoiseRenderer() {
-  const canvas = $noiseCanvas;
+// canvasに紐づく砂嵐レンダラーを生成。WebGL不可なら null。
+export function createNoise(canvas) {
   let gl, uTime, uRes, animId = null, wasRunning = false;
 
   function initGL() {
@@ -75,7 +75,7 @@ function createNoiseRenderer() {
   });
 
   function resize() {
-    // 親(.noise-overlay)が16:9にクリップされてるので、その実サイズに合わせる
+    // 親（.frame-window）のサイズはキャリブレーションで変わるため、開始のたびに実サイズへ合わせる
     const rect = canvas.getBoundingClientRect();
     canvas.width = Math.max(1, Math.round(rect.width));
     canvas.height = Math.max(1, Math.round(rect.height));
@@ -83,7 +83,6 @@ function createNoiseRenderer() {
     gl.uniform2f(uRes, canvas.width, canvas.height);
   }
   resize();
-  window.addEventListener('resize', () => { if (animId) resize(); });
 
   function render() {
     gl.uniform1f(uTime, performance.now() * 0.001);
@@ -100,21 +99,9 @@ function createNoiseRenderer() {
     start() { if (!animId) { resize(); render(); } },
     stop() {
       if (animId) { cancelAnimationFrame(animId); animId = null; }
-      // 最後のフレームが古いブラウザのcompositor layerに残ると黒帯側に静止画として
-      // 浮き出てしまう → 明示的にキャンバスを透明クリアする
+      // 最後のフレームがcompositor layerに残らないよう透明クリア
       clear();
     },
+    resize,
   };
-}
-
-const noiseGL = createNoiseRenderer();
-
-export function startNoise() {
-  if (noiseGL) noiseGL.start();
-  $noiseOverlay.classList.add('active');
-}
-
-export function stopNoise() {
-  $noiseOverlay.classList.remove('active');
-  if (noiseGL) noiseGL.stop();
 }

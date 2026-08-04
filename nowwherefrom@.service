@@ -1,12 +1,12 @@
 [Unit]
-Description=Fernweh - YouTube Live Camera Display
+Description=NowWhereFrom - Live Camera Triptych Display
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 Type=simple
 User=%i
-WorkingDirectory=/home/%i/fernweh
+WorkingDirectory=/home/%i/nowwherefrom
 ExecStart=/usr/bin/node server.js
 Restart=always
 RestartSec=10

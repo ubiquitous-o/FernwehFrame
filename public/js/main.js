@@ -1,71 +1,78 @@
-// エントリーポイント：各モジュールを統合して初期化する。
-import { state } from './state.js';
-import { startNoise } from './noise.js';
-import { switchVideo, resumeVideo, initialSwitch } from './transitions.js';
-import { updateClock } from './clock.js';
-import { repositionCameraTime } from './clock.js';
-import { initWeather } from './weather.js';
-import { updateGlobe } from './globe.js';
+// エントリーポイント：3窓（RÖDALMトリプティク）を初期化して回す。
+// 窓ごとに独立したプレイヤーを持ち、毎時 :00 / :20 / :40 にスタガー切替する。
+import { loadLayout, windowRects } from './layout.js';
+import { FrameWindow } from './frameWindow.js';
+import { initCalibration } from './calibration.js';
 import { initInput } from './input.js';
-import { shiftOverlays } from './burnin.js';
 
-const RESUME_KEY = 'fernweh_resume';
+// 窓iの毎時切替タイミング（分）
+const SWITCH_MINUTES = [0, 20, 40];
+// 起動時のロードをずらしてAPIバーストを避ける
+const INITIAL_STAGGER_MS = 2500;
 
-// YouTube IFrame APIがロードされたら呼ばれる。
-// ESモジュールはdefer扱いなのでHTML上の<script src="iframe_api">タグを先に置くと
-// コールバックが未定義のまま呼ばれてしまう → 先にコールバックを定義してから動的ロードする。
+let ytApiReady = false;
+
+// --- 3窓のセットアップ ---
+const windows = [0, 1, 2].map((i) => {
+  const rootEl = document.getElementById(`win-${i}`);
+  // 他の窓が再生中/切替中の動画IDを除外リストとして渡す
+  const getExcludeIds = () =>
+    windows.filter((w) => w && w.index !== i && w.current)
+      .map((w) => w.current.videoId);
+  return new FrameWindow(i, rootEl, getExcludeIds);
+});
+
+const ctx = {
+  layout: loadLayout(),
+  windows,
+  applyAll() {
+    windowRects(this.layout).forEach((rect, i) => windows[i].applyRect(rect));
+  },
+};
+ctx.applyAll();
+
+const calibration = initCalibration(ctx);
+initInput({ windows, calibration });
+
+// 起動直後から全窓砂嵐
+windows.forEach((w) => w.showNoise());
+
+// --- 毎時スタガー切替 ---
+function msUntilMinute(minute) {
+  const now = new Date();
+  const target = new Date(now);
+  target.setMinutes(minute, 0, 0);
+  if (target <= now) target.setHours(target.getHours() + 1);
+  return target - now;
+}
+
+function scheduleSwitch(i) {
+  setTimeout(() => {
+    windows[i].switchNext();
+    scheduleSwitch(i);
+  }, msUntilMinute(SWITCH_MINUTES[i]));
+}
+
+// --- YouTube IFrame API ---
+// ESモジュールはdefer扱いなので、コールバック定義後に動的ロードする
 window.onYouTubeIframeAPIReady = () => {
-  state.ytApiReady = true;
-  const saved = sessionStorage.getItem(RESUME_KEY);
-  if (saved) {
-    sessionStorage.removeItem(RESUME_KEY);
-    try {
-      const data = JSON.parse(saved);
-      resumeVideo(data);
-      return;
-    } catch {}
-  }
-  initialSwitch();
+  ytApiReady = true;
+  windows.forEach((w, i) => {
+    setTimeout(() => w.switchNext(), i * INITIAL_STAGGER_MS);
+    scheduleSwitch(i);
+  });
 };
 
-// YouTube IFrame APIを動的にロード（onYouTubeIframeAPIReady定義後）
 const ytApiScript = document.createElement('script');
 ytApiScript.src = 'https://www.youtube.com/iframe_api';
 document.head.appendChild(ytApiScript);
 
-// ページ離脱時に現在の動画を保存（ブラウザbackで復元するため）
-window.addEventListener('pagehide', () => {
-  if (state.currentInfo) {
-    sessionStorage.setItem(RESUME_KEY, JSON.stringify(state.currentInfo));
-  }
-});
-
 // YT IFrame APIロード失敗時のフォールバック
 setTimeout(() => {
-  if (!state.ytApiReady) {
+  if (!ytApiReady) {
     console.error('YouTube IFrame API failed to load. Reloading...');
     location.reload();
   }
 }, 30000);
 
-// リサイズ時にグローブとカメラ時刻を再配置
-let resizeTimer = null;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => {
-    if (state.currentInfo) {
-      updateGlobe(state.currentInfo.location, state.currentInfo.locationName);
-      repositionCameraTime();
-    }
-  }, 500);
-});
-
-// 初期化
-initInput();
-updateClock();
-setInterval(updateClock, 10000);
-initWeather();
-setInterval(shiftOverlays, 10 * 60 * 1000);
-
-// 初回ロード時から砂嵐表示（動画ロード中も覆う）
-startNoise();
+// レイアウトはモニタ(screen)基準の絶対px。ウィンドウリサイズでは何も変えない。

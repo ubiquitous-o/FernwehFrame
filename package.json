@@ -1,7 +1,7 @@
 {
-  "name": "fernweh",
-  "version": "2.0.0",
-  "description": "A fullscreen web app that cycles through YouTube live cameras — GitHub Pages edition",
+  "name": "nowwherefrom",
+  "version": "1.0.0",
+  "description": "Three live windows to elsewhere — YouTube live cameras behind an IKEA RÖDALM triptych frame",
   "type": "module",
   "scripts": {
     "fetch": "node scripts/fetch-videos.js",

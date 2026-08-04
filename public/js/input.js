@@ -1,43 +1,59 @@
 // マウス・キーボード・クリック入力。
-import { $btnSkip, $btnFullscreen } from './dom.js';
-import { toggleFullscreen } from './ui.js';
-import { switchVideo } from './transitions.js';
+// 通常時: 窓クリック=その窓を切替 / 1-3=窓指定切替 / Space,N=全窓切替 / F=フルスクリーン / C=キャリブレーション
 
-let mouseTimer = null;
-
-function onMouseMove() {
-  document.body.classList.add('mouse-active');
-  clearTimeout(mouseTimer);
-  mouseTimer = setTimeout(() => {
-    document.body.classList.remove('mouse-active');
-  }, 3000);
+function toggleFullscreen() {
+  if (document.fullscreenElement) {
+    document.exitFullscreen().catch(() => {});
+  } else {
+    document.documentElement.requestFullscreen().catch(() => {});
+  }
 }
 
-export function initInput() {
-  document.addEventListener('mousemove', onMouseMove);
+export function initInput({ windows, calibration }) {
+  let mouseTimer = null;
 
-  $btnSkip.addEventListener('click', (e) => {
-    e.stopPropagation();
-    switchVideo();
+  document.addEventListener('mousemove', () => {
+    document.body.classList.add('mouse-active');
+    clearTimeout(mouseTimer);
+    mouseTimer = setTimeout(() => {
+      document.body.classList.remove('mouse-active');
+    }, 3000);
   });
 
-  $btnFullscreen.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleFullscreen();
+  // 窓クリックでその窓だけ切替
+  windows.forEach((w) => {
+    w.rootEl.addEventListener('click', () => {
+      if (calibration.active) return;
+      w.switchNext();
+    });
   });
 
-  // 画面クリックでスキップ（コントロール・タイトルリンクは除外）
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('.controls, .info-title')) return;
-    switchVideo();
-  });
+  function switchAll() {
+    // 同時にAPIを叩かないよう軽くずらす
+    windows.forEach((w, i) => setTimeout(() => w.switchNext(), i * 400));
+  }
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === ' ' || e.key === 'ArrowRight' || e.key === 'n') {
-      switchVideo();
-    } else if (e.key === 'f' || e.key === 'F11') {
+    // キャリブレーション中はそちらを優先
+    if (calibration.handleKey(e)) {
       e.preventDefault();
-      toggleFullscreen();
+      return;
+    }
+
+    switch (e.key) {
+      case 'c': case 'C':
+        calibration.toggle();
+        break;
+      case '1': case '2': case '3':
+        windows[Number(e.key) - 1].switchNext();
+        break;
+      case ' ': case 'n': case 'N': case 'ArrowRight':
+        switchAll();
+        break;
+      case 'f': case 'F': case 'F11':
+        e.preventDefault();
+        toggleFullscreen();
+        break;
     }
   });
 }

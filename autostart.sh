@@ -1,14 +1,14 @@
 #!/bin/bash
-# Fernweh - Kiosk Mode Autostart
+# NowWhereFrom - Kiosk Mode Autostart
 # Ubuntu上でChromiumをキオスクモードで起動する
 
-FERNWEH_URL="http://localhost:3333"
+APP_URL="http://localhost:3333"
 DISPLAY_RES="3440x1440"
 
 # サーバーの起動を待つ
 echo "⏳ サーバー起動を待っています..."
 for i in $(seq 1 30); do
-  if curl -s "$FERNWEH_URL" > /dev/null 2>&1; then
+  if curl -s "$APP_URL" > /dev/null 2>&1; then
     echo "✅ サーバー起動確認"
     break
   fi
@@ -37,7 +37,7 @@ if [ -z "$BROWSER" ]; then
   exit 1
 fi
 
-echo "🌍 Fernweh starting: $BROWSER"
+echo "🪟 NowWhereFrom starting: $BROWSER"
 
 exec $BROWSER \
   --kiosk \
@@ -48,4 +48,4 @@ exec $BROWSER \
   --autoplay-policy=no-user-gesture-required \
   --window-size=${DISPLAY_RES/x/,} \
   --start-fullscreen \
-  "$FERNWEH_URL"
+  "$APP_URL"
