@@ -6,6 +6,8 @@ A single monitor hides behind an [IKEA RÖDALM frame for 3 pictures](https://www
 
 Based on [Fernweh](https://github.com/ubiquitous-o/Fernweh) — the video discovery pipeline (GitHub Actions → YouTube Data API → `videos.json`) is inherited as-is; the frontend is rebuilt as a triptych kiosk view.
 
+**🪟🪟🪟Live Demo:** https://ubiquitous-o.github.io/NowWhereFrom/ 🪟🪟🪟
+
 ## How it works
 
 ```
