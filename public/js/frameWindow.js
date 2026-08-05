@@ -186,7 +186,7 @@ export class FrameWindow {
     this.captionEl.style.fontFamily = `'${this.currentFont}', 'Hiragino Sans', sans-serif`;
     this.titleEl.textContent = data.title || '';
     this.titleEl.title = data.title || '';
-    this.locationEl.textContent = data.locationName || 'Location unknown';
+    this.locationEl.textContent = data.locationName || 'Somewhere';
     this.startClock(data.timezone);
   }
 

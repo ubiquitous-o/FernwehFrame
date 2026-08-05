@@ -18,7 +18,7 @@ const PERF = { r: 1, step: 3.5 };
 const PAD = 3;
 const GAP = 3;
 
-const INK_BLUE = 'rgba(43, 74, 139, 0.68)';   // 消印インク
+const INK_BLUE = 'rgba(33, 60, 122, 0.82)';   // 消印インク
 
 const FORCED = new URLSearchParams(location.search).get('design');
 
@@ -214,7 +214,7 @@ export function designLayout(name, L, data, seed) {
 function postmarkSvg(p, data, seed) {
   // 弧は下側30°を除く330°（全長約45mm）。フォント2.1mm固定で28文字まで入る。
   // textPathは弧からあふれた文字を描かないため、上限は弧長に合わせる
-  const loc = escapeHtml((data?.locationName || '').toUpperCase().slice(0, 28));
+  const loc = escapeHtml((data?.locationName || 'Somewhere').toUpperCase().slice(0, 28));
   let day = '';
   let year = '';
   if (data?.timezone) {
@@ -231,9 +231,10 @@ function postmarkSvg(p, data, seed) {
   // viewBox座標=mm。左に円形消印、右へ波線3本（はがき端でクリップされる）
   return `
   <svg style="position:absolute; left:${108 * p}px; top:${2 * p}px;
-              transform:rotate(-6deg); mix-blend-mode:multiply; overflow:visible"
+              transform:rotate(-6deg); overflow:visible;
+              filter:drop-shadow(0 0 ${0.1 * p}px rgba(249,244,244,0.55))"
        width="${45 * p}" height="${26 * p}" viewBox="0 0 45 26">
-    <g fill="none" stroke="${INK_BLUE}" stroke-width="0.4">
+    <g fill="none" stroke="${INK_BLUE}" stroke-width="0.55">
       <circle cx="21" cy="13" r="10"/>
       <circle cx="21" cy="13" r="7"/>
       <path d="M31.5 9.5 c2.5 -1.2 5 1.2 7.5 0 s5 1.2 8 0"/>
@@ -241,14 +242,19 @@ function postmarkSvg(p, data, seed) {
       <path d="M31.5 16.5 c2.5 -1.2 5 1.2 7.5 0 s5 1.2 8 0"/>
     </g>
     <defs><path id="${arcId}" d="M 18.99 20.49 A 7.75 7.75 0 1 1 23.01 20.49"/></defs>
-    <text font-size="2.1" fill="${INK_BLUE}" font-family="Helvetica, Arial, sans-serif"
-          letter-spacing="0.2">
+    <text font-size="2.1" font-weight="bold" fill="${INK_BLUE}"
+          font-family="Helvetica, Arial, sans-serif" letter-spacing="0.2">
       <textPath href="#${arcId}" startOffset="50%" text-anchor="middle">${loc}</textPath>
     </text>
-    <text x="21" y="12.6" text-anchor="middle" font-size="2.5" fill="${INK_BLUE}"
+    ${day ? `
+    <text x="21" y="12.6" text-anchor="middle" font-size="2.5" font-weight="bold" fill="${INK_BLUE}"
           font-family="Helvetica, Arial, sans-serif">${day}</text>
-    <text x="21" y="15.8" text-anchor="middle" font-size="2.5" fill="${INK_BLUE}"
-          font-family="Helvetica, Arial, sans-serif">${year}</text>
+    <text x="21" y="15.8" text-anchor="middle" font-size="2.5" font-weight="bold" fill="${INK_BLUE}"
+          font-family="Helvetica, Arial, sans-serif">${year}</text>` : `
+    <g fill="none" stroke="${INK_BLUE}" stroke-width="0.55">
+      <rect x="17.6" y="10.6" width="6.8" height="4.8" rx="0.4"/>
+      <path d="M 17.8 10.9 L 21 13.3 L 24.2 10.9"/>
+    </g>`}
   </svg>`;
 }
 
