@@ -8,7 +8,8 @@ import { POSTCARD } from './layout.js';
 export const DESIGNS = [
   'stamp',        // 切手ミシン目 + 丸消印
   'airmail',      // 赤青ストライプのエアメール
-  'fullbleed',    // 全面写真 + 下部の帯キャプション
+  'fullbleed',    // 全面写真 + 余白にキャプション
+  'letters',      // 地名の極太文字マスク越しに動画が見える
 ];
 
 // 切手のミシン目 (mm)
@@ -21,12 +22,20 @@ const INK_BLUE = 'rgba(43, 74, 139, 0.68)';   // 消印インク
 
 const FORCED = new URLSearchParams(location.search).get('design');
 
-// 自窓の前回デザインだけを避けてランダムに選ぶ（他窓との被りは許容）。
-// 切替のたびに必ず別のデザインへ変わる。?design=指定時は常にそれ。
-export function pickDesign(current) {
+// 除外リスト（先頭=自窓の現在、以降=他窓の現在）を避けてランダムに選ぶ。
+// デザインが4種以上あれば「毎回必ず変わる」かつ「3窓常にバラバラ」が両立する
+// （4種ちょうどだと候補は常に1つ=空いているデザインで、動きは決定的になる。
+// 5種以上に増えれば自動でランダム性が戻る）。?design=指定時は常にそれ。
+// フォールバック: 候補が空（デザイン数が窓数以下）なら他窓との被り回避を優先して
+// 自窓の現在を維持し、それも無理なら循環順で次へ送る。
+export function pickDesign(exclude) {
   if (FORCED && DESIGNS.includes(FORCED)) return FORCED;
-  const pool = DESIGNS.filter((d) => d !== current);
-  return pool[Math.floor(Math.random() * pool.length)] ?? DESIGNS[0];
+  const pool = DESIGNS.filter((d) => !exclude.includes(d));
+  if (pool.length) return pool[Math.floor(Math.random() * pool.length)];
+  const pool2 = DESIGNS.filter((d) => !exclude.slice(1).includes(d));
+  return pool2.length
+    ? pool2[Math.floor(Math.random() * pool2.length)]
+    : DESIGNS[(DESIGNS.indexOf(exclude[0]) + 1) % DESIGNS.length];
 }
 
 // 切手のミシン目風クリップパス: 矩形の全周に半円ノッチを等間隔で刻む
@@ -51,10 +60,90 @@ export function stampPath(w, h, r, step) {
 
 const rectPx = (p, x, y, w, h) => ({ x: x * p, y: y * p, w: w * p, h: h * p });
 
+// 動画メタ由来のテキスト（YouTube/パイプライン産＝非信頼）をHTMLに埋める前にエスケープする
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
+// 地名の行分割（lettersデザイン用）: 短めに詰めて行数を稼ぎ、縦方向も埋める。最大4行
+function lettersLines(data) {
+  const loc = (data?.locationName || 'Somewhere').toUpperCase().replace(/,/g, '');
+  const words = loc.split(/\s+/).filter(Boolean);
+  const lines = [];
+  let cur = '';
+  for (const w of words) {
+    const cand = cur ? `${cur} ${w}` : w;
+    if (cand.length > 7 && cur) { lines.push(cur); cur = w; } else { cur = cand; }
+  }
+  if (cur) lines.push(cur);
+  return lines.slice(0, 4);
+}
+
+// lettersデザインで使う書体。動画ごとにランダムに選ぶ
+const LETTER_FONTS = ['Climate Crisis', 'Oi', 'Ultra'];
+
+// 抽選結果はvideoIdごとに保持する
+// （キャリブレーション中のre-render等で書体が変わらないように）
+const letterFontChoice = new Map();
+function pickLetterFont(data) {
+  const id = data?.videoId || '';
+  if (!letterFontChoice.has(id)) {
+    letterFontChoice.set(id, LETTER_FONTS[Math.floor(Math.random() * LETTER_FONTS.length)]);
+  }
+  return letterFontChoice.get(id);
+}
+
+// 地名タイポグラフィの<clipPath>定義（lettersデザイン用）。
+// Webフォントを使うため、画像扱いのdata URIマスクではなく
+// インラインSVGの<clipPath>＋<text>で文字の形に動画を切り抜く
+// （HTML要素へのmask: url(#id)参照はChromeが未対応。clip-path参照は効く）。
+//
+// レイアウトは実測フィット。要件（全書体共通）:
+//   1. 上下左右のマージンまでギリギリに引き伸ばす
+//   2. 2行以上のとき行間は0
+// canvasのmeasureText().actualBoundingBox*でインク（実際に描かれる形）の
+// 実寸を測り、各行のインクが自分の帯（幅142mm × 行高）にぴったり一致する
+// transformを計算する。SVGテキストのgetBBox()は書体のem枠（内部余白込み）を
+// 返してしまい行間が空くため使わない。
+// clipPathUnits=userSpaceOnUseなので座標は対象要素のpx（mm×p）。
+const measureCtx = document.createElement('canvas').getContext('2d');
+
+function lettersClipDefs(p, data, seed) {
+  const shown = lettersLines(data);
+  const FAMILY = pickLetterFont(data);
+  const M = 4;   // 上下マージン: fullbleedと同じ。タイトル/時刻の帯（CSS）もここ
+  const X = 3;   // 左右マージン
+  const lh = (POSTCARD.h - 2 * M) / shown.length; // 行間0で等分
+  const targetW = POSTCARD.w - 2 * X;
+  const fontAttr = `'${FAMILY}', 'Arial Black', Arial, sans-serif`;
+
+  measureCtx.font = `100px "${FAMILY}", "Arial Black", Arial, sans-serif`;
+  const texts = shown.map((t, i) => {
+    const m = measureCtx.measureText(t);
+    const inkW = m.actualBoundingBoxLeft + m.actualBoundingBoxRight;
+    const inkH = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent;
+    if (!inkW || !inkH) return '';
+    // 描画はx=0,y=0（ベースライン）: インクはx∈[-left, right], y∈[-ascent, descent]
+    const sx = (targetW * p) / inkW;
+    const sy = (lh * p) / inkH;
+    const tx = X * p + sx * m.actualBoundingBoxLeft;
+    const ty = (M + lh * i) * p + sy * m.actualBoundingBoxAscent;
+    return `<text transform="translate(${tx.toFixed(1)} ${ty.toFixed(1)}) scale(${sx.toFixed(3)} ${sy.toFixed(3)})"
+    font-family="${fontAttr}" font-size="100">${escapeHtml(t)}</text>`;
+  }).join('');
+  return `
+  <svg width="0" height="0" style="position:absolute">
+    <defs><clipPath id="letters-clip-${seed}" clipPathUnits="userSpaceOnUse">${texts}</clipPath></defs>
+  </svg>`;
+}
+
 // デザインごとの矩形・クリップ。
-// 戻り値: { video, caption (px), clip (clip-path文字列|null),
-//           videoInner (フルブリード用の内側矩形|null) }
-export function designLayout(name, L) {
+// 戻り値: { video, caption (px), clip (動画ボックスのclip-path値|null),
+//           videoInner (カバークロップ用の内側矩形|null) }
+// lettersのclipは<clipPath>参照で、本体はrenderDecorが同じseedで埋める
+export function designLayout(name, L, data, seed) {
   const p = L.pxMm;
   const W = POSTCARD.w;
   const H = POSTCARD.h;
@@ -73,7 +162,7 @@ export function designLayout(name, L) {
   switch (name) {
     case 'stamp': {
       const d = base();
-      d.clip = stampPath(d.video.w, d.video.h, PERF.r * p, PERF.step * p);
+      d.clip = `path('${stampPath(d.video.w, d.video.h, PERF.r * p, PERF.step * p)}')`;
       return d;
     }
     case 'airmail': {
@@ -105,16 +194,20 @@ export function designLayout(name, L) {
         videoInner: rectPx(p, (vw - coverW) / 2, 0, coverW, vh),
       };
     }
+    case 'letters': {
+      // 動画をはがき全面に敷き、地名の文字マスク越しにだけ見せる。
+      // タイトル/時刻はfullbleedと同じ4mmのマージン帯に置く（CSS .design-letters）
+      const coverW = (H * 16) / 9;
+      return {
+        video: rectPx(p, 0, 0, W, H),
+        caption: rectPx(p, 4, 0, W - 8, H),
+        videoInner: rectPx(p, (W - coverW) / 2, 0, coverW, H),
+        clip: `url(#letters-clip-${seed})`,
+      };
+    }
     default:
       return base();
   }
-}
-
-// 動画メタ由来のテキスト（YouTube/パイプライン産＝非信頼）をHTMLに埋める前にエスケープする
-function escapeHtml(s) {
-  return s.replace(/[&<>"']/g, (c) => (
-    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
-  ));
 }
 
 // 丸消印 + 波線（切手デザイン用）。data からカメラ現地の地名・日付を入れる
@@ -164,6 +257,9 @@ export function renderDecor(name, L, data, seed) {
   switch (name) {
     case 'stamp':
       return postmarkSvg(p, data, seed);
+
+    case 'letters':
+      return lettersClipDefs(p, data, seed);
 
     case 'airmail': {
       const a = (3.2 * p).toFixed(1);

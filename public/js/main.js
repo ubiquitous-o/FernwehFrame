@@ -21,8 +21,17 @@ const fontsLink = document.createElement('link');
 fontsLink.rel = 'stylesheet';
 fontsLink.href = 'https://fonts.googleapis.com/css2?'
   + FONTS.map((f) => `family=${f.replaceAll(' ', '+')}`).join('&')
+  // lettersデザインの地名マスク専用書体（キャプションのローテには入れない）。
+  // designs.jsのLETTER_FONTSと対で管理する
+  + '&family=Climate+Crisis&family=Oi&family=Ultra'
   + '&display=swap';
 document.head.appendChild(fontsLink);
+
+// lettersデザインは初回表示前にgetBBoxで実測するため、書体を先にロードさせておく
+fontsLink.addEventListener('load', () => {
+  ['Climate Crisis', 'Oi', 'Ultra']
+    .forEach((f) => document.fonts.load(`100px '${f}'`));
+});
 
 // --- 3窓のセットアップ ---
 const $stage = document.getElementById('stage');
@@ -35,10 +44,11 @@ const windows = [0, 1, 2].map((i) => {
   $stage.appendChild(rootEl);
 
   const others = () => windows.filter((w) => w.index !== i);
-  // 他の窓が再生中/切替中の動画・書体は避ける（デザインは自窓の前回とだけ変える）
+  // 他の窓が再生中/切替中の動画・書体・デザインは避ける
   const getExcludeIds = () => others().map((w) => w.current?.videoId).filter(Boolean);
   const getExcludeFonts = () => others().map((w) => w.currentFont).filter(Boolean);
-  return new FrameWindow(i, rootEl, getExcludeIds, getExcludeFonts);
+  const getExcludeDesigns = () => others().map((w) => w.design);
+  return new FrameWindow(i, rootEl, getExcludeIds, getExcludeFonts, getExcludeDesigns);
 });
 
 const ctx = {

@@ -131,6 +131,27 @@ body.calibrating { cursor: default; }
 .design-fullbleed .win-time { top: 0; right: 0; }
 .design-fullbleed .win-location { bottom: 0; right: 0; max-width: 70%; }
 
+/* レターズ: 地名の極太文字マスク越しに動画が見える。地名自体が主役なので
+   キャプションの地名は隠し、タイトル=左上・時刻=右下だけ紙の上に置く */
+.design-letters .win-caption {
+  display: block;
+}
+
+.design-letters .win-title,
+.design-letters .win-time {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4%; /* fullbleedと同じ4mmマージン帯 */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* タイトル・時刻とも帯の中で中央揃え */
+}
+
+.design-letters .win-title { top: 0; }
+.design-letters .win-time { bottom: 0; }
+.design-letters .win-location { display: none; }
+
 /* エアメール: キャプションがコンテンツ領域全体を覆い、
    タイトルは動画上の余白に中央揃え、地名・時刻は動画下の余白に落とす */
 .design-airmail .win-caption {

@@ -45,6 +45,7 @@ Each switch picks a random design for the window — never the same one twice in
 | `stamp` | Stamp-perforation edges + circular postmark (location & camera-local date) |
 | `airmail` | Red/blue striped border to the card edge, centered video, title centered on top |
 | `fullbleed` | Video across the card with a thin even margin; title top-left, time top-right, location bottom-right |
+| `letters` | The location name in huge Climate Crisis type, video visible only through the letters |
 
 **Preview mode:** append `?design=<name>` to the URL (e.g. `?design=airmail`) to pin all three windows to one design while tweaking it. Omit the parameter for the normal random rotation.
 

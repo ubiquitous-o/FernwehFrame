@@ -68,7 +68,7 @@ function pickFont(exclude) {
 }
 
 export class FrameWindow {
-  constructor(index, rootEl, getExcludeIds, getExcludeFonts) {
+  constructor(index, rootEl, getExcludeIds, getExcludeFonts, getExcludeDesigns) {
     this.index = index;
     this.rootEl = rootEl;
     this.cardEl = rootEl.querySelector('.win-card');
@@ -84,6 +84,7 @@ export class FrameWindow {
     this.frostEl = rootEl.querySelector('.win-frost');
     this.getExcludeIds = getExcludeIds;
     this.getExcludeFonts = getExcludeFonts;
+    this.getExcludeDesigns = getExcludeDesigns;
 
     this.player = null;
     this.current = null;      // 再生中の動画メタデータ
@@ -116,7 +117,7 @@ export class FrameWindow {
   applyDesign() {
     const L = this.lastL;
     if (!L) return;
-    const D = designLayout(this.design, L);
+    const D = designLayout(this.design, L, this.decorData, this.index);
     setRectPx(this.videoBoxEl, D.video);
     setRectPx(this.captionEl, D.caption);
     if (D.videoInner) {
@@ -128,7 +129,8 @@ export class FrameWindow {
     const key = `${this.design}|${L.card.w.toFixed(2)}|${this.current?.videoId || ''}`;
     if (key !== this.designKey) {
       this.designKey = key;
-      this.videoBoxEl.style.clipPath = D.clip ? `path('${D.clip}')` : 'none';
+      // D.clipはclip-path値そのもの（stamp=path(...) / letters=url(#clipPath参照)）
+      this.videoBoxEl.style.clipPath = D.clip || 'none';
       this.decorEl.innerHTML = renderDecor(this.design, L, this.decorData, this.index);
     }
   }
@@ -255,8 +257,12 @@ export class FrameWindow {
 
     // intro UIが消えるまで曇ったまま待ち、デザインとキャプションを整えてからゆっくり晴らす
     await sleep(POST_LOAD_HOLD_MS);
-    this.decorData = { locationName: data.locationName, timezone: data.timezone };
-    this.setDesign(pickDesign(this.design));
+    this.decorData = {
+      locationName: data.locationName,
+      timezone: data.timezone,
+      videoId: data.videoId, // lettersの書体選択（動画ごとに決定的）に使う
+    };
+    this.setDesign(pickDesign([this.design, ...this.getExcludeDesigns()]));
     this.setCaption(data);
     this.hideFrost();
     this.isSwitching = false;
