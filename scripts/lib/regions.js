@@ -25,7 +25,7 @@ export const REGIONS = [
   },
   {
     id: 'southeast-asia', regionCode: 'TH', lang: 'en',
-    tz: ['Asia/Bangkok', 'Asia/Ho_Chi_Minh', 'Asia/Manila', 'Asia/Jakarta', 'Asia/Kuala_Lumpur', 'Asia/Singapore', 'Asia/Phnom_Penh', 'Asia/Vientiane', 'Asia/Yangon', 'Asia/Makassar', 'Asia/Bali'],
+    tz: ['Asia/Bangkok', 'Asia/Ho_Chi_Minh', 'Asia/Manila', 'Asia/Jakarta', 'Asia/Kuala_Lumpur', 'Asia/Singapore', 'Asia/Phnom_Penh', 'Asia/Vientiane', 'Asia/Yangon', 'Asia/Makassar', 'Asia/Jayapura', 'Asia/Pontianak', 'Asia/Brunei', 'Asia/Dili'],
     terms: ['live camera', 'webcam live', 'กล้องถ่ายทอดสด'],
     places: ['Bangkok', 'Phuket', 'Bali', 'Singapore', 'Hanoi', 'Manila', 'Kuala Lumpur', 'Boracay', 'Da Nang'],
   },
@@ -61,13 +61,41 @@ export const REGIONS = [
   },
   {
     id: 'south-america', regionCode: 'BR', lang: 'pt',
-    tz: ['America/Sao_Paulo', 'America/Argentina', 'America/Santiago', 'America/Lima', 'America/Bogota', 'America/Caracas', 'America/Montevideo', 'America/La_Paz', 'America/Guayaquil', 'America/Asuncion', 'America/Manaus', 'America/Fortaleza', 'America/Recife', 'America/Punta_Arenas'],
+    tz: [
+      // ブラジル全ゾーン（Belem等がusaに落ちていた穴を塞ぐ）
+      'America/Sao_Paulo', 'America/Belem', 'America/Fortaleza', 'America/Recife',
+      'America/Bahia', 'America/Maceio', 'America/Araguaina', 'America/Santarem',
+      'America/Cuiaba', 'America/Campo_Grande', 'America/Manaus', 'America/Boa_Vista',
+      'America/Porto_Velho', 'America/Eirunepe', 'America/Rio_Branco', 'America/Noronha',
+      // その他南米
+      'America/Argentina', 'America/Santiago', 'America/Punta_Arenas', 'America/Lima',
+      'America/Bogota', 'America/Caracas', 'America/Montevideo', 'America/La_Paz',
+      'America/Guayaquil', 'America/Asuncion', 'America/Guyana', 'America/Paramaribo',
+      'America/Cayenne',
+    ],
     terms: ['câmera ao vivo', 'cámara en vivo', 'en vivo webcam'],
     places: ['Rio de Janeiro', 'Buenos Aires', 'Patagonia', 'Cusco', 'Cartagena', 'Santiago', 'Galápagos', 'Iguazú', 'Atacama'],
   },
   {
     id: 'central-america-caribbean', regionCode: 'MX', lang: 'es',
-    tz: ['America/Mexico_City', 'America/Cancun', 'America/Costa_Rica', 'America/Panama', 'America/Havana', 'America/Santo_Domingo', 'America/Jamaica', 'America/Puerto_Rico', 'America/Guatemala', 'America/Managua', 'America/Barbados', 'America/Curacao', 'America/Aruba', 'America/Nassau', 'America/Port_of_Spain', 'Atlantic/Bermuda'],
+    tz: [
+      // メキシコ全ゾーン（Tijuana/Monterrey/Merida等がusaに落ちていた穴を塞ぐ）
+      'America/Mexico_City', 'America/Cancun', 'America/Merida', 'America/Monterrey',
+      'America/Matamoros', 'America/Chihuahua', 'America/Ciudad_Juarez', 'America/Ojinaga',
+      'America/Hermosillo', 'America/Mazatlan', 'America/Bahia_Banderas', 'America/Tijuana',
+      // 中米
+      'America/Guatemala', 'America/Belize', 'America/El_Salvador', 'America/Tegucigalpa',
+      'America/Managua', 'America/Costa_Rica', 'America/Panama',
+      // カリブ
+      'America/Havana', 'America/Jamaica', 'America/Cayman', 'America/Nassau',
+      'America/Port-au-Prince', 'America/Santo_Domingo', 'America/Puerto_Rico',
+      'America/Aruba', 'America/Curacao', 'America/Kralendijk', 'America/Lower_Princes',
+      'America/Barbados', 'America/Port_of_Spain', 'America/Grand_Turk', 'America/Martinique',
+      'America/Guadeloupe', 'America/St_Thomas', 'America/Anguilla', 'America/Antigua',
+      'America/Dominica', 'America/Grenada', 'America/Montserrat', 'America/St_Kitts',
+      'America/St_Lucia', 'America/St_Vincent', 'America/Tortola', 'America/St_Barthelemy',
+      'America/Marigot', 'Atlantic/Bermuda',
+    ],
     terms: ['cámara en vivo', 'en vivo playa', 'live camera'],
     places: ['Cancún', 'Mexico City', 'Costa Rica', 'Panama', 'Havana', 'Aruba', 'Jamaica', 'Belize', 'Roatan'],
   },

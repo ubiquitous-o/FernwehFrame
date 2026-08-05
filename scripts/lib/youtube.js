@@ -54,8 +54,11 @@ export const TOPICS = [
 
 export const SORT_ORDERS = ['viewCount', 'relevance', 'date'];
 
-const EXCLUDE_PATTERNS = /\b(gaming|gameplay|fortnite|minecraft|gta|valorant|apex|cod|warzone|pubg|roblox|music|song|playlist|dj set|radio|podcast|talk|news|reaction|asmr|cooking|tutorial|how to|unbox|review|trailer|anime|cartoon|movie|film|episode|series|drama|vlog|mukbang|karaoke|concert|remix|GDP|population|count|アニメ|disney|ディズニー|chatvote|room|earthquake|walking)\b/i;
-const INCLUDE_PATTERNS = /\b(cam|webcam|live cam|camera|view|skyline|beach|city|nature|street|traffic|weather|airport|harbor|port|landscape|panorama|scenic|earth|world|ocean|sea|mountain|river|lake|volcano|aurora|wildlife|animal|bird|nest|reef|ISS|space station|observatory)\b/i;
+// 英語等のNGワード（\bはASCII単語境界なのでラテン文字専用）
+const EXCLUDE_PATTERNS = /\b(gaming|gameplay|fortnite|minecraft|gta|valorant|apex|cod|warzone|pubg|roblox|music|song|playlist|dj set|radio|podcast|talk|news|reaction|asmr|cooking|tutorial|how to|unbox|review|trailer|anime|cartoon|movie|film|episode|series|drama|vlog|mukbang|karaoke|concert|remix|GDP|population|count|disney|chatvote|room|earthquake|walking|dashboard)\b/i;
+// CJKのNGワード。JSの\bはCJKで機能しない（アニメ|ディズニー を\b付きで書くと
+// 絶対にマッチしない）ため、境界なしの部分一致で別パターンにする
+const EXCLUDE_PATTERNS_CJK = /(アニメ|ディズニー|ゲーム|実況|作業用|ラジオ|雑談|ニュース|地震|音楽|歌ってみた|게임|뉴스|노래방|音樂|新聞|遊戲)/;
 
 const EXCLUDE_CHANNELS = new Set([
   'Utonish',
@@ -126,14 +129,15 @@ export async function fetchVideoDescriptions(videoIds) {
 }
 
 // 検索結果からゲーム・音楽など非カメラ系を除外
+// NGワード・NGチャンネルを除外する。除外で0件になってもそのまま0件を返す
+// （以前あった「全滅時は無除外で返す」フォールバックは、ゲーム配信だらけの
+// 検索結果が丸ごとプール入りする穴だった）
 export function filterCameraStreams(items) {
-  const cameraLike = items.filter((item) => {
+  return items.filter((item) => {
     const title = item.snippet.title;
-    const channel = item.snippet.channelTitle;
-    if (EXCLUDE_CHANNELS.has(channel)) return false;
+    if (EXCLUDE_CHANNELS.has(item.snippet.channelTitle)) return false;
     if (EXCLUDE_PATTERNS.test(title)) return false;
-    if (INCLUDE_PATTERNS.test(title)) return true;
+    if (EXCLUDE_PATTERNS_CJK.test(title)) return false;
     return true;
   });
-  return cameraLike.length > 0 ? cameraLike : items;
 }
