@@ -169,7 +169,7 @@ export function designLayout(name, L, data, seed) {
       // 縁の赤青ストライプ分だけコンテンツを内側に寄せ、動画は垂直中央に置く。
       // キャプションはコンテンツ領域全体に広げ、CSS（.design-airmail）が
       // タイトルを上余白の中央揃え・メタを下余白に振り分ける
-      const pad = 6.5;
+      const pad = 7.5;
       const vw = W - 2 * pad;
       const vh = (vw * 9) / 16;
       return {
@@ -270,13 +270,40 @@ export function renderDecor(name, L, data, seed) {
       return lettersClipDefs(p, data, seed);
 
     case 'airmail': {
-      const a = (3.2 * p).toFixed(1);
-      const slice = Math.round(3 * p);
+      // 縁の赤青ストライプ。すべての平行四辺形を完全な形で描く（端で切れない）。
+      // 帯幅 b=4mm、縞:余白=1:1、ブロック幅 f=92/9mm は上下・左右で完全に同一。
+      // 縦帯は5個で (2M-1)f + b = 96 にぴったり収まる。
+      // 横帯は7個にして余り（(140-13f)/2 ≈ 3.6mm）を両端の余白に回す
+      // （左右の端にぴったりはめず余白を持たせる）。
+      // 帯は実物の封筒と同じ風車配置（上=左上角、右=右上角、下=右下角、左=左下角）。
+      // 下帯・左帯は上帯・右帯の180°回転。縦帯の傾きは左肩上がり。
+      // 一周 7+5+7+5=24個（偶数）なので、横帯=赤始まり・縦帯=青始まりで
+      // 角をまたいで赤青が完全に交互になる（180°回転側もそのまま成立）。
+      // パターンではなく明示的なpathなので位相合わせ不要・アンチエイリアスも効く。座標=mm
+      const b = 4;
+      const f = 92 / 9;
+      const mH = (140 - 13 * f) / 2;   // 上下の帯の端の余白
+      const RED = '#de4430';
+      const BLUE = '#2c3f7d';
+      const blocks = [];
+      for (let k = 0; k < 7; k++) {
+        const x = mH + k * 2 * f;
+        const c = k % 2 ? BLUE : RED;
+        // 上帯（左端→右端-帯幅）と、その180°回転の下帯
+        blocks.push(`<path d="M ${x} ${b} L ${x + b} 0 L ${x + b + f} 0 L ${x + f} ${b} Z" fill="${c}"/>`);
+        blocks.push(`<path d="M ${148 - x} ${100 - b} L ${148 - x - b} 100 L ${148 - x - b - f} 100 L ${148 - x - f} ${100 - b} Z" fill="${c}"/>`);
+      }
+      for (let k = 0; k < 5; k++) {
+        const y = k * 2 * f;
+        const c = k % 2 ? RED : BLUE;
+        // 右帯（上端→下端-帯幅）と、その180°回転の左帯。傾きは左肩上がり
+        blocks.push(`<path d="M ${148 - b} ${y} L 148 ${y + b} L 148 ${y + b + f} L ${148 - b} ${y + f} Z" fill="${c}"/>`);
+        blocks.push(`<path d="M ${b} ${100 - y} L 0 ${100 - y - b} L 0 ${100 - y - b - f} L ${b} ${100 - y - f} Z" fill="${c}"/>`);
+      }
       return `
-      <div style="position:absolute; inset:0; border:${3 * p}px solid transparent;
-                  border-image:repeating-linear-gradient(45deg,
-                    #b3402e 0 ${a}px, #f6f1e4 ${a}px ${2 * a}px,
-                    #2b4a8b ${2 * a}px ${3 * a}px, #f6f1e4 ${3 * a}px ${4 * a}px) ${slice};"></div>`;
+      <svg style="position:absolute; inset:0" width="${148 * p}" height="${100 * p}"
+           viewBox="0 0 148 100">${blocks.join('')}
+      </svg>`;
     }
 
     default:
