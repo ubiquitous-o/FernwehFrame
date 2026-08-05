@@ -212,7 +212,9 @@ export function designLayout(name, L, data, seed) {
 
 // 丸消印 + 波線（切手デザイン用）。data からカメラ現地の地名・日付を入れる
 function postmarkSvg(p, data, seed) {
-  const loc = escapeHtml((data?.locationName || '').toUpperCase().slice(0, 22));
+  // 弧は下側30°を除く330°（全長約45mm）。フォント2.1mm固定で28文字まで入る。
+  // textPathは弧からあふれた文字を描かないため、上限は弧長に合わせる
+  const loc = escapeHtml((data?.locationName || '').toUpperCase().slice(0, 28));
   let day = '';
   let year = '';
   if (data?.timezone) {
@@ -238,7 +240,7 @@ function postmarkSvg(p, data, seed) {
       <path d="M31.8 13 c2.5 -1.2 5 1.2 7.5 0 s5 1.2 8 0"/>
       <path d="M31.5 16.5 c2.5 -1.2 5 1.2 7.5 0 s5 1.2 8 0"/>
     </g>
-    <defs><path id="${arcId}" d="M 13.6 10.8 A 7.75 7.75 0 0 1 28.4 10.8"/></defs>
+    <defs><path id="${arcId}" d="M 18.99 20.49 A 7.75 7.75 0 1 1 23.01 20.49"/></defs>
     <text font-size="2.1" fill="${INK_BLUE}" font-family="Helvetica, Arial, sans-serif"
           letter-spacing="0.2">
       <textPath href="#${arcId}" startOffset="50%" text-anchor="middle">${loc}</textPath>
