@@ -33,12 +33,15 @@ export function apertureMm() {
 
 // ジオメトリ（RODALM定数・窓配置）を変えたらキーのバージョンを上げて古い保存値を無効化する
 const STORAGE_KEY = 'ff_layout_v1';
-// モニタの物理サイズ（表示領域の横幅mm）。実寸表示のためのpx/mm算出に使う
+// モニタの物理サイズ（表示領域の横幅mm）。実寸表示のためのpx/mm算出に使う。
+// 既定値は本番モニター Newsoul 22MT01-S 縦置きの実測値（README参照）。
+// 未設定のプロファイルでも起動した瞬間から実寸表示になる。別モニターは`C`→`M`で上書き
 const DISPLAY_KEY = 'ff_display_v1';
+const DEFAULT_DISPLAY_WIDTH_MM = 268;
 
 export function getDisplayWidthMm() {
   const mm = parseFloat(localStorage.getItem(DISPLAY_KEY));
-  return mm > 0 ? mm : null;
+  return mm > 0 ? mm : DEFAULT_DISPLAY_WIDTH_MM;
 }
 
 export function setDisplayWidthMm(mm) {

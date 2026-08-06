@@ -93,7 +93,7 @@ The layout is saved to `localStorage` and survives reboots. Tip: put a real phot
 
 Point a fullscreen Chromium at the deployed GitHub Pages URL (recommended — the video pool keeps refreshing there every 2 hours, and the nightly 4am reload picks up both new videos and new code), put the monitor behind the frame, press `C`, and line up the windows. `autostart.sh` does this for dedicated hardware; the local server is only needed for offline development.
 
-Production monitor: **Newsoul 22MT01-S** (22-inch, 2560×1440) in portrait orientation. After mounting, press `C` → `M` and enter the measured visible width in mm for true physical scale.
+Production monitor: **Newsoul 22MT01-S** (22-inch, 2560×1440) in portrait orientation. After mounting, press `C` → `M` and enter the measured visible width in mm for true physical scale — for this monitor the measured value is **268 mm**, which renders the postcards at exact hagaki size (148×100 mm).
 
 ```bash
 # Local development
