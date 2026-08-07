@@ -50,10 +50,21 @@ async function loadVideoPool() {
   lastPoolFetch = Date.now();
 }
 
+// 進行中のロードを共有する。複数窓がほぼ同時に切替えると（起動時のスタガー等）
+// loadVideoPoolが二重に走り、後勝ちの新品プールに「取り出し済みの動画」が
+// 復活して2窓に同じ動画が出うる。1本のPromiseに相乗りさせて防ぐ
+let loadPromise = null;
+function ensurePoolLoaded() {
+  if (!loadPromise) {
+    loadPromise = loadVideoPool().finally(() => { loadPromise = null; });
+  }
+  return loadPromise;
+}
+
 export async function fetchNext(excludeIds = []) {
   const poolStale = Date.now() - lastPoolFetch > POOL_REFRESH_INTERVAL;
   if (!videosLoaded || videoPool.length === 0 || poolStale) {
-    await loadVideoPool();
+    await ensurePoolLoaded();
   }
   if (videoPool.length === 0) {
     throw new Error('No videos available in videos.json');
