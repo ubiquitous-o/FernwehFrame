@@ -135,4 +135,24 @@ function scheduleDailyReload() {
 }
 scheduleDailyReload();
 
+// --- 焼き付き防止のピクセルシフト ---
+// レイアウト全体を周期的に±数pxずらし、静止要素（はがきの紙面の縁・ミシン目・
+// 消印など）のエッジが同じ画素に居座り続けないようにする。
+// 描画領域は額縁の開口より四辺5mm（≈27px）大きいブリードを持つため、
+// この振幅では開口からのはみ出しや黒見えは起きない。
+// 30秒かけて滑らせる（0.1px/s）ので動きは視認できない。
+// キャリブレーション中は位置合わせの邪魔になるためシフトを解除する
+const BURNIN_SHIFT_PX = 3;
+const BURNIN_INTERVAL_MS = 10 * 60 * 1000;
+$stage.style.transition = 'transform 30s linear';
+setInterval(() => {
+  if (document.body.classList.contains('calibrating')) {
+    $stage.style.transform = '';
+    return;
+  }
+  const dx = Math.round(Math.random() * 2 * BURNIN_SHIFT_PX - BURNIN_SHIFT_PX);
+  const dy = Math.round(Math.random() * 2 * BURNIN_SHIFT_PX - BURNIN_SHIFT_PX);
+  $stage.style.transform = `translate(${dx}px, ${dy}px)`;
+}, BURNIN_INTERVAL_MS);
+
 // レイアウトはモニタ(screen)基準の絶対px。ウィンドウリサイズでは何も変えない。
