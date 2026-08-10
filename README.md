@@ -2,6 +2,8 @@
 
 A single monitor (Newsoul 22MT01-S, 22-inch 2560×1440) hides behind an [IKEA RÖDALM frame for 3 pictures](https://www.ikea.com/jp/ja/p/roedalm-frame-for-3-pictures-white-10553726/) (57×30 cm, three 13×18 cm openings), hung in portrait orientation — three 18×13 landscape windows stacked vertically. Each opening becomes a live window: three different YouTube live cameras from around the world, rotating on the hour.
 
+![The finished frame on the wall, and the build: a 22-inch monitor fixed behind the RÖDALM frame with 3D-printed corner jigs](img/fernweh_frame.jpg)
+
 Based on [Fernweh](https://github.com/ubiquitous-o/Fernweh) — the video discovery pipeline (GitHub Actions → YouTube Data API → `videos.json`) is inherited as-is; the frontend is rebuilt as a triptych kiosk view.
 
 **🪟🪟🪟Live Demo:** https://ubiquitous-o.github.io/FernwehFrame/ 🪟🪟🪟
