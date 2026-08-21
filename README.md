@@ -62,6 +62,7 @@ The three on-screen rectangles default to RÖDALM's real dimensions in portrait 
 | Arrow keys | Move selection (`Shift` = ×10) |
 | `-` / `=` | Scale (whole frame) / width (window) |
 | `[` / `]` | Height (window) |
+| `,` / `.` | Background brightness — darken / brighten the off-white mat around the postcards (`Shift` = ×5; the postcard paper itself is unaffected) |
 | `M` | Enter the monitor's visible width in mm → true physical scale (windows become real 180×130 mm) |
 | `R` | Reset to defaults |
 | `C` / `Esc` | Save & exit |
