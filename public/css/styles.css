@@ -7,6 +7,10 @@
   --text-primary: rgba(255, 255, 255, 0.92);
   /* すりガラスが曇り切る/晴れるまでの時間。JS(frameWindow.js)もこの値を読む */
   --frost-ms: 900ms;
+  /* 窓の生成り背景のRGB三つ組。基準色はlayout.jsのBG_WIN_RGBと対で管理し、
+     キャリブレーションの明るさ調整(, / .)がJSから係数を乗じて上書きする。
+     はがきの紙(.win-card)は対象外 */
+  --bg-win: 231, 223, 204;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,7 +36,7 @@ body.calibrating { cursor: default; }
 .frame-window {
   position: absolute;
   overflow: hidden;
-  background: #e7dfcc; /* 窓全体は落ち着いた生成り。はがきはこの上に浮かぶ */
+  background: rgb(var(--bg-win)); /* 窓全体は落ち着いた生成り。はがきはこの上に浮かぶ */
 }
 
 /* はがき実寸(148×100mm)のカード。位置・サイズはJSがmm定数から算出。

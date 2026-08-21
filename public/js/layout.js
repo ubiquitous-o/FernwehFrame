@@ -54,6 +54,16 @@ export function getPxPerMm() {
   return mm ? screen.width / mm : null;
 }
 
+// 窓の生成り背景の基準色（styles.cssの--bg-winデフォルトと対で管理）。
+// キャリブレーションの明るさ係数(layout.bg)を乗じてCSS変数へ流す。
+const BG_WIN_RGB = [231, 223, 204];
+export const BG_BRIGHTNESS = { min: 0.2, max: 1.5, step: 0.02, bigStep: 0.1 };
+
+export function applyBgBrightness(bg) {
+  const rgb = BG_WIN_RGB.map((v) => Math.min(255, Math.round(v * bg))).join(', ');
+  document.documentElement.style.setProperty('--bg-win', rgb);
+}
+
 // フレーム全体をモニタ中央に置くようoriginを設定
 export function centerOrigin(layout) {
   layout.originX = (screen.width - RODALM.frameW * layout.scale) / 2;
@@ -71,6 +81,7 @@ export function defaultLayout() {
     ),
     originX: 0,
     originY: 0,
+    bg: 1, // 窓の生成り背景の明るさ係数
     // 窓ごとの微調整 (px): 位置・サイズ
     wins: [0, 1, 2].map(() => ({ dx: 0, dy: 0, dw: 0, dh: 0 })),
   };
@@ -83,7 +94,10 @@ export function loadLayout() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const data = JSON.parse(raw);
-      if (data && data.wins?.length === 3) return data;
+      if (data && data.wins?.length === 3) {
+        data.bg ??= 1; // bg導入前の保存値を補完
+        return data;
+      }
     }
   } catch {}
   return defaultLayout();

@@ -1,7 +1,7 @@
 // エントリーポイント：3窓（RÖDALMトリプティク）を初期化して回す。
 // 窓のDOMは#window-templateからここで生成する（マークアップの単一ソース）。
 // 窓ごとに独立したプレイヤーを持ち、毎時 :00 / :20 / :40 にスタガー切替する。
-import { loadLayout, windowRects } from './layout.js';
+import { loadLayout, windowRects, applyBgBrightness } from './layout.js';
 import { FrameWindow, FONTS } from './frameWindow.js';
 import { initCalibration } from './calibration.js';
 import { initInput } from './input.js';
@@ -56,6 +56,7 @@ const ctx = {
   windows,
   applyAll() {
     windowRects(this.layout).forEach((rect, i) => windows[i].applyRect(rect));
+    applyBgBrightness(this.layout.bg);
   },
 };
 ctx.applyAll();

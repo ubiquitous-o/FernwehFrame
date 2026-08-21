@@ -2,7 +2,7 @@
 // キー操作で全体（スケール・位置）と窓ごと（位置・サイズ）を調整し、localStorageへ保存する。
 import {
   saveLayout, resetLayout, windowRect, centerOrigin,
-  RODALM, POSTCARD, apertureMm,
+  RODALM, POSTCARD, apertureMm, BG_BRIGHTNESS,
   getPxPerMm, setDisplayWidthMm, getDisplayWidthMm,
 } from './layout.js';
 
@@ -61,6 +61,7 @@ export function initCalibration(ctx) {
       `TARGET: ${selected === 'all' ? 'ALL (frame)' : `WINDOW ${selected + 1}`}`,
       `scale: ${L.scale.toFixed(3)} px/mm  (frame ${Math.round(RODALM.frameW * L.scale)}x${Math.round(RODALM.frameH * L.scale)}px)`,
       `origin: ${Math.round(L.originX)}, ${Math.round(L.originY)}`,
+      `bg brightness: ${L.bg.toFixed(2)}`,
     ];
     // モニタ物理幅が設定済みなら窓の物理サイズを表示（実寸確認用）
     const pxPerMm = getPxPerMm();
@@ -188,6 +189,16 @@ export function initCalibration(ctx) {
       case ']': case '}':
         if (selected !== 'all') { L.wins[selected].dh += step; refresh(); }
         return true;
+      case ',': case '<':
+      case '.': case '>': {
+        // 窓の生成り背景の明るさ（全窓共通。はがきの紙は変えない）
+        const dir = (e.key === ',' || e.key === '<') ? -1 : 1;
+        const d = big ? BG_BRIGHTNESS.bigStep : BG_BRIGHTNESS.step;
+        L.bg = Math.min(BG_BRIGHTNESS.max,
+          Math.max(BG_BRIGHTNESS.min, +(L.bg + dir * d).toFixed(2)));
+        refresh();
+        return true;
+      }
       case 'm': case 'M':
         showMonitorInput();
         return true;
