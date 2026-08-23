@@ -24,7 +24,9 @@ Based on [Fernweh](https://github.com/ubiquitous-o/Fernweh) — the video discov
   → rendered area 180×130 mm, aperture 170×120 mm (5 mm bleed on all sides)
   → windows stacked vertically (frame in portrait orientation)
   → window 1 switches at :00, window 2 at :20, window 3 at :40
-  → frosted-glass transition per window (fog in → load → clear)
+  → next video preloads in a hidden back slot ~1 min before each scheduled
+    switch, so the swap is instant (manual switches load under the frost)
+  → frosted-glass transition per window (fog in → swap/load → clear)
   → no two windows show the same stream
 ```
 

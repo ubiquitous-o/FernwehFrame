@@ -12,6 +12,9 @@ const SWITCH_MINUTES = [0, 20, 40];
 const INITIAL_STAGGER_MS = 2500;
 // 手動の全窓切替のずらし幅
 const SWITCH_ALL_STAGGER_MS = 400;
+// 定時切替のこの時間前に次の動画を裏スロットへプリロードする。
+// 常時プリロード（6ストリーム同時）は負荷とbot検知リスクが高いため直前だけ
+const PRELOAD_LEAD_MS = 60 * 1000;
 
 let ytApiReady = false;
 
@@ -44,8 +47,10 @@ const windows = [0, 1, 2].map((i) => {
   $stage.appendChild(rootEl);
 
   const others = () => windows.filter((w) => w.index !== i);
-  // 他の窓が再生中/切替中の動画・書体・デザインは避ける
-  const getExcludeIds = () => others().map((w) => w.current?.videoId).filter(Boolean);
+  // 他の窓が再生中/プリロード中の動画・書体・デザインは避ける
+  const getExcludeIds = () => others()
+    .flatMap((w) => [w.current?.videoId, w.preload?.data.videoId])
+    .filter(Boolean);
   const getExcludeFonts = () => others().map((w) => w.currentFont).filter(Boolean);
   const getExcludeDesigns = () => others().map((w) => w.design);
   return new FrameWindow(i, rootEl, getExcludeIds, getExcludeFonts, getExcludeDesigns);
@@ -82,10 +87,15 @@ function msUntilMinute(minute) {
 }
 
 function scheduleSwitch(i) {
+  const ms = msUntilMinute(SWITCH_MINUTES[i]);
+  // 切替の少し前に裏スロットへプリロード（切替時はswapだけで曇り時間が最短になる）
+  if (ms > PRELOAD_LEAD_MS) {
+    setTimeout(() => windows[i].preloadNext(), ms - PRELOAD_LEAD_MS);
+  }
   setTimeout(() => {
     windows[i].switchNext();
     scheduleSwitch(i);
-  }, msUntilMinute(SWITCH_MINUTES[i]));
+  }, ms);
 }
 
 // --- YouTube IFrame API ---

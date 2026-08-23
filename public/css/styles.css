@@ -57,7 +57,10 @@ body.calibrating { cursor: default; }
   background: #000;
 }
 
-.win-video { position: absolute; inset: 0; }
+/* 表裏2スロット構成。表(.win-front)だけ可視。裏はプリロード中のプレイヤーを
+   レンダリング状態のまま隠す（display:noneだと再生が止まりうるのでvisibility） */
+.win-video { position: absolute; inset: 0; visibility: hidden; }
+.win-video.win-front { visibility: visible; }
 
 .win-video iframe {
   width: 100%;

@@ -1,4 +1,6 @@
-// 1窓 = 1コントローラ。プレイヤー生成・すりガラス遷移・リトライ・キャプション表示を担当。
+// 1窓 = 1コントローラ。プレイヤー生成・プリロード・すりガラス遷移・リトライ・キャプション表示を担当。
+// 動画スロットは表裏2枚: 定時切替の少し前にmain.jsがpreloadNext()を呼び、
+// 裏スロットで次の動画をPLAYINGまで持っていく → 切替時はswapだけ（曇り時間が最短になる）。
 // mm→px のレイアウト計算は layout.js（postcardLayout）に集約されており、
 // ここでは返ってきた矩形をスタイルに流すだけ。
 // 3窓それぞれが独立に動き、切替タイミングはmain.jsがスタガーさせる。
@@ -74,7 +76,8 @@ export class FrameWindow {
     this.cardEl = rootEl.querySelector('.win-card');
     this.apertureEl = rootEl.querySelector('.cal-aperture');
     this.videoBoxEl = rootEl.querySelector('.win-video-box');
-    this.videoEl = rootEl.querySelector('.win-video');
+    this.videoEls = [...rootEl.querySelectorAll('.win-video')];
+    this.frontIdx = 0; // videoElsのうち今表になっているスロット
     this.titleEl = rootEl.querySelector('.win-title');
     this.locationEl = rootEl.querySelector('.win-location');
     this.timeEl = rootEl.querySelector('.win-time');
@@ -88,6 +91,8 @@ export class FrameWindow {
 
     this.player = null;
     this.current = null;      // 再生中の動画メタデータ
+    this.preload = null;      // 裏スロットで待機中の { player, data, playingAt }
+    this.preloadPromise = null; // 進行中のプリロード（切替時に完了を待つ）
     this.currentFont = null;  // このポストカードの現在の書体
     this.design = 'stamp';    // このポストカードの現在のデザイン
     this.decorData = null;    // 装飾用の動画メタ（地名・タイムゾーン）
@@ -120,11 +125,13 @@ export class FrameWindow {
     const D = designLayout(this.design, L, this.decorData, this.index);
     setRectPx(this.videoBoxEl, D.video);
     setRectPx(this.captionEl, D.caption);
-    if (D.videoInner) {
-      setRectPx(this.videoEl, D.videoInner);
-    } else {
-      ['left', 'top', 'width', 'height'].forEach((k) => this.videoEl.style.removeProperty(k));
-    }
+    this.videoEls.forEach((el) => {
+      if (D.videoInner) {
+        setRectPx(el, D.videoInner);
+      } else {
+        ['left', 'top', 'width', 'height'].forEach((k) => el.style.removeProperty(k));
+      }
+    });
 
     const key = `${this.design}|${L.card.w.toFixed(2)}|${this.current?.videoId || ''}`;
     if (key !== this.designKey) {
@@ -211,52 +218,94 @@ export class FrameWindow {
 
   // --- 切替 ---
 
-  // 次の動画へ切替。失敗したら別の動画でリトライ、全滅ならFAIL_RETRY_MS後に再挑戦。
+  frontEl() { return this.videoEls[this.frontIdx]; }
+  backEl() { return this.videoEls[1 - this.frontIdx]; }
+
+  // 裏スロットのプレイヤーを表に昇格し、旧表スロットを破棄する
+  swapToBack(newPlayer) {
+    destroyPlayer(this.player, this.frontEl());
+    this.frontEl().classList.remove('win-front');
+    this.frontIdx = 1 - this.frontIdx;
+    this.frontEl().classList.add('win-front');
+    this.player = newPlayer;
+  }
+
+  // 次の動画を裏スロットに事前ロードしてPLAYINGで待機させる。
+  // main.jsが定時切替の少し前に呼ぶ。失敗してもリトライはせず、
+  // switchNext側のインラインロード（従来動作）にフォールバックする。
+  preloadNext() {
+    if (this.preload || this.preloadPromise || this.isSwitching) return;
+    this.preloadPromise = (async () => {
+      try {
+        const data = await fetchNext(this.getExcludeIds());
+        const player = await createPlayer(this.backEl(), data.videoId);
+        this.preload = { player, data, playingAt: performance.now() };
+        console.log(`[win${this.index}] preloaded "${data.title}"`);
+      } catch (err) {
+        console.warn(`[win${this.index}] preload failed:`, err?.message || err);
+      } finally {
+        this.preloadPromise = null;
+      }
+    })();
+  }
+
+  // 次の動画へ切替。プリロード済みならswapだけ（曇り最短）、なければ曇りの下で
+  // インラインロード。失敗したら別の動画でリトライ、全滅ならFAIL_RETRY_MS後に再挑戦。
   async switchNext() {
     if (this.isSwitching) return;
     this.isSwitching = true;
     clearTimeout(this.retryTimer);
 
-    // ガラスが曇り切るのを待ってから旧映像を破棄（曇りの途中は旧映像が透けている）
+    // ガラスが曇り切るのを待つ（曇りの途中は旧映像が透けている）
     this.showFrost();
     await sleep(FROST_MS + 100);
     this.clearCaption();
 
-    destroyPlayer(this.player, this.videoEl);
-    this.player = null;
-    this.current = null;
+    // 進行中のプリロードがあれば完了を待って使う
+    if (this.preloadPromise) await this.preloadPromise;
 
-    let success = false;
     let data;
-    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-      try {
-        data = await fetchNext(this.getExcludeIds());
-      } catch (err) {
-        console.error(`[win${this.index}] fetchNext failed:`, err?.message || err);
-        break;
+    let holdMs; // intro UI（タイトル/ロゴ）が消えるまで曇ったまま待つ残り時間
+    if (this.preload) {
+      ({ data } = this.preload);
+      holdMs = Math.max(0, POST_LOAD_HOLD_MS - (performance.now() - this.preload.playingAt));
+      this.swapToBack(this.preload.player);
+      this.preload = null;
+    } else {
+      // インラインロード: 裏スロットに作って成功したらswap。
+      // 旧映像は成功まで残す（失敗時は曇りの下で生き続け、再挑戦に持ち越す）
+      let player = null;
+      for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+        try {
+          data = await fetchNext(this.getExcludeIds());
+        } catch (err) {
+          console.error(`[win${this.index}] fetchNext failed:`, err?.message || err);
+          break;
+        }
+        try {
+          player = await createPlayer(this.backEl(), data.videoId);
+          break;
+        } catch (err) {
+          console.warn(`[win${this.index}] attempt ${attempt} failed:`, err?.message || err);
+          await sleep(RETRY_DELAY_MS);
+        }
       }
-      try {
-        this.player = await createPlayer(this.videoEl, data.videoId);
-        data.title = decodeEntities(data.title || '');
-        data.locationName = decodeEntities(data.locationName || '');
-        this.current = data;
-        success = true;
-        console.log(`[win${this.index}] ▶ "${data.title}" (${data.channel})`);
-        break;
-      } catch (err) {
-        console.warn(`[win${this.index}] attempt ${attempt} failed:`, err?.message || err);
-        await sleep(RETRY_DELAY_MS);
+      if (!player) {
+        this.isSwitching = false;
+        this.retryTimer = setTimeout(() => this.switchNext(), FAIL_RETRY_MS);
+        return;
       }
+      holdMs = POST_LOAD_HOLD_MS;
+      this.swapToBack(player);
     }
 
-    if (!success) {
-      this.isSwitching = false;
-      this.retryTimer = setTimeout(() => this.switchNext(), FAIL_RETRY_MS);
-      return;
-    }
+    data.title = decodeEntities(data.title || '');
+    data.locationName = decodeEntities(data.locationName || '');
+    this.current = data;
+    console.log(`[win${this.index}] ▶ "${data.title}" (${data.channel})`);
 
     // intro UIが消えるまで曇ったまま待ち、デザインとキャプションを整えてからゆっくり晴らす
-    await sleep(POST_LOAD_HOLD_MS);
+    await sleep(holdMs);
     this.decorData = {
       locationName: data.locationName,
       timezone: data.timezone,

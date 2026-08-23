@@ -29,7 +29,8 @@
 <template id="window-template">
   <div class="frame-window">
     <div class="win-card">
-      <div class="win-video-box"><div class="win-video"></div></div>
+      <!-- 表裏2スロット: 裏に次の動画をプリロードして切替時にswapする -->
+      <div class="win-video-box"><div class="win-video win-front"></div><div class="win-video"></div></div>
       <div class="win-caption">
         <div class="win-title"></div>
         <div class="win-meta">
