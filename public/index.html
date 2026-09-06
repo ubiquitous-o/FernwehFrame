@@ -46,7 +46,7 @@
   </div>
 </template>
 
-<!-- キャリブレーションUI（Cキーでトグル）。額縁で隠れないよう窓2の上にJSが配置する -->
+<!-- キャリブレーションUI（Cキーでトグル）。画面中央に表示（CSS） -->
 <div id="cal-help">
   <div class="cal-title">CALIBRATION</div>
   <pre id="cal-readout"></pre>
@@ -57,7 +57,8 @@
   <pre class="cal-keys">
 0        select all (frame)
 1 / 2 / 3  select window
-arrows   move        (+Shift x10)
+P        select postcard (size in mm)
+arrows   move | postcard w/h  (+Shift x10)
 - / =    scale | width
 [ / ]    height
 , / .    bg brightness

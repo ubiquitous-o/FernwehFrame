@@ -18,9 +18,11 @@ Based on [Fernweh](https://github.com/ubiquitous-o/Fernweh) — the video discov
 
 [Browser (kiosk, fullscreen behind the frame)]
   → 3 independent YouTube IFrame players
-  → each window is a "postcard": real hagaki-size (148×100 mm) textured card
-  → 3 postcard designs (stamp / airmail / fullbleed), re-rolled on every switch
-    so a window never shows the same design twice in a row
+  → each window is a "postcard": textured card, real hagaki-size (148×100 mm)
+    by default; width/height adjustable in mm from calibration (P key), and
+    the content (video fit, type, margins, decor) re-flows to the new ratio
+  → 4 postcard designs (stamp / airmail / fullbleed / letters), re-rolled on
+    every switch so a window never shows the same design twice in a row
   → rendered area 180×130 mm, aperture 170×120 mm (5 mm bleed on all sides)
   → windows stacked vertically (frame in portrait orientation)
   → window 1 switches at :00, window 2 at :20, window 3 at :40
@@ -61,15 +63,16 @@ The three on-screen rectangles default to RÖDALM's real dimensions in portrait 
 |-----|--------|
 | `0` | Select the whole frame |
 | `1` / `2` / `3` | Select one window |
-| Arrow keys | Move selection (`Shift` = ×10) |
-| `-` / `=` | Scale (whole frame) / width (window) |
-| `[` / `]` | Height (window) |
+| `P` | Select the postcard (size in mm, shared by all three windows) |
+| Arrow keys | Move selection (`Shift` = ×10) — with the postcard selected, `←`/`→` = width, `↑`/`↓` = height |
+| `-` / `=` | Scale (whole frame) / width (window or postcard) |
+| `[` / `]` | Height (window or postcard) |
 | `,` / `.` | Background brightness — darken / brighten the off-white mat around the postcards (`Shift` = ×5; the postcard paper itself is unaffected) |
 | `M` | Enter the monitor's visible width in mm → true physical scale (windows become real 180×130 mm) |
 | `R` | Reset to defaults |
 | `C` / `Esc` | Save & exit |
 
-The layout is saved to `localStorage` and survives reboots. Tip: put a real photo print in one opening while calibrating the others, or just nudge until the green outlines vanish behind the mat.
+The layout — including the postcard size — is saved to `localStorage` and survives reboots. The calibration panel is centered on the screen. Postcard size defaults to hagaki (148×100 mm) and can be anything from 50×40 up to the 180×130 mm render area; fonts, margins and decorations scale with the square root of the card area, and the 16:9 video shrinks to keep room for the caption when the ratio gets taller. Tip: put a real photo print in one opening while calibrating the others, or just nudge until the green outlines vanish behind the mat.
 
 ## Setup
 

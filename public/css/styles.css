@@ -119,7 +119,8 @@ body.calibrating { cursor: default; }
   overflow: hidden;
 }
 
-/* フルブリード: キャプション枠ははがき全高。文字は余白の帯（高さ4% = 4mm）に置く。
+/* フルブリード: キャプション枠ははがき全高。文字は余白の帯に置く。
+   帯の高さ --band は紙マージン（4mm×k）と同じ値をJS(frameWindow.js)が窓ごとに設定する。
    タイトル=左上、時刻=右上、地名=右下 */
 .design-fullbleed .win-caption {
   display: block;
@@ -130,7 +131,7 @@ body.calibrating { cursor: default; }
 .design-fullbleed .win-time,
 .design-fullbleed .win-location {
   position: absolute;
-  height: 4%;
+  height: var(--band, 4%);
   align-content: center;
 }
 
@@ -154,7 +155,7 @@ body.calibrating { cursor: default; }
   left: 50%;
   transform: translateX(-50%);
   max-width: 100%;
-  height: 4%; /* fullbleedと同じ4mmマージン帯 */
+  height: var(--band, 4%); /* fullbleedと同じ上下マージン帯（JSが設定） */
   align-content: center;
 }
 
@@ -220,6 +221,12 @@ body.calibrating .win-card {
   outline-offset: -1px;
 }
 
+/* Pキーではがきサイズを調整中: 全窓のはがきを強調 */
+body.calibrating.cal-card .win-card {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
 /* --- キャリブレーションUI --- */
 .win-label {
   position: absolute;
@@ -250,9 +257,14 @@ body.calibrating.cal-all .frame-window {
   outline-offset: -2px;
 }
 
-/* 額縁で隠れないよう窓2の矩形内にJS(calibration.js)がleft/top/max-サイズを設定する */
+/* 画面中央に固定。窓の位置に依存しない */
 #cal-help {
   position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: min(92vw, 640px);
+  max-height: 92vh;
   z-index: 10;
   box-sizing: border-box;
   background: rgba(0, 0, 0, 0.85);

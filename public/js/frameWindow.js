@@ -104,10 +104,10 @@ export class FrameWindow {
     this.lastL = null;        // 直近のpostcardLayout結果（デザイン切替時の再適用用）
   }
 
-  // 画面px矩形を適用。内部レイアウトはlayout.jsが導出した矩形を流し込むだけ。
-  applyRect(rect) {
+  // 画面px矩形とはがきサイズ(mm)を適用。内部レイアウトはlayout.jsが導出した矩形を流し込むだけ。
+  applyRect(rect, cardMm) {
     setRectPx(this.rootEl, rect);
-    const L = postcardLayout(rect);
+    const L = postcardLayout(rect, cardMm);
     this.lastL = L;
     setRectPx(this.cardEl, L.card);
     setRectPx(this.apertureEl, L.aperture);
@@ -133,12 +133,16 @@ export class FrameWindow {
       }
     });
 
-    const key = `${this.design}|${L.card.w.toFixed(2)}|${this.current?.videoId || ''}`;
+    // 余白帯にキャプションを置くデザイン（fullbleed/letters）の帯高さ。CSSが参照する
+    if (D.band) this.rootEl.style.setProperty('--band', `${D.band}px`);
+    else this.rootEl.style.removeProperty('--band');
+
+    const key = `${this.design}|${L.card.w.toFixed(2)}x${L.card.h.toFixed(2)}|${this.current?.videoId || ''}`;
     if (key !== this.designKey) {
       this.designKey = key;
       // D.clipはclip-path値そのもの（stamp=path(...) / letters=url(#clipPath参照)）
       this.videoBoxEl.style.clipPath = D.clip || 'none';
-      this.decorEl.innerHTML = renderDecor(this.design, L, this.decorData, this.index);
+      this.decorEl.innerHTML = renderDecor(this.design, L, this.decorData, this.index, D);
     }
   }
 

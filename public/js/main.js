@@ -60,7 +60,7 @@ const ctx = {
   layout: loadLayout(),
   windows,
   applyAll() {
-    windowRects(this.layout).forEach((rect, i) => windows[i].applyRect(rect));
+    windowRects(this.layout).forEach((rect, i) => windows[i].applyRect(rect, this.layout.card));
     applyBgBrightness(this.layout.bg);
   },
 };

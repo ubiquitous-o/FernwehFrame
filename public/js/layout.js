@@ -15,13 +15,29 @@ export const RODALM = {
   bleed: 5,     // 描画領域(180×130) → 額縁開口の実寸(170×120)の四辺ブリード
 };
 
-// はがき実寸 (mm)
+// はがきの既定実寸 (mm) = 日本のはがき。実際のサイズはlayout.card（キャリブレーションのPキー）で
+// 変えられる。コンテンツ（フォント・余白・装飾）はこの既定サイズを1としたスケールkで追従する
 export const POSTCARD = { w: 148, h: 100 };
 
-// はがき内デザイン定数 (mm)
+// はがきサイズの可動範囲 (mm)。上限は窓の描画領域（それ以上は物理的に見えない）
+export const CARD_LIMITS = { minW: 50, maxW: RODALM.winW, minH: 40, maxH: RODALM.winH };
+
+export function clampCard(card) {
+  const num = (v, d) => (Number.isFinite(v) ? v : d);
+  return {
+    w: Math.min(CARD_LIMITS.maxW, Math.max(CARD_LIMITS.minW, Math.round(num(card?.w, POSTCARD.w)))),
+    h: Math.min(CARD_LIMITS.maxH, Math.max(CARD_LIMITS.minH, Math.round(num(card?.h, POSTCARD.h)))),
+  };
+}
+
+// はがき内のコンテンツスケール。148×100を1として面積比の平方根で伸縮させる
+// （縦横どちらが伸びても文字・余白がほどよく追従し、比率だけ変えたときは変わらない）
+export function cardScale(card) {
+  return Math.sqrt((card.w * card.h) / (POSTCARD.w * POSTCARD.h));
+}
+
+// はがき内デザイン定数 (mm, k=1のとき)。動画・キャプションの矩形はdesigns.jsが持つ
 const CARD = {
-  pad: 3,       // はがき端 → コンテンツのマージン
-  gap: 3,       // 動画とキャプションの間
   fontTitle: 3.0,
   fontMeta: 2.6,
 };
@@ -31,7 +47,8 @@ export function apertureMm() {
   return { w: RODALM.winW - 2 * RODALM.bleed, h: RODALM.winH - 2 * RODALM.bleed };
 }
 
-// ジオメトリ（RODALM定数・窓配置）を変えたらキーのバージョンを上げて古い保存値を無効化する
+// ジオメトリ（RODALM定数・窓配置）を変えたらキーのバージョンを上げて古い保存値を無効化する。
+// はがきサイズ(card)は後から追加したフィールドで、loadLayoutが旧保存値を既定で補完する
 const STORAGE_KEY = 'ff_layout_v1';
 // モニタの物理サイズ（表示領域の横幅mm）。実寸表示のためのpx/mm算出に使う。
 // 既定値は本番モニター Newsoul 22MT01-S 縦置きの実測値（README参照）。
@@ -82,6 +99,7 @@ export function defaultLayout() {
     originX: 0,
     originY: 0,
     bg: 1, // 窓の生成り背景の明るさ係数
+    card: { ...POSTCARD }, // はがきの実寸 (mm)。全窓共通
     // 窓ごとの微調整 (px): 位置・サイズ
     wins: [0, 1, 2].map(() => ({ dx: 0, dy: 0, dw: 0, dh: 0 })),
   };
@@ -96,6 +114,7 @@ export function loadLayout() {
       const data = JSON.parse(raw);
       if (data && data.wins?.length === 3) {
         data.bg ??= 1; // bg導入前の保存値を補完
+        data.card = clampCard(data.card); // card導入前の保存値は既定のはがきサイズに
         return data;
       }
     }
@@ -146,34 +165,30 @@ export function setRectPx(el, r) {
   el.style.height = `${r.h}px`;
 }
 
-// 窓の描画矩形から、はがき・動画・キャプション・開口ガイドの各矩形(px)を導出。
-// card/video/caption はカード内・カード基準、aperture は窓基準。
-export function postcardLayout(rect) {
+// 窓の描画矩形から、はがき・開口ガイドの矩形(px)とコンテンツスケールを導出。
+// card は窓基準、aperture は窓基準。動画・キャプションの矩形はデザインごとに
+// designs.jsのdesignLayoutがこの結果（pxMm / cardMm / k）から求める。
+export function postcardLayout(rect, cardMm = POSTCARD) {
   const pxMm = rect.w / RODALM.winW;
+  const k = cardScale(cardMm);
 
   const card = {
-    x: ((RODALM.winW - POSTCARD.w) / 2) * pxMm,
-    y: ((RODALM.winH - POSTCARD.h) / 2) * pxMm,
-    w: POSTCARD.w * pxMm,
-    h: POSTCARD.h * pxMm,
+    x: ((RODALM.winW - cardMm.w) / 2) * pxMm,
+    y: ((RODALM.winH - cardMm.h) / 2) * pxMm,
+    w: cardMm.w * pxMm,
+    h: cardMm.h * pxMm,
   };
-
-  const pad = CARD.pad * pxMm;
-  const video = { x: pad, y: pad, w: card.w - 2 * pad, h: ((card.w - 2 * pad) * 9) / 16 };
-
-  const capTop = pad + video.h + CARD.gap * pxMm;
-  const caption = { x: pad, y: capTop, w: video.w, h: card.h - pad - capTop };
 
   const bleed = RODALM.bleed * pxMm;
   const aperture = { x: bleed, y: bleed, w: rect.w - 2 * bleed, h: rect.h - 2 * bleed };
 
   return {
     pxMm,
+    k,
+    cardMm: { w: cardMm.w, h: cardMm.h },
     card,
-    video,
-    caption,
     aperture,
-    fontTitle: CARD.fontTitle * pxMm,
-    fontMeta: CARD.fontMeta * pxMm,
+    fontTitle: CARD.fontTitle * k * pxMm,
+    fontMeta: CARD.fontMeta * k * pxMm,
   };
 }
