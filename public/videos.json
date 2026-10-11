@@ -1,5 +1,197 @@
 [
   {
+    "videoId": "AWJi0LgyA28",
+    "title": "Live Aviary Cam | Monterey Bay Aquarium",
+    "channel": "Monterey Bay Aquarium",
+    "thumbnail": "https://i.ytimg.com/vi/AWJi0LgyA28/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      36.6,
+      -121.89
+    ],
+    "locationName": "Monterey, California",
+    "timezone": "America/Los_Angeles",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-11T18:39:50.738Z"
+  },
+  {
+    "videoId": "wyEi0OPai5g",
+    "title": "Webcam Rio de Janeiro Copacabana Posto 6",
+    "channel": "Homes in Rio",
+    "thumbnail": "https://i.ytimg.com/vi/wyEi0OPai5g/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      -22.91,
+      -43.17
+    ],
+    "locationName": "Rio de Janeiro, Brazil",
+    "timezone": "America/Sao_Paulo",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-11T18:39:50.739Z"
+  },
+  {
+    "videoId": "t6FtD06yy44",
+    "title": "Tropical Storm Rachel LIVE Cams: San Diego, Coronado, Catalina, Dana Point, Hermosa, Venice CA",
+    "channel": "HD Beach Cams",
+    "thumbnail": "https://i.ytimg.com/vi/t6FtD06yy44/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      32.72,
+      -117.16
+    ],
+    "locationName": "San Diego, USA",
+    "timezone": "America/Los_Angeles",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-11T18:39:50.739Z"
+  },
+  {
+    "videoId": "llbPry3sHN4",
+    "title": "[LIVE] Kabukicho Live Camera Stream 2 2026/10/11 18:00",
+    "channel": "Kabukicho Live Camera",
+    "thumbnail": "https://i.ytimg.com/vi/llbPry3sHN4/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      35.6937632,
+      139.7036319
+    ],
+    "locationName": "Shinjuku, Japan",
+    "timezone": "Asia/Tokyo",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-11T18:39:50.739Z"
+  },
+  {
+    "videoId": "eKzbmnE9uYU",
+    "title": "🔴 LIVE Port Miami Cruise Ship Terminals",
+    "channel": "BLC Streams",
+    "thumbnail": "https://i.ytimg.com/vi/eKzbmnE9uYU/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      25.76,
+      -80.19
+    ],
+    "locationName": "Miami, USA",
+    "timezone": "America/New_York",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-11T18:39:50.739Z"
+  },
+  {
+    "videoId": "wPCrbAjyl6U",
+    "title": "Boston Common LIVE - Fall Foliage 🍂 | 24/7 Boston Skyline Webcam",
+    "channel": "Third Polar Arch",
+    "thumbnail": "https://i.ytimg.com/vi/wPCrbAjyl6U/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      42.3588336,
+      -71.0578303
+    ],
+    "locationName": "Boston, Massachusetts",
+    "timezone": "America/New_York",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-11T18:39:50.739Z"
+  },
+  {
+    "videoId": "oXWL45X1d_Y",
+    "title": "Soi Buakhao, Pattaya Live, Thailand",
+    "channel": "ole petter løbak (ice_baby)",
+    "thumbnail": "https://i.ytimg.com/vi/oXWL45X1d_Y/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      15.87,
+      100.99
+    ],
+    "locationName": "Thailand",
+    "timezone": "Asia/Jakarta",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-11T18:39:50.739Z"
+  },
+  {
+    "videoId": "wP4gD-5g-90",
+    "title": "🔴 Live Camera Stream | Bondi Aussie Bar &amp; Grill | Lamai | Koh Samui | Thailand | 2160p 4K",
+    "channel": "The Real Samui Webcam",
+    "thumbnail": "https://i.ytimg.com/vi/wP4gD-5g-90/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      9.5013945,
+      99.9956193
+    ],
+    "locationName": "Koh Samui",
+    "timezone": "Asia/Jakarta",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-11T18:39:50.739Z"
+  },
+  {
+    "videoId": "aLECCRckeIw",
+    "title": "新穂高ロープウェイ ライブカメラ　SHINHOTAKAROPEWAY LIVECAMERA",
+    "channel": "新穂高ロープウェイ",
+    "thumbnail": "https://i.ytimg.com/vi/aLECCRckeIw/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "south-asia",
+    "fetchedAt": "2026-10-11T18:39:50.740Z"
+  },
+  {
+    "videoId": "74RAEeGWpIA",
+    "title": "【ライブカメラ】東名高速道路 港北パーキングエリア 下り【24/7 Webcam in Tomei Expressway / Kohoku Rest Area / Yokohama / Japan】",
+    "channel": "K55",
+    "thumbnail": "https://i.ytimg.com/vi/74RAEeGWpIA/hqdefault_live.jpg",
+    "query": "live camera japan 横浜",
+    "location": [
+      35.44,
+      139.64
+    ],
+    "locationName": "Yokohama, Japan",
+    "timezone": "Asia/Tokyo",
+    "region": "japan",
+    "fetchedAt": "2026-10-11T18:39:50.740Z"
+  },
+  {
+    "videoId": "sIy0J6TeCxY",
+    "title": "Live Beach Cam - Obaiba Beach, Tokyo JAPAN / Houseboat / japan travel / Live cam",
+    "channel": "EN DAIBA GLOBAL",
+    "thumbnail": "https://i.ytimg.com/vi/sIy0J6TeCxY/hqdefault_live.jpg",
+    "query": "live camera japan 横浜",
+    "location": [
+      35.68,
+      139.69
+    ],
+    "locationName": "Tokyo, Japan",
+    "timezone": "Asia/Tokyo",
+    "region": "japan",
+    "fetchedAt": "2026-10-11T18:39:50.740Z"
+  },
+  {
+    "videoId": "C6LcLuSlLuE",
+    "title": "LIVE Scenery overlooking land, Yurikamome Line, Odaiba, Tokyo JAPAN / Live cam",
+    "channel": "EN DAIBA GLOBAL",
+    "thumbnail": "https://i.ytimg.com/vi/C6LcLuSlLuE/hqdefault_live.jpg",
+    "query": "live camera japan 横浜",
+    "location": [
+      35.6190032,
+      139.7793576
+    ],
+    "locationName": "Odaiba, Tokyo, Japan",
+    "timezone": "Asia/Tokyo",
+    "region": "japan",
+    "fetchedAt": "2026-10-11T18:39:50.740Z"
+  },
+  {
+    "videoId": "QneynPTSOao",
+    "title": "Cancún Quintana Roo, En Vivo | Vista Panorámica de Punta Cancún",
+    "channel": "Webcams de México TV",
+    "thumbnail": "https://i.ytimg.com/vi/QneynPTSOao/hqdefault_live.jpg",
+    "query": "cámara en vivo Cancún",
+    "location": [
+      21.1527467,
+      -86.8425761
+    ],
+    "locationName": "Cancún, Mexico",
+    "timezone": "America/Cancun",
+    "region": "central-america-caribbean",
+    "fetchedAt": "2026-10-11T18:39:50.741Z"
+  },
+  {
     "videoId": "3hXiSEvrE_4",
     "title": "Heathrow Airport Live - Sunday 11th October 2026",
     "channel": "Flight Focus 365",
@@ -1869,51 +2061,6 @@
     "fetchedAt": "2026-10-10T12:03:05.551Z"
   },
   {
-    "videoId": "D2nMawzpCcY",
-    "title": "五反野駅ライブカメラ",
-    "channel": "足立区民放送",
-    "thumbnail": "https://i.ytimg.com/vi/D2nMawzpCcY/hqdefault_live.jpg",
-    "query": "live camera 東京",
-    "location": [
-      35.7746029,
-      139.8045163
-    ],
-    "locationName": "Adachi, Tokyo",
-    "timezone": "Asia/Tokyo",
-    "region": "japan",
-    "fetchedAt": "2026-10-10T12:03:07.019Z"
-  },
-  {
-    "videoId": "eiku4C25Ctw",
-    "title": "【LIVE】新宿区上落合１丁目交差点ライブカメラ",
-    "channel": "e-CAM(イーカム)チャンネル",
-    "thumbnail": "https://i.ytimg.com/vi/eiku4C25Ctw/hqdefault_live.jpg",
-    "query": "live camera 東京",
-    "location": [
-      35.6937632,
-      139.7036319
-    ],
-    "locationName": "Shinjuku, Tokyo",
-    "timezone": "Asia/Tokyo",
-    "region": "japan",
-    "fetchedAt": "2026-10-10T12:03:07.019Z"
-  },
-  {
-    "videoId": "xcnuSHi18jY",
-    "title": "JR 中央本線ライブカメラ② （春日居町 ⇔ 石和温泉）下り甲府、松本方面【10月】",
-    "channel": "The Dramatic 中央本線。",
-    "thumbnail": "https://i.ytimg.com/vi/xcnuSHi18jY/hqdefault_live.jpg",
-    "query": "live camera 東京",
-    "location": [
-      35.6472876,
-      138.6396674
-    ],
-    "locationName": "Fuefuki, Japan",
-    "timezone": "Asia/Tokyo",
-    "region": "japan",
-    "fetchedAt": "2026-10-10T12:03:07.019Z"
-  },
-  {
     "videoId": "bTQLX4Nvq4c",
     "title": "Yosemite Live Webcams | Half Dome, El Capitan, High Sierra, Glacier Point  🌅 Relaxing Nature Escape",
     "channel": "Gavin Heffernan Timelapse Travel ",
@@ -2388,138 +2535,6 @@
     "fetchedAt": "2026-10-10T12:03:11.452Z"
   },
   {
-    "videoId": "u2vXjkcLp4E",
-    "title": "WATCH LIVE: View of Cape San Blas after Hurricane Isaias passed through",
-    "channel": "CGTN Europe",
-    "thumbnail": "https://i.ytimg.com/vi/u2vXjkcLp4E/hqdefault_live.jpg",
-    "query": "live view",
-    "location": [
-      51,
-      10
-    ],
-    "locationName": "Europe",
-    "timezone": "Europe/Berlin",
-    "region": "south-asia",
-    "fetchedAt": "2026-10-10T12:03:11.452Z"
-  },
-  {
-    "videoId": "tSj9bNY-wQs",
-    "title": "Cockroach Janta Party Protest | Jantar Mantar LIVE | Delhi On High Alert: Metro Shut, Internet Down",
-    "channel": "NDTV",
-    "thumbnail": "https://i.ytimg.com/vi/tSj9bNY-wQs/hqdefault_live.jpg",
-    "query": "live view",
-    "location": [
-      28.6138954,
-      77.2090057
-    ],
-    "locationName": "New Delhi, India",
-    "timezone": "Asia/Kolkata",
-    "region": "south-asia",
-    "fetchedAt": "2026-10-10T12:03:11.452Z"
-  },
-  {
-    "videoId": "QlaZbZvEPRM",
-    "title": "Jantar Mantar Protest LIVE: हिरासत में 1700 लोग...बड़ा एक्शन  | Delhi Police Action | CJP Protest",
-    "channel": "ABP NEWS",
-    "thumbnail": "https://i.ytimg.com/vi/QlaZbZvEPRM/hqdefault_live.jpg",
-    "query": "live view",
-    "location": [
-      28.6138954,
-      77.2090057
-    ],
-    "locationName": "New Delhi, India",
-    "timezone": "Asia/Kolkata",
-    "region": "south-asia",
-    "fetchedAt": "2026-10-10T12:03:11.452Z"
-  },
-  {
-    "videoId": "ER5sTW3whJo",
-    "title": "LIVE Delhi Protest : Jantar Mantar Rally, SIR Row &amp; Political Reactions",
-    "channel": "Business Today",
-    "thumbnail": "https://i.ytimg.com/vi/ER5sTW3whJo/hqdefault_live.jpg",
-    "query": "live view",
-    "location": [
-      28.6138954,
-      77.2090057
-    ],
-    "locationName": "New Delhi, India",
-    "timezone": "Asia/Kolkata",
-    "region": "south-asia",
-    "fetchedAt": "2026-10-10T12:03:11.452Z"
-  },
-  {
-    "videoId": "XHPX3vqxkCE",
-    "title": "🐢 Playa Lagun LIVE Cam | Scuba Lodge Lagun Beach Hotel",
-    "channel": "SHOWME Caribbean",
-    "thumbnail": "https://i.ytimg.com/vi/XHPX3vqxkCE/hqdefault_live.jpg",
-    "query": "live view",
-    "location": [
-      25.8479658,
-      -80.1201649
-    ],
-    "locationName": "Beach, Unknown",
-    "timezone": "America/New_York",
-    "region": "south-asia",
-    "fetchedAt": "2026-10-10T12:03:11.452Z"
-  },
-  {
-    "videoId": "LW9X_WjekNw",
-    "title": "CJP Protest Live: 10 October Protest | Jantar Mantar | Delhi Police | Dhruv Rathee | Abhijeet Dipke",
-    "channel": "NDTV India",
-    "thumbnail": "https://i.ytimg.com/vi/LW9X_WjekNw/hqdefault_live.jpg",
-    "query": "live view",
-    "location": [
-      28.61,
-      77.21
-    ],
-    "locationName": "India",
-    "timezone": "Asia/Kolkata",
-    "region": "south-asia",
-    "fetchedAt": "2026-10-10T12:03:11.452Z"
-  },
-  {
-    "videoId": "tYnVvjqGAXQ",
-    "title": "LIVE: Massive Pro-Palestinian Demonstration Marches Through London | AC1G",
-    "channel": "DRM News",
-    "thumbnail": "https://i.ytimg.com/vi/tYnVvjqGAXQ/hqdefault_live.jpg",
-    "query": "live view",
-    "location": [
-      51.51,
-      -0.13
-    ],
-    "locationName": "London, England",
-    "timezone": "Europe/London",
-    "region": "south-asia",
-    "fetchedAt": "2026-10-10T12:03:11.452Z"
-  },
-  {
-    "videoId": "H6pl68yjk-0",
-    "title": "Tilley Cam -  24/7 Harbour Cam - Port aux Basques, Newfoundland - Live Stream",
-    "channel": "Customs House 1897🇨🇦",
-    "thumbnail": "https://i.ytimg.com/vi/H6pl68yjk-0/hqdefault_live.jpg",
-    "query": "live view",
-    "location": [
-      47.5776635,
-      -59.1424188
-    ],
-    "locationName": "Port aux Basques, Newfoundland and Labrador",
-    "timezone": "America/St_Johns",
-    "region": "south-asia",
-    "fetchedAt": "2026-10-10T12:03:11.452Z"
-  },
-  {
-    "videoId": "3vSbSqjXibc",
-    "title": "Live View from Locomotive Cab of Fastest train insane view from Front of Train",
-    "channel": "Trains and Tracks",
-    "thumbnail": "https://i.ytimg.com/vi/3vSbSqjXibc/hqdefault_live.jpg",
-    "query": "live view",
-    "location": null,
-    "locationName": null,
-    "timezone": null,
-    "region": "south-asia",
-    "fetchedAt": "2026-10-10T12:03:11.453Z"
-  },
-  {
     "videoId": "XsOU8JnEpNM",
     "title": "ol Donyo Lodge | Wildlife Live Stream – Kenya",
     "channel": "Africam",
@@ -2938,20 +2953,5 @@
     "timezone": "Asia/Yakutsk",
     "region": "russia-central-asia",
     "fetchedAt": "2026-10-10T04:47:50.320Z"
-  },
-  {
-    "videoId": "GpQYZ4jokjE",
-    "title": "Mogilev Online",
-    "channel": "TV2 Mogilev",
-    "thumbnail": "https://i.ytimg.com/vi/GpQYZ4jokjE/hqdefault_live.jpg",
-    "query": "веб камера онлайн Москва",
-    "location": [
-      53.9090245,
-      30.3429838
-    ],
-    "locationName": "Mogilev, Belarus",
-    "timezone": "Europe/Minsk",
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-10T04:47:51.670Z"
   }
 ]
