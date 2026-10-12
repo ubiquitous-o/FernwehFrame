@@ -1,5 +1,65 @@
 [
   {
+    "videoId": "ZHZuvjhR9RI",
+    "title": "🔴 AO VIVO: Arraial do Cabo AGORA 🇧🇷 | Praia em Tempo Real  🟢🟡",
+    "channel": "Pontal NeTv - Internet 100% Fibra",
+    "thumbnail": "https://i.ytimg.com/vi/ZHZuvjhR9RI/hqdefault_live.jpg",
+    "query": "en vivo webcam Rio de Janeiro",
+    "location": [
+      -22.9662839,
+      -42.024427
+    ],
+    "locationName": "Arraial do Cabo, Brazil",
+    "timezone": "America/Sao_Paulo",
+    "region": "south-america",
+    "fetchedAt": "2026-10-12T22:45:57.589Z"
+  },
+  {
+    "videoId": "WEl_I5vmuSs",
+    "title": "Rio de Janeiro Cam - Copacabana Posto 3",
+    "channel": "Homes in Rio",
+    "thumbnail": "https://i.ytimg.com/vi/WEl_I5vmuSs/hqdefault_live.jpg",
+    "query": "en vivo webcam Rio de Janeiro",
+    "location": [
+      -22.91,
+      -43.17
+    ],
+    "locationName": "Rio de Janeiro, Brazil",
+    "timezone": "America/Sao_Paulo",
+    "region": "south-america",
+    "fetchedAt": "2026-10-12T22:45:57.589Z"
+  },
+  {
+    "videoId": "CY1BMUfII4Y",
+    "title": "🔴LIVE: WEBCAMS around the world | October 12 | FOX 10 Phoenix",
+    "channel": "FOX 10 Phoenix",
+    "thumbnail": "https://i.ytimg.com/vi/CY1BMUfII4Y/hqdefault_live.jpg",
+    "query": "live cam New Orleans",
+    "location": [
+      33.4484367,
+      -112.074141
+    ],
+    "locationName": "Phoenix, Arizona",
+    "timezone": "America/Phoenix",
+    "region": "usa",
+    "fetchedAt": "2026-10-12T22:45:57.589Z"
+  },
+  {
+    "videoId": "Qh68QRsy7hU",
+    "title": "🇲🇹 Malta LIVE 4K 🇲🇹 Skyline, Weather &amp; City Views | 24/7 Live Webcam",
+    "channel": "Birds Eye View Malta",
+    "thumbnail": "https://i.ytimg.com/vi/Qh68QRsy7hU/hqdefault_live.jpg",
+    "query": "прямая трансляция камера",
+    "location": [
+      35.9,
+      14.51
+    ],
+    "locationName": "Malta",
+    "timezone": "Europe/Malta",
+    "region": "russia-central-asia",
+    "fetchedAt": "2026-10-12T22:45:57.589Z"
+  },
+  {
     "videoId": "ipbHUjTeUIw",
     "title": "【Kawaguchiko Station Live Camera in Japan】富士急行線河口湖駅前　富士観光開発(株) 本社ライブカメラ　提供：UTYテレビ山梨",
     "channel": "UTYテレビ山梨公式チャンネル",
@@ -1929,36 +1989,6 @@
     "fetchedAt": "2026-10-11T04:33:16.146Z"
   },
   {
-    "videoId": "DzNJ9Bcs-R8",
-    "title": "Rua do Imperador - Petrópolis RJ - Ao Vivo - 10/10/2026",
-    "channel": "Petrópolis 24h",
-    "thumbnail": "https://i.ytimg.com/vi/DzNJ9Bcs-R8/hqdefault_live.jpg",
-    "query": "câmera ao vivo",
-    "location": [
-      -22.3880004,
-      -43.1752593
-    ],
-    "locationName": "Petrópolis, Rio de Janeiro",
-    "timezone": "America/Sao_Paulo",
-    "region": "south-america",
-    "fetchedAt": "2026-10-11T04:33:17.880Z"
-  },
-  {
-    "videoId": "6C7mi74aeqU",
-    "title": "Live do centro da cidade de Chapecó - SC - câmera ao vivo #chapeco #chapecoaovivo",
-    "channel": "Portal Chapecó",
-    "thumbnail": "https://i.ytimg.com/vi/6C7mi74aeqU/hqdefault_live.jpg",
-    "query": "câmera ao vivo",
-    "location": [
-      -27.1110472,
-      -52.5958977
-    ],
-    "locationName": "Chapecó, Santa Catarina",
-    "timezone": "America/Sao_Paulo",
-    "region": "south-america",
-    "fetchedAt": "2026-10-11T04:33:19.516Z"
-  },
-  {
     "videoId": "RSnFlgcE4mM",
     "title": "Maria&#39;s Cam 5A Street View Agdao Public Market, Davao City Philippines  #philippines #davaocity",
     "channel": "Maria Deseo - Philippines Live Webcam",
@@ -2899,35 +2929,5 @@
     "timezone": "Asia/Tokyo",
     "region": "greater-china",
     "fetchedAt": "2026-10-10T12:03:08.486Z"
-  },
-  {
-    "videoId": "71fQmRlzbKg",
-    "title": "【FGU 4KLiveCam｜GenAI LiveChat】佛光大學＠蘭陽平原 即時影像 Lanyang Plain Live View",
-    "channel": "佛光大學 Fo Guang University",
-    "thumbnail": "https://i.ytimg.com/vi/71fQmRlzbKg/hqdefault_live.jpg",
-    "query": "即時影像",
-    "location": [
-      24.8236455,
-      121.7713481
-    ],
-    "locationName": "Jiaoxi, Taiwan",
-    "timezone": "Asia/Taipei",
-    "region": "greater-china",
-    "fetchedAt": "2026-10-10T12:03:08.487Z"
-  },
-  {
-    "videoId": "iVeGn1b_pZ4",
-    "title": "【360 4K Live】新竹市政府 #青草湖 360 4K 全景即時影像 #看見台灣360 #Formosa360 #360看見新竹",
-    "channel": "新竹市政府",
-    "thumbnail": "https://i.ytimg.com/vi/iVeGn1b_pZ4/hqdefault_live.jpg",
-    "query": "即時影像",
-    "location": [
-      24.8066333,
-      120.9686833
-    ],
-    "locationName": "Hsinchu, Taiwan",
-    "timezone": "Asia/Taipei",
-    "region": "greater-china",
-    "fetchedAt": "2026-10-10T12:03:09.981Z"
   }
 ]
