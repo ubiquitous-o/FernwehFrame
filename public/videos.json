@@ -1,5 +1,605 @@
 [
   {
+    "videoId": "w3GxrYkBltw",
+    "title": "🔴LIVE: WEBCAMS around the world | October 15 | FOX 10 Phoenix",
+    "channel": "FOX 10 Phoenix",
+    "thumbnail": "https://i.ytimg.com/vi/w3GxrYkBltw/hqdefault_live.jpg",
+    "query": "webcam live",
+    "location": [
+      33.4484367,
+      -112.074141
+    ],
+    "locationName": "Phoenix, Arizona",
+    "timezone": "America/Phoenix",
+    "region": "nordic",
+    "fetchedAt": "2026-10-15T14:43:07.599Z"
+  },
+  {
+    "videoId": "9u2mhm0KoTg",
+    "title": "🔴 Live: Rio Boat",
+    "channel": "SlowTV",
+    "thumbnail": "https://i.ytimg.com/vi/9u2mhm0KoTg/hqdefault_live.jpg",
+    "query": "webcam live",
+    "location": [
+      -22.9110137,
+      -43.2093727
+    ],
+    "locationName": "Rio",
+    "timezone": "America/Sao_Paulo",
+    "region": "nordic",
+    "fetchedAt": "2026-10-15T14:43:07.599Z"
+  },
+  {
+    "videoId": "wPCrbAjyl6U",
+    "title": "Boston Common LIVE - Fall Foliage 🍂 | 24/7 Boston Skyline Webcam",
+    "channel": "Third Polar Arch",
+    "thumbnail": "https://i.ytimg.com/vi/wPCrbAjyl6U/hqdefault_live.jpg",
+    "query": "webcam live",
+    "location": [
+      42.3588336,
+      -71.0578303
+    ],
+    "locationName": "Boston, Massachusetts",
+    "timezone": "America/New_York",
+    "region": "nordic",
+    "fetchedAt": "2026-10-15T14:43:07.599Z"
+  },
+  {
+    "videoId": "zl-K_XGYJes",
+    "title": "✈️ LIVE October 15 | Maho Beach | SXM Airport St. Maarten (with ATC &amp; Jetblasts)",
+    "channel": "SHOWME Caribbean",
+    "thumbnail": "https://i.ytimg.com/vi/zl-K_XGYJes/hqdefault_live.jpg",
+    "query": "webcam live",
+    "location": [
+      25.8479658,
+      -80.1201649
+    ],
+    "locationName": "Beach, Unknown",
+    "timezone": "America/New_York",
+    "region": "nordic",
+    "fetchedAt": "2026-10-15T14:43:07.600Z"
+  },
+  {
+    "videoId": "6uzzroiwcAk",
+    "title": "Mount Washington Cog Railway Live Webcam",
+    "channel": "Mount Washington Cog Railway",
+    "thumbnail": "https://i.ytimg.com/vi/6uzzroiwcAk/hqdefault_live.jpg",
+    "query": "webcam live",
+    "location": [
+      38.91,
+      -77.04
+    ],
+    "locationName": "Washington, USA",
+    "timezone": "America/New_York",
+    "region": "nordic",
+    "fetchedAt": "2026-10-15T14:43:07.600Z"
+  },
+  {
+    "videoId": "fu-O3LWRWBc",
+    "title": "🔴LIVE Notting Hill Gate Station - London 4K Webcam",
+    "channel": "Notting Hill Gate Cam",
+    "thumbnail": "https://i.ytimg.com/vi/fu-O3LWRWBc/hqdefault_live.jpg",
+    "query": "webcam live",
+    "location": [
+      51.51,
+      -0.13
+    ],
+    "locationName": "London, England",
+    "timezone": "Europe/London",
+    "region": "nordic",
+    "fetchedAt": "2026-10-15T14:43:07.600Z"
+  },
+  {
+    "videoId": "VAS9A0LRGHA",
+    "title": "Webcam am Marienplatz",
+    "channel": "LUDWIG BECK",
+    "thumbnail": "https://i.ytimg.com/vi/VAS9A0LRGHA/hqdefault_live.jpg",
+    "query": "webcam live",
+    "location": [
+      48.1371079,
+      11.5753822
+    ],
+    "locationName": "Munich, Germany",
+    "timezone": "Europe/Berlin",
+    "region": "nordic",
+    "fetchedAt": "2026-10-15T14:43:07.600Z"
+  },
+  {
+    "videoId": "9RuoN48MRp0",
+    "title": "🔴 Campi Flegrei LIVE H24: Sismografo e Webcam Pisciarelli – Monitoraggio / Real-Time",
+    "channel": "SolfataraNews",
+    "thumbnail": "https://i.ytimg.com/vi/9RuoN48MRp0/hqdefault_live.jpg",
+    "query": "webcam live",
+    "location": [
+      40.8274575,
+      14.1402297
+    ],
+    "locationName": "Campi Flegrei",
+    "timezone": "Europe/Rome",
+    "region": "nordic",
+    "fetchedAt": "2026-10-15T14:43:07.600Z"
+  },
+  {
+    "videoId": "TAkk2B9GOmc",
+    "title": "ISS Live 24/7: NASA Earth &amp; Space Station Tracker – Orbit, Aurora, Weather",
+    "channel": "Tripwebcam",
+    "thumbnail": "https://i.ytimg.com/vi/TAkk2B9GOmc/hqdefault_live.jpg",
+    "query": "webcam live",
+    "location": [
+      39.7405111,
+      -104.830994
+    ],
+    "locationName": "Aurora, Colorado",
+    "timezone": "America/Denver",
+    "region": "nordic",
+    "fetchedAt": "2026-10-15T14:43:07.600Z"
+  },
+  {
+    "videoId": "gqLcgUWIU3I",
+    "title": "IJmuiden Port Live Webcam - the gateway to Amsterdam",
+    "channel": "SHIPM8",
+    "thumbnail": "https://i.ytimg.com/vi/gqLcgUWIU3I/hqdefault_live.jpg",
+    "query": "webcam live",
+    "location": [
+      52.37,
+      4.9
+    ],
+    "locationName": "Amsterdam, Netherlands",
+    "timezone": "Europe/Brussels",
+    "region": "nordic",
+    "fetchedAt": "2026-10-15T14:43:07.601Z"
+  },
+  {
+    "videoId": "nBoBCsWIVqQ",
+    "title": "Llandudno North Parade from Min y Don Llandudno",
+    "channel": "Min y Don  Llandudno",
+    "thumbnail": "https://i.ytimg.com/vi/nBoBCsWIVqQ/hqdefault_live.jpg",
+    "query": "webcam live",
+    "location": [
+      53.322475,
+      -3.8243251
+    ],
+    "locationName": "Llandudno, Wales",
+    "timezone": "Europe/London",
+    "region": "nordic",
+    "fetchedAt": "2026-10-15T14:43:07.601Z"
+  },
+  {
+    "videoId": "6wpQeDhYtqg",
+    "title": "LIVE Wildlife &amp; Bird of Prey Cam #1 (Tamási, Hungary)",
+    "channel": "Madarles - Live Bird Cams",
+    "thumbnail": "https://i.ytimg.com/vi/6wpQeDhYtqg/hqdefault_live.jpg",
+    "query": "webcam live",
+    "location": [
+      47.5,
+      19.04
+    ],
+    "locationName": "Hungary",
+    "timezone": "Europe/Budapest",
+    "region": "nordic",
+    "fetchedAt": "2026-10-15T14:43:07.601Z"
+  },
+  {
+    "videoId": "iF8tcS3dRcc",
+    "title": "🔴 Live Cam Gran Canaria - Fuerteventura - Playa del Ingles  Las Palmas, Jandia, Corralejo",
+    "channel": "tuxrunner",
+    "thumbnail": "https://i.ytimg.com/vi/iF8tcS3dRcc/hqdefault_live.jpg",
+    "query": "live stream camera Canary Islands",
+    "location": [
+      27.9580004,
+      -15.6062305
+    ],
+    "locationName": "Gran Canaria",
+    "timezone": "Atlantic/Canary",
+    "region": "southern-europe",
+    "fetchedAt": "2026-10-15T14:43:07.601Z"
+  },
+  {
+    "videoId": "DLE9mfBMhqg",
+    "title": "Live from the Crocodile River at the Kruger National Park",
+    "channel": "Latest Sightings",
+    "thumbnail": "https://i.ytimg.com/vi/DLE9mfBMhqg/hqdefault_live.jpg",
+    "query": "safari live",
+    "location": [
+      -23.9357763,
+      31.5083741
+    ],
+    "locationName": "Kruger National Park, South Africa",
+    "timezone": "Africa/Johannesburg",
+    "region": "africa",
+    "fetchedAt": "2026-10-15T14:43:07.601Z"
+  },
+  {
+    "videoId": "EbdnE0I_Aoo",
+    "title": "Live Wildlife Camera at Nimali Tarangire | Private Conservancy, Tanzania",
+    "channel": "Africam",
+    "thumbnail": "https://i.ytimg.com/vi/EbdnE0I_Aoo/hqdefault_live.jpg",
+    "query": "safari live",
+    "location": [
+      -6.37,
+      34.89
+    ],
+    "locationName": "Tanzania",
+    "timezone": "Asia/Riyadh",
+    "region": "africa",
+    "fetchedAt": "2026-10-15T14:43:07.601Z"
+  },
+  {
+    "videoId": "TKVO38TrqSg",
+    "title": "Tingog Kan Banwaan | October 15, 2026",
+    "channel": "DZGB Legazpi",
+    "thumbnail": "https://i.ytimg.com/vi/TKVO38TrqSg/hqdefault_live.jpg",
+    "query": "safari live",
+    "location": [
+      13.1388505,
+      123.7345746
+    ],
+    "locationName": "Legazpi, Philippines",
+    "timezone": "Asia/Manila",
+    "region": "africa",
+    "fetchedAt": "2026-10-15T14:43:09.390Z"
+  },
+  {
+    "videoId": "Dj501RLwf6o",
+    "title": "Safari Beach Resort Live",
+    "channel": "Safari Beach Resort Osoyoos, BC",
+    "thumbnail": "https://i.ytimg.com/vi/Dj501RLwf6o/hqdefault_live.jpg",
+    "query": "safari live",
+    "location": [
+      25.8479658,
+      -80.1201649
+    ],
+    "locationName": "Beach, Unknown",
+    "timezone": "America/New_York",
+    "region": "africa",
+    "fetchedAt": "2026-10-15T14:43:09.390Z"
+  },
+  {
+    "videoId": "EdtsJeyMhgY",
+    "title": "AO VIVO: ÁFRICA SELVAGEM | Maratona 24H: PROTOCOLO DE GUERRA: Batalha dos Predadores e Presas (LIVE)",
+    "channel": "PVL docs",
+    "thumbnail": "https://i.ytimg.com/vi/EdtsJeyMhgY/hqdefault_live.jpg",
+    "query": "safari live",
+    "location": [
+      11.5024338,
+      17.7578122
+    ],
+    "locationName": "Africa",
+    "timezone": "Africa/Ndjamena",
+    "region": "africa",
+    "fetchedAt": "2026-10-15T14:43:09.390Z"
+  },
+  {
+    "videoId": "eVuY-f4uLZI",
+    "title": "Nedumbassery Mini Cooper Accident | പ്രതികളുമായി തെളിവെടുപ്പ് | Suhail Sajeev Custody | Nedumbassery",
+    "channel": "News18 Kerala",
+    "thumbnail": "https://i.ytimg.com/vi/eVuY-f4uLZI/hqdefault_live.jpg",
+    "query": "safari live",
+    "location": [
+      10.3528744,
+      76.5120396
+    ],
+    "locationName": "Kerala, India",
+    "timezone": "Asia/Kolkata",
+    "region": "africa",
+    "fetchedAt": "2026-10-15T14:43:09.390Z"
+  },
+  {
+    "videoId": "IxgT_tRJPus",
+    "title": "🔴 RIDWAN HY LIVE STREAMING | SAFARI SHOLAWAT BERSAMA HADROH JMT PUSAT TAROKAN. PEMBACAAN BURDAH",
+    "channel": "Ridwan Hy",
+    "thumbnail": "https://i.ytimg.com/vi/IxgT_tRJPus/hqdefault_live.jpg",
+    "query": "safari live",
+    "location": [
+      -7.7441461,
+      113.2158401
+    ],
+    "locationName": "Probolinggo, Indonesia",
+    "timezone": "Asia/Jakarta",
+    "region": "africa",
+    "fetchedAt": "2026-10-15T14:43:10.838Z"
+  },
+  {
+    "videoId": "0GWhDmC6UYU",
+    "title": "🔴 LIVE African Safari | 6 Maasai Mara Wildlife Cameras | Kenya 24/7",
+    "channel": "SBC-TV | Maasai Mara Live Safari",
+    "thumbnail": "https://i.ytimg.com/vi/0GWhDmC6UYU/hqdefault_live.jpg",
+    "query": "safari live",
+    "location": [
+      -1.0959167,
+      35.8566088
+    ],
+    "locationName": "Maasai Mara, Kenya",
+    "timezone": "Asia/Riyadh",
+    "region": "africa",
+    "fetchedAt": "2026-10-15T14:43:10.838Z"
+  },
+  {
+    "videoId": "-65TMGmLGUY",
+    "title": "🔴LIVE  KATAA ANGUKO KUWA UTAMBULISHO WAKO",
+    "channel": "Mzee wa upako",
+    "thumbnail": "https://i.ytimg.com/vi/-65TMGmLGUY/hqdefault_live.jpg",
+    "query": "safari live",
+    "location": [
+      -6.37,
+      34.89
+    ],
+    "locationName": "Tanzania",
+    "timezone": "Asia/Riyadh",
+    "region": "africa",
+    "fetchedAt": "2026-10-15T14:43:10.838Z"
+  },
+  {
+    "videoId": "vYpK-YUkrVk",
+    "title": "LIVE: Republic Questions CJP, Reporters Allegedly Heckled On Cam | Neha Bora Bangladesh Remarks Row",
+    "channel": "Republic World",
+    "thumbnail": "https://i.ytimg.com/vi/vYpK-YUkrVk/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": [
+      28.61,
+      77.21
+    ],
+    "locationName": "India",
+    "timezone": "Asia/Kolkata",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:10.838Z"
+  },
+  {
+    "videoId": "6Sq2vpHeTyM",
+    "title": "Day-5 Dussehra Vijayawada Utsav 2026 Makineni Basava Punnaiah Stadium Live | Shreyas Group",
+    "channel": "Shreyas Media",
+    "thumbnail": "https://i.ytimg.com/vi/6Sq2vpHeTyM/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": [
+      16.5115306,
+      80.6160469
+    ],
+    "locationName": "Vijayawada, India",
+    "timezone": "Asia/Kolkata",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.183Z"
+  },
+  {
+    "videoId": "uYugcLFJQVw",
+    "title": "Amritprabha In Court Live।অমৃতপ্ৰভাৰ ভিজুৱেল লোৱাত বাধা!সাংবাদিকৰ কেমেৰাত অধিবক্তাই হাত দিয়াৰ অভিযোগ",
+    "channel": "News18 Assam/Northeast",
+    "thumbnail": "https://i.ytimg.com/vi/uYugcLFJQVw/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": [
+      26.4073841,
+      93.2551303
+    ],
+    "locationName": "Assam, India",
+    "timezone": "Asia/Kolkata",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.183Z"
+  },
+  {
+    "videoId": "5i-5iQ8kqU8",
+    "title": "🔴 LIVE | iPad Mini 6 Free Fire MAX Handcam 🎮 Can We Dominate Every Match? Join the Challenge!",
+    "channel": "AESTHETIC GAMING",
+    "thumbnail": "https://i.ytimg.com/vi/5i-5iQ8kqU8/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.185Z"
+  },
+  {
+    "videoId": "S9BltXA1xbs",
+    "title": "🔴 LIVE: श्री राम जय राम जय जय राम | Akhand Ram Dhun Live for Peace &amp; Positivity",
+    "channel": "Soul Dhvani",
+    "thumbnail": "https://i.ytimg.com/vi/S9BltXA1xbs/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": [
+      26.7990707,
+      82.2052321
+    ],
+    "locationName": "Ayodhya, India",
+    "timezone": "Asia/Kolkata",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.185Z"
+  },
+  {
+    "videoId": "uIbdjwHiCFI",
+    "title": "🔴 LIVE: श्री राम जय राम जय जय राम | Akhand Ram Dhun Live for Peace &amp; Positivity",
+    "channel": "Soul Dhvani",
+    "thumbnail": "https://i.ytimg.com/vi/uIbdjwHiCFI/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": [
+      26.7990707,
+      82.2052321
+    ],
+    "locationName": "Ayodhya, India",
+    "timezone": "Asia/Kolkata",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.185Z"
+  },
+  {
+    "videoId": "hvnRWR23REY",
+    "title": "🔴LIVE : प्रतिदिन  सुबह शाम - श्री दुर्गा चालीसा का ११ बार पाठ करने से सारे कष्ट दुःख दूर होते हैं |",
+    "channel": "Tarang Bhakti Dham",
+    "thumbnail": "https://i.ytimg.com/vi/hvnRWR23REY/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.186Z"
+  },
+  {
+    "videoId": "ofxLH_WRRhY",
+    "title": "My ₹6,50,000 Vlogging Setup Live Streaming! 😱 | Complete YouTube Gear Tour 2026",
+    "channel": "Unfiltered with Mahesh",
+    "thumbnail": "https://i.ytimg.com/vi/ofxLH_WRRhY/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.187Z"
+  },
+  {
+    "videoId": "gc1ZJAnROJQ",
+    "title": "🔴LIVE : प्रतिदिन  सुबह शाम - श्री दुर्गा चालीसा का ११ बार पाठ करने से सारे कष्ट दुःख दूर होते हैं |",
+    "channel": "Tarang Bhakti Dham",
+    "thumbnail": "https://i.ytimg.com/vi/gc1ZJAnROJQ/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.188Z"
+  },
+  {
+    "videoId": "8K8_E865qw8",
+    "title": "🔴LIVE : प्रतिदिन  सुबह शाम - श्री दुर्गा चालीसा का ११ बार पाठ करने से सारे कष्ट दुःख दूर होते हैं |",
+    "channel": "Tarang Bhakti Dham",
+    "thumbnail": "https://i.ytimg.com/vi/8K8_E865qw8/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.189Z"
+  },
+  {
+    "videoId": "Yv7zi07zd14",
+    "title": "अखंड राम धुन - श्री राम जय राम जय जय राम - Shri Ram Jai Ram Jai Jai Ram - Best Shri Ram Dhun 2026",
+    "channel": "Soul Dhvani",
+    "thumbnail": "https://i.ytimg.com/vi/Yv7zi07zd14/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": [
+      26.7990707,
+      82.2052321
+    ],
+    "locationName": "Ayodhya, India",
+    "timezone": "Asia/Kolkata",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.189Z"
+  },
+  {
+    "videoId": "uanUV5xQF_Q",
+    "title": "🔴LIVE : प्रतिदिन  सुबह शाम - श्री दुर्गा चालीसा का ११ बार पाठ करने से सारे कष्ट दुःख दूर होते हैं |",
+    "channel": "Tarang Bhakti Dham",
+    "thumbnail": "https://i.ytimg.com/vi/uanUV5xQF_Q/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.190Z"
+  },
+  {
+    "videoId": "5ijK-JONrxY",
+    "title": "ee || TCA",
+    "channel": "TECH AT PLAY",
+    "thumbnail": "https://i.ytimg.com/vi/5ijK-JONrxY/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": [
+      28.61,
+      77.21
+    ],
+    "locationName": "India",
+    "timezone": "Asia/Kolkata",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.190Z"
+  },
+  {
+    "videoId": "5-ljbEsHdqY",
+    "title": "🔴LIVE : प्रतिदिन  सुबह शाम - श्री दुर्गा चालीसा का ११ बार पाठ करने से सारे कष्ट दुःख दूर होते हैं |",
+    "channel": "Radha Bhakti India",
+    "thumbnail": "https://i.ytimg.com/vi/5-ljbEsHdqY/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": [
+      28.61,
+      77.21
+    ],
+    "locationName": "India",
+    "timezone": "Asia/Kolkata",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.190Z"
+  },
+  {
+    "videoId": "9qQ-ledceKo",
+    "title": "Immo Today? New Act  | !Discord !Twitch !Insta 133",
+    "channel": "Appys",
+    "thumbnail": "https://i.ytimg.com/vi/9qQ-ledceKo/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": [
+      19.054999,
+      72.8692035
+    ],
+    "locationName": "Mumbai, India",
+    "timezone": "Asia/Kolkata",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.190Z"
+  },
+  {
+    "videoId": "-U-EW7C7c4I",
+    "title": "🔴LIVE : प्रतिदिन  सुबह शाम - श्री दुर्गा चालीसा का ११ बार पाठ करने से सारे कष्ट दुःख दूर होते हैं |",
+    "channel": "Radha Bhakti India",
+    "thumbnail": "https://i.ytimg.com/vi/-U-EW7C7c4I/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": [
+      28.61,
+      77.21
+    ],
+    "locationName": "India",
+    "timezone": "Asia/Kolkata",
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.190Z"
+  },
+  {
+    "videoId": "BfLoAVN24Pw",
+    "title": "🔴 LIVE | iphone 14 Pro Max Free Fire Handcam 🎮 Can We Dominate Every Match? Join the Challenge!",
+    "channel": "Baby Hot Gaming",
+    "thumbnail": "https://i.ytimg.com/vi/BfLoAVN24Pw/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.191Z"
+  },
+  {
+    "videoId": "zfHLPnWgAYc",
+    "title": "RANK PUSH  CS RANK 🌸",
+    "channel": "JACK-TLG",
+    "thumbnail": "https://i.ytimg.com/vi/zfHLPnWgAYc/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.192Z"
+  },
+  {
+    "videoId": "FA8GhkBhYKY",
+    "title": "🔴LIVE : प्रतिदिन  सुबह शाम - श्री दुर्गा चालीसा का ११ बार पाठ करने से सारे कष्ट दुःख दूर होते हैं |",
+    "channel": "Tarang Bhakti Dham",
+    "thumbnail": "https://i.ytimg.com/vi/FA8GhkBhYKY/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.192Z"
+  },
+  {
+    "videoId": "t89-W5jNU24",
+    "title": "🔴LIVE : प्रतिदिन  सुबह शाम - श्री दुर्गा चालीसा का ११ बार पाठ करने से सारे कष्ट दुःख दूर होते हैं |",
+    "channel": "Tarang Bhakti Dham",
+    "thumbnail": "https://i.ytimg.com/vi/t89-W5jNU24/hqdefault_live.jpg",
+    "query": "live camera India",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "south-asia",
+    "fetchedAt": "2026-10-15T14:43:12.193Z"
+  },
+  {
     "videoId": "w9PFn2beeFw",
     "title": "Singapore Haze CBD Live Stream 4K Webcam (Heavy Smog)",
     "channel": "Christoph Burgdorfer",
@@ -1665,21 +2265,6 @@
     "fetchedAt": "2026-10-14T13:23:27.794Z"
   },
   {
-    "videoId": "an9ew18B_HE",
-    "title": "KATHMANDU LIVE CAM 🇳🇵 | NEPAL&#39;S CAPITAL CITY LIVE | WEBCAM NEPAL",
-    "channel": "WEBCAM NEPAL CITIES & TOWNS",
-    "thumbnail": "https://i.ytimg.com/vi/an9ew18B_HE/hqdefault_live.jpg",
-    "query": "live camera Kathmandu",
-    "location": [
-      27.708317,
-      85.3205817
-    ],
-    "locationName": "Kathmandu, Nepal",
-    "timezone": "Asia/Kathmandu",
-    "region": "south-asia",
-    "fetchedAt": "2026-10-14T13:23:27.795Z"
-  },
-  {
     "videoId": "udRDI1uDdvQ",
     "title": "제주도실시간 성산일출봉라이브 Live Cam I &quot;Seongsan Ilchulbong&quot;, Jejudo,korea I SeongsanSunrisePark 济州岛城山日出峰 백색소음",
     "channel": "GiGAeyes Live TV",
@@ -2335,614 +2920,5 @@
     "timezone": "America/New_York",
     "region": "russia-central-asia",
     "fetchedAt": "2026-10-14T00:55:31.935Z"
-  },
-  {
-    "videoId": "j7zQyaXV0Rk",
-    "title": "LIVE Rail Cam – Northwood, Ohio | Vickers Crossing",
-    "channel": "Railstream",
-    "thumbnail": "https://i.ytimg.com/vi/j7zQyaXV0Rk/hqdefault_live.jpg",
-    "query": "live camera intersection",
-    "location": [
-      40.42,
-      -82.91
-    ],
-    "locationName": "Ohio, USA",
-    "timezone": "America/New_York",
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-14T00:55:31.935Z"
-  },
-  {
-    "videoId": "6SWW9bzWsw4",
-    "title": "Fostoria, Ohio – Live from Our NKP Camera",
-    "channel": "Railstream",
-    "thumbnail": "https://i.ytimg.com/vi/6SWW9bzWsw4/hqdefault_live.jpg",
-    "query": "live camera intersection",
-    "location": [
-      40.42,
-      -82.91
-    ],
-    "locationName": "Ohio, USA",
-    "timezone": "America/New_York",
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-14T00:55:31.935Z"
-  },
-  {
-    "videoId": "cA_b7H7k_58",
-    "title": "🔴 NYC Live Cam — Brooklyn Bridge &amp; Manhattan Bridge, East River 2026-10-13 11AM ET",
-    "channel": "Brooklyn Waterfront Cams",
-    "thumbnail": "https://i.ytimg.com/vi/cA_b7H7k_58/hqdefault_live.jpg",
-    "query": "live camera intersection",
-    "location": [
-      40.7579554,
-      -73.9855319
-    ],
-    "locationName": "Manhattan, New York",
-    "timezone": "America/New_York",
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-14T00:55:31.935Z"
-  },
-  {
-    "videoId": "h19fX6yYkHc",
-    "title": "🔴 LIVE Trains Railcam | St Louis, Missouri (PTZ)",
-    "channel": "LIVE Trains",
-    "thumbnail": "https://i.ytimg.com/vi/h19fX6yYkHc/hqdefault_live.jpg",
-    "query": "live camera intersection",
-    "location": [
-      38.57,
-      -92.6
-    ],
-    "locationName": "Missouri, USA",
-    "timezone": "America/Chicago",
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-14T00:55:31.935Z"
-  },
-  {
-    "videoId": "x90RhsfBnWU",
-    "title": "Cape Town Live Stream 24/7 | Table Mountain, Lion&#39;s Head &amp; Harbour Live Cam",
-    "channel": "FLOORING․CO․ZA",
-    "thumbnail": "https://i.ytimg.com/vi/x90RhsfBnWU/hqdefault_live.jpg",
-    "query": "live camera intersection",
-    "location": [
-      -33.93,
-      18.42
-    ],
-    "locationName": "Cape Town, South Africa",
-    "timezone": "Africa/Johannesburg",
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-14T00:55:31.935Z"
-  },
-  {
-    "videoId": "WvmFYKPf8D0",
-    "title": "🐌 LIVE 24/7 -- Snail Cam + Lo-Fi Beats to Relax / Study / Slow Down To",
-    "channel": "fullsleevetats",
-    "thumbnail": "https://i.ytimg.com/vi/WvmFYKPf8D0/hqdefault_live.jpg",
-    "query": "live camera intersection",
-    "location": null,
-    "locationName": null,
-    "timezone": null,
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-14T00:55:31.936Z"
-  },
-  {
-    "videoId": "-VYCNCbp3jo",
-    "title": "Planecaster SkyWatch LIVE: planes over Bristol and Cardiff in 3D 24/7",
-    "channel": "Planecaster SkyWatch",
-    "thumbnail": "https://i.ytimg.com/vi/-VYCNCbp3jo/hqdefault_live.jpg",
-    "query": "live camera intersection",
-    "location": [
-      51.4816546,
-      -3.1791934
-    ],
-    "locationName": "Cardiff, UK",
-    "timezone": "Europe/London",
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-14T00:55:31.937Z"
-  },
-  {
-    "videoId": "Qjbq0OkkCb0",
-    "title": "🔴 PLAYING SILENT HILL FOR THE FIRST TIME EVER!!! O.o",
-    "channel": "Ashlyn Pearce",
-    "thumbnail": "https://i.ytimg.com/vi/Qjbq0OkkCb0/hqdefault_live.jpg",
-    "query": "live camera intersection",
-    "location": null,
-    "locationName": null,
-    "timezone": null,
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-14T00:55:31.937Z"
-  },
-  {
-    "videoId": "4JS4vSkTS7I",
-    "title": "Sydney Harbour LIVE 🇦🇺 Bridge &amp; Opera House 24/7 — McMahons Point, Australia",
-    "channel": "Sydney Harbour LIVE",
-    "thumbnail": "https://i.ytimg.com/vi/4JS4vSkTS7I/hqdefault_live.jpg",
-    "query": "live camera intersection",
-    "location": [
-      -33.8560452,
-      151.2428673
-    ],
-    "locationName": "Sydney Harbour, Australia",
-    "timezone": "Australia/Sydney",
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-14T00:55:31.939Z"
-  },
-  {
-    "videoId": "IE8-viQyJ2k",
-    "title": "【360 4K Live】屏東 #萬丹 #加社路加福路口 360 4K全景即時影像 #360看見台灣 #台灣360 #360看見屏東 #rogy360taiwan #屏東縣政府交通旅遊處",
-    "channel": "Rogy360看見台灣",
-    "thumbnail": "https://i.ytimg.com/vi/IE8-viQyJ2k/hqdefault_live.jpg",
-    "query": "live camera intersection",
-    "location": [
-      22.6828017,
-      120.487928
-    ],
-    "locationName": "Pingtung, Taiwan",
-    "timezone": "Asia/Taipei",
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-14T00:55:31.939Z"
-  },
-  {
-    "videoId": "bHIUC_05IIE",
-    "title": "🔴 LIVE 24/7 Bucharest: CALEA VICTORIEI City Cam | Traffic &amp; Cityscape",
-    "channel": "Caught on camera",
-    "thumbnail": "https://i.ytimg.com/vi/bHIUC_05IIE/hqdefault_live.jpg",
-    "query": "live camera intersection",
-    "location": [
-      44.4361414,
-      26.102684
-    ],
-    "locationName": "Bucharest, Romania",
-    "timezone": "Europe/Bucharest",
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-14T00:55:31.939Z"
-  },
-  {
-    "videoId": "SwNcHLjx8wI",
-    "title": "Huron, Ohio, USA | LIVE Train Camera",
-    "channel": "Main Street Railfan",
-    "thumbnail": "https://i.ytimg.com/vi/SwNcHLjx8wI/hqdefault_live.jpg",
-    "query": "live camera intersection",
-    "location": [
-      41.1305303,
-      -82.591828
-    ],
-    "locationName": "Huron, Ohio",
-    "timezone": "America/New_York",
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-14T00:55:31.939Z"
-  },
-  {
-    "videoId": "1PTAZTEwtQ8",
-    "title": "🔴LIVE OBOR SQUARE, BUCHAREST, ROMANIA",
-    "channel": "Caught on camera",
-    "thumbnail": "https://i.ytimg.com/vi/1PTAZTEwtQ8/hqdefault_live.jpg",
-    "query": "live camera intersection",
-    "location": [
-      44.4361414,
-      26.102684
-    ],
-    "locationName": "Bucharest, Romania",
-    "timezone": "Europe/Bucharest",
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-14T00:55:31.939Z"
-  },
-  {
-    "videoId": "uiYOvXy3g1w",
-    "title": "🛰️ Satellite Tracker LIVE 24/7 · 16,000 Satellites in Real-Time 3D · ISS &amp; Starlink Pass Times",
-    "channel": "Marine Traffic Live 3D",
-    "thumbnail": "https://i.ytimg.com/vi/uiYOvXy3g1w/hqdefault_live.jpg",
-    "query": "live camera intersection",
-    "location": [
-      51.2861908,
-      7.5207184
-    ],
-    "locationName": "ISS",
-    "timezone": "Europe/Berlin",
-    "region": "russia-central-asia",
-    "fetchedAt": "2026-10-14T00:55:31.939Z"
-  },
-  {
-    "videoId": "U33sgF5JFfQ",
-    "title": "WEBCAM NEPAL LIVE - HOTEL EVEREST VIEW - ALLSKY",
-    "channel": "WEBCAM NEPAL NATURE",
-    "thumbnail": "https://i.ytimg.com/vi/U33sgF5JFfQ/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      27.99,
-      86.93
-    ],
-    "locationName": "Everest, Nepal",
-    "timezone": "Asia/Shanghai",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:31.939Z"
-  },
-  {
-    "videoId": "x0pjilm0NBk",
-    "title": "Chicago LIVE Webcam",
-    "channel": "Chicago Southern Skyline",
-    "thumbnail": "https://i.ytimg.com/vi/x0pjilm0NBk/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      41.88,
-      -87.63
-    ],
-    "locationName": "Chicago, USA",
-    "timezone": "America/Chicago",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:31.939Z"
-  },
-  {
-    "videoId": "rwUlxxb_CYI",
-    "title": "Webcam Sydney Australia 4K 60fps HDR Live Stream",
-    "channel": "Luis Angelo",
-    "thumbnail": "https://i.ytimg.com/vi/rwUlxxb_CYI/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      -33.87,
-      151.21
-    ],
-    "locationName": "Australia",
-    "timezone": "Australia/Sydney",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:31.940Z"
-  },
-  {
-    "videoId": "2hgqG86js-4",
-    "title": "Balneário Camboriú ao vivo - CENTRAL",
-    "channel": "CLIMA BC Brazil",
-    "thumbnail": "https://i.ytimg.com/vi/2hgqG86js-4/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      65.538809,
-      -144.708313
-    ],
-    "locationName": "Central, US",
-    "timezone": "America/Anchorage",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:31.940Z"
-  },
-  {
-    "videoId": "6O5U57rWwcM",
-    "title": "Mattercam 10/13/2026 12:16 - LIVE DISNEYLAND Webcam from Howard Johnson Hotel Anaheim",
-    "channel": "Howard Johnson Anaheim Hotel and Water Playground",
-    "thumbnail": "https://i.ytimg.com/vi/6O5U57rWwcM/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      33.8136512,
-      -117.9197351
-    ],
-    "locationName": "Disneyland, California",
-    "timezone": "America/Los_Angeles",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:31.940Z"
-  },
-  {
-    "videoId": "bkLbmjMAKUU",
-    "title": "🔴 LIVE 4K | Madeira – Jardim da Serra, Câmara de Lobos &amp; Funchal Bay | Ocean &amp; Mountain View",
-    "channel": "Madeira4K – Live Webcams",
-    "thumbnail": "https://i.ytimg.com/vi/bkLbmjMAKUU/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      32.65,
-      -16.91
-    ],
-    "locationName": "Funchal, Madeira",
-    "timezone": "Atlantic/Madeira",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:31.940Z"
-  },
-  {
-    "videoId": "md7rdpPUBI0",
-    "title": "Live Fiordland Webcam | Lake Te Anau, NZ",
-    "channel": "Southland App Live",
-    "thumbnail": "https://i.ytimg.com/vi/md7rdpPUBI0/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      -45.41449,
-      167.717489
-    ],
-    "locationName": "Te Anau, New Zealand",
-    "timezone": "Pacific/Auckland",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:31.940Z"
-  },
-  {
-    "videoId": "ZBVbqtk05d4",
-    "title": "LIVE from Fremont Street in DOWNTOWN LAS VEGAS With Fremont Street WALKTHRU&#39;S ||| 24/7 Live Cam",
-    "channel": "Justin Clouse",
-    "thumbnail": "https://i.ytimg.com/vi/ZBVbqtk05d4/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      36.17,
-      -115.14
-    ],
-    "locationName": "Las Vegas, USA",
-    "timezone": "America/Los_Angeles",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:31.940Z"
-  },
-  {
-    "videoId": "vPZpy6tobR8",
-    "title": "Canim Lake Live Webcam",
-    "channel": "Myles Mccaskill",
-    "thumbnail": "https://i.ytimg.com/vi/vPZpy6tobR8/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      51.8288827,
-      -120.8571944
-    ],
-    "locationName": "Canim Lake, Canada",
-    "timezone": "America/Vancouver",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:31.940Z"
-  },
-  {
-    "videoId": "A2yTrrTSKE4",
-    "title": "Köthen (Anhalt) Live Webcam 🌤️ aktuelles Wetter, Himmel &amp; Regen in Echtzeit #köthen #anhalt #wetter",
-    "channel": "Anhalt Wetter & Natur Live",
-    "thumbnail": "https://i.ytimg.com/vi/A2yTrrTSKE4/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      51.751033,
-      11.973698
-    ],
-    "locationName": "Köthen, Germany",
-    "timezone": "Europe/Berlin",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:33.599Z"
-  },
-  {
-    "videoId": "ReN95pxppSk",
-    "title": "Volcán Popocatépetl En Vivo | Vista Tianguismanalco, Puebla",
-    "channel": "Webcams de México TV / Canal 10",
-    "thumbnail": "https://i.ytimg.com/vi/ReN95pxppSk/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      19.0234051,
-      -98.6234366
-    ],
-    "locationName": "Popocatépetl, Mexico",
-    "timezone": "America/Mexico_City",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:33.599Z"
-  },
-  {
-    "videoId": "1GfcRuV86vU",
-    "title": "Panorámica en vivo de la CDMX desde la Torre Latinoamericana. Vista Sur",
-    "channel": "Webcams de México TV / Canal 9",
-    "thumbnail": "https://i.ytimg.com/vi/1GfcRuV86vU/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      23.6585116,
-      -102.0077097
-    ],
-    "locationName": "México,",
-    "timezone": "America/Mexico_City",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:33.599Z"
-  },
-  {
-    "videoId": "csw7W7eHjwI",
-    "title": "Hove Beach Webcam - LIVE 24/7",
-    "channel": "Hove Beach Webcam - Live Stream",
-    "thumbnail": "https://i.ytimg.com/vi/csw7W7eHjwI/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      25.8479658,
-      -80.1201649
-    ],
-    "locationName": "Beach, Unknown",
-    "timezone": "America/New_York",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:33.599Z"
-  },
-  {
-    "videoId": "lPRYhdTc6p4",
-    "title": "San Pareil Live Webcam",
-    "channel": "San Pareil Live Webcam",
-    "thumbnail": "https://i.ytimg.com/vi/lPRYhdTc6p4/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      49.3248957,
-      -124.2805794
-    ],
-    "locationName": "San Pareil, Canada",
-    "timezone": "America/Vancouver",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:33.600Z"
-  },
-  {
-    "videoId": "_Ibc70nhJpo",
-    "title": "🌊 LIVE Dungeness Bay Webcam from Juan de Fuca Cottages | Sequim WA Coastal Views 🦅🐟",
-    "channel": "Juan De Fuca Cottages",
-    "thumbnail": "https://i.ytimg.com/vi/_Ibc70nhJpo/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      48.1625903,
-      -123.1220462
-    ],
-    "locationName": "Dungeness Bay, Washington",
-    "timezone": "America/Los_Angeles",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:33.600Z"
-  },
-  {
-    "videoId": "XtAmKNZZyEQ",
-    "title": "Live osprey nest camera at Loch of the Lowes Wildlife Reserve",
-    "channel": "Scottish Wildlife Trust",
-    "thumbnail": "https://i.ytimg.com/vi/XtAmKNZZyEQ/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      56.5778301,
-      -3.5462411
-    ],
-    "locationName": "Loch of the Lowes, Scotland",
-    "timezone": "Europe/London",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:33.600Z"
-  },
-  {
-    "videoId": "k6Rcy9E-Ysk",
-    "title": "Webcam panoramica live 4K - Baia Flaminia, Pesaro",
-    "channel": "ChrisSoft",
-    "thumbnail": "https://i.ytimg.com/vi/k6Rcy9E-Ysk/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      43.9098114,
-      12.9131228
-    ],
-    "locationName": "Pesaro, Italy",
-    "timezone": "Europe/Rome",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:33.600Z"
-  },
-  {
-    "videoId": "SShacWPyABA",
-    "title": "Dunedin, NZ - Live Webcam (4K): 14-10-2026 03:00 to 15:00",
-    "channel": "Dunedin, New Zealand - Live Webcam",
-    "thumbnail": "https://i.ytimg.com/vi/SShacWPyABA/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      -45.8740984,
-      170.5035755
-    ],
-    "locationName": "Dunedin, New Zealand",
-    "timezone": "Pacific/Auckland",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:33.600Z"
-  },
-  {
-    "videoId": "B4p8kg3HoKE",
-    "title": "Wits Alumni Webcam 2 Live Stream",
-    "channel": "Wits Alumni Webcam 2",
-    "thumbnail": "https://i.ytimg.com/vi/B4p8kg3HoKE/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      -26.205,
-      28.049722
-    ],
-    "locationName": "Johannesburg, South Africa",
-    "timezone": "Africa/Johannesburg",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:33.601Z"
-  },
-  {
-    "videoId": "GkBMgHwSIV0",
-    "title": "Miami Skyline LIVE | MacArthur Causeway Live Cam | Florida Cams",
-    "channel": "Ozolio Live",
-    "thumbnail": "https://i.ytimg.com/vi/GkBMgHwSIV0/hqdefault_live.jpg",
-    "query": "en vivo webcam",
-    "location": [
-      27.99,
-      -81.76
-    ],
-    "locationName": "Florida, USA",
-    "timezone": "America/New_York",
-    "region": "south-america",
-    "fetchedAt": "2026-10-14T00:55:33.601Z"
-  },
-  {
-    "videoId": "RSnFlgcE4mM",
-    "title": "Maria&#39;s Cam 5A Street View Agdao Public Market, Davao City Philippines  #philippines #davaocity",
-    "channel": "Maria Deseo - Philippines Live Webcam",
-    "thumbnail": "https://i.ytimg.com/vi/RSnFlgcE4mM/hqdefault_live.jpg",
-    "query": "live camera market",
-    "location": [
-      14.6,
-      120.98
-    ],
-    "locationName": "Philippines",
-    "timezone": "Asia/Manila",
-    "region": "eastern-europe",
-    "fetchedAt": "2026-10-14T00:55:36.496Z"
-  },
-  {
-    "videoId": "Eu1FMGiJ9j0",
-    "title": "🔴LIVE: WEBCAMS around the world | October 13 | FOX 10 Phoenix",
-    "channel": "FOX 10 Phoenix",
-    "thumbnail": "https://i.ytimg.com/vi/Eu1FMGiJ9j0/hqdefault_live.jpg",
-    "query": "webcam live",
-    "location": [
-      33.4484367,
-      -112.074141
-    ],
-    "locationName": "Phoenix, Arizona",
-    "timezone": "America/Phoenix",
-    "region": "eastern-europe",
-    "fetchedAt": "2026-10-14T00:55:36.496Z"
-  },
-  {
-    "videoId": "YGoSu93yRV4",
-    "title": "🔴 LIVE 24/7 — Pikes Peak Summit Webcam | Colorado Springs Live Camera",
-    "channel": "Colorado Live Cams",
-    "thumbnail": "https://i.ytimg.com/vi/YGoSu93yRV4/hqdefault_live.jpg",
-    "query": "webcam live",
-    "location": [
-      38.8339578,
-      -104.825348
-    ],
-    "locationName": "Colorado Springs, Colorado",
-    "timezone": "America/Denver",
-    "region": "eastern-europe",
-    "fetchedAt": "2026-10-14T00:55:36.496Z"
-  },
-  {
-    "videoId": "jdVaGmlhVrI",
-    "title": "Boscombe Beach Live Webcam @  Urban Reef",
-    "channel": "Beach Life Cams",
-    "thumbnail": "https://i.ytimg.com/vi/jdVaGmlhVrI/hqdefault_live.jpg",
-    "query": "webcam live",
-    "location": [
-      25.8479658,
-      -80.1201649
-    ],
-    "locationName": "Beach, Unknown",
-    "timezone": "America/New_York",
-    "region": "eastern-europe",
-    "fetchedAt": "2026-10-14T00:55:36.496Z"
-  },
-  {
-    "videoId": "PaILiunQLAE",
-    "title": "Lulworth Cove Live Webcam (4K) Jurassic Coast, Dorset @ Jurassic Rib Rides",
-    "channel": "Beach Life Cams",
-    "thumbnail": "https://i.ytimg.com/vi/PaILiunQLAE/hqdefault_live.jpg",
-    "query": "webcam live",
-    "location": [
-      25.8479658,
-      -80.1201649
-    ],
-    "locationName": "Beach, Unknown",
-    "timezone": "America/New_York",
-    "region": "eastern-europe",
-    "fetchedAt": "2026-10-14T00:55:36.496Z"
-  },
-  {
-    "videoId": "9vri4zbJDxw",
-    "title": "✈️ LIVE October 13 | Maho Beach | SXM Airport St. Maarten (with ATC &amp; Jetblasts)",
-    "channel": "SHOWME Caribbean",
-    "thumbnail": "https://i.ytimg.com/vi/9vri4zbJDxw/hqdefault_live.jpg",
-    "query": "webcam live",
-    "location": [
-      25.8479658,
-      -80.1201649
-    ],
-    "locationName": "Beach, Unknown",
-    "timezone": "America/New_York",
-    "region": "eastern-europe",
-    "fetchedAt": "2026-10-14T00:55:36.496Z"
-  },
-  {
-    "videoId": "EVK9iNnARh8",
-    "title": "Gatlinburg Skypark Live",
-    "channel": "Gatlinburg SkyPark",
-    "thumbnail": "https://i.ytimg.com/vi/EVK9iNnARh8/hqdefault_live.jpg",
-    "query": "webcam live",
-    "location": [
-      35.71,
-      -83.51
-    ],
-    "locationName": "Gatlinburg, Tennessee",
-    "timezone": "America/New_York",
-    "region": "eastern-europe",
-    "fetchedAt": "2026-10-14T00:55:36.496Z"
   }
 ]
