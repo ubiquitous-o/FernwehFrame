@@ -1,5 +1,65 @@
 [
   {
+    "videoId": "8MhY4vTPzzk",
+    "title": "🔴 PATAGONIA LIVE cam 24/7 | Bariloche, Ruta 40, Las Grutas, Comodoro, Neuquén and more | Clima",
+    "channel": "CLIMA BARILOCHE",
+    "thumbnail": "https://i.ytimg.com/vi/8MhY4vTPzzk/hqdefault_live.jpg",
+    "query": "live stream camera Patagonia",
+    "location": [
+      -40.9938214,
+      -65.476336
+    ],
+    "locationName": "Las Grutas, Argentina",
+    "timezone": "America/Argentina/Salta",
+    "region": "south-america",
+    "fetchedAt": "2026-10-16T08:48:32.952Z"
+  },
+  {
+    "videoId": "So7fHlKVFOo",
+    "title": "🔴ARGENTINA LIVE🔴 Cámaras de CABA, Mar de las Pampas, Bariloche, Rosario, cámaras en vivo",
+    "channel": "Argentina 247",
+    "thumbnail": "https://i.ytimg.com/vi/So7fHlKVFOo/hqdefault_live.jpg",
+    "query": "live stream camera Patagonia",
+    "location": [
+      -34.6,
+      -58.38
+    ],
+    "locationName": "Argentina",
+    "timezone": "America/Argentina/Buenos_Aires",
+    "region": "south-america",
+    "fetchedAt": "2026-10-16T08:48:32.952Z"
+  },
+  {
+    "videoId": "xoyKM6BQceM",
+    "title": "BUENOS AIRES LIVE 24/7 🇦🇷 City Street Cam, Traffic &amp; Weather - Argentina",
+    "channel": "Paseos y Turismo",
+    "thumbnail": "https://i.ytimg.com/vi/xoyKM6BQceM/hqdefault_live.jpg",
+    "query": "live stream camera Patagonia",
+    "location": [
+      -34.6,
+      -58.38
+    ],
+    "locationName": "Buenos Aires, Argentina",
+    "timezone": "America/Argentina/Buenos_Aires",
+    "region": "south-america",
+    "fetchedAt": "2026-10-16T08:48:32.952Z"
+  },
+  {
+    "videoId": "dgd1eqX3M8U",
+    "title": "🔴 AO VIVO: Arraial do Cabo AGORA 🇧🇷 | Praia em Tempo Real  🟢🟡",
+    "channel": "Pontal NeTv - Internet 100% Fibra",
+    "thumbnail": "https://i.ytimg.com/vi/dgd1eqX3M8U/hqdefault_live.jpg",
+    "query": "live webcam Rio de Janeiro",
+    "location": [
+      -22.9662839,
+      -42.024427
+    ],
+    "locationName": "Arraial do Cabo, Brazil",
+    "timezone": "America/Sao_Paulo",
+    "region": "south-america",
+    "fetchedAt": "2026-10-16T08:48:32.953Z"
+  },
+  {
     "videoId": "Kaz7hJGKL18",
     "title": "Creve Coeur Airport Live Streaming Weather Webcam",
     "channel": "Creve Coeur Airport",
@@ -2833,65 +2893,5 @@
     "timezone": "Asia/Seoul",
     "region": "korea",
     "fetchedAt": "2026-10-14T13:23:27.795Z"
-  },
-  {
-    "videoId": "K9mjSY1S99o",
-    "title": "[LIVE] 제주항공 사이판 왕복, 창가석 같이 타실래요? | Your Window Seat to Saipan &amp; Back · Jeju Air",
-    "channel": "비행청년 flyerjun",
-    "thumbnail": "https://i.ytimg.com/vi/K9mjSY1S99o/hqdefault_live.jpg",
-    "query": "live view Jeju",
-    "location": [
-      33.4887737,
-      126.4987083
-    ],
-    "locationName": "Jeju, South Korea",
-    "timezone": "Asia/Seoul",
-    "region": "korea",
-    "fetchedAt": "2026-10-14T13:23:27.795Z"
-  },
-  {
-    "videoId": "jE9eP2aK23Y",
-    "title": "『冬瓜』｜鳴潮#18 3.5 遺音扶劍 蕩夢而歌【Wuthering Waves】",
-    "channel": "冬瓜",
-    "thumbnail": "https://i.ytimg.com/vi/jE9eP2aK23Y/hqdefault_live.jpg",
-    "query": "直播 攝影機 香港",
-    "location": [
-      23.9739374,
-      120.9820179
-    ],
-    "locationName": "Taiwan",
-    "timezone": "Asia/Taipei",
-    "region": "greater-china",
-    "fetchedAt": "2026-10-14T13:23:27.796Z"
-  },
-  {
-    "videoId": "wb90nFkunUU",
-    "title": "🔴 PATAGONIA LIVE cam 24/7 | Bariloche, Ruta 40, Las Grutas, Comodoro, Neuquén and more | Clima",
-    "channel": "CLIMA BARILOCHE",
-    "thumbnail": "https://i.ytimg.com/vi/wb90nFkunUU/hqdefault_live.jpg",
-    "query": "cámara en vivo",
-    "location": [
-      -40.9938214,
-      -65.476336
-    ],
-    "locationName": "Las Grutas, Argentina",
-    "timezone": "America/Argentina/Salta",
-    "region": "central-america-caribbean",
-    "fetchedAt": "2026-10-14T13:23:27.796Z"
-  },
-  {
-    "videoId": "ac5AU4B10ak",
-    "title": "Los Muertos Beach Pier - Live Cam – El Dorado Restaurant, Puerto Vallarta, México 🇲🇽",
-    "channel": "El Dorado Restaurant",
-    "thumbnail": "https://i.ytimg.com/vi/ac5AU4B10ak/hqdefault_live.jpg",
-    "query": "cámara en vivo",
-    "location": [
-      20.6407176,
-      -105.220306
-    ],
-    "locationName": "Puerto Vallarta, Mexico",
-    "timezone": "America/Mexico_City",
-    "region": "central-america-caribbean",
-    "fetchedAt": "2026-10-14T13:23:27.796Z"
   }
 ]
