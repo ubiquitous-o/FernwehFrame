@@ -1,5 +1,80 @@
 [
   {
+    "videoId": "Kaz7hJGKL18",
+    "title": "Creve Coeur Airport Live Streaming Weather Webcam",
+    "channel": "Creve Coeur Airport",
+    "thumbnail": "https://i.ytimg.com/vi/Kaz7hJGKL18/hqdefault_live.jpg",
+    "query": "webcam live airport",
+    "location": [
+      38.7256219,
+      -90.5075138
+    ],
+    "locationName": "Creve Coeur Airport",
+    "timezone": "America/Chicago",
+    "region": "western-europe",
+    "fetchedAt": "2026-10-16T03:32:51.628Z"
+  },
+  {
+    "videoId": "T_QsY01tIK0",
+    "title": "LGA Airport LIVE 24/7 • LaGuardia, New York",
+    "channel": "Flightradar24",
+    "thumbnail": "https://i.ytimg.com/vi/T_QsY01tIK0/hqdefault_live.jpg",
+    "query": "webcam live airport",
+    "location": [
+      40.71,
+      -74.01
+    ],
+    "locationName": "New York, USA",
+    "timezone": "America/New_York",
+    "region": "western-europe",
+    "fetchedAt": "2026-10-16T03:32:51.628Z"
+  },
+  {
+    "videoId": "IDEj7KPjJx4",
+    "title": "24/7 MSP Webcam - Minneapolis / St. Paul Airport - You Control The Cam!",
+    "channel": "MNCam",
+    "thumbnail": "https://i.ytimg.com/vi/IDEj7KPjJx4/hqdefault_live.jpg",
+    "query": "webcam live airport",
+    "location": [
+      44.8780191,
+      -93.2209281
+    ],
+    "locationName": "Minneapolis / St. Paul",
+    "timezone": "America/Chicago",
+    "region": "western-europe",
+    "fetchedAt": "2026-10-16T03:32:51.628Z"
+  },
+  {
+    "videoId": "2EsyjYsM7R8",
+    "title": "Adelaide Airport Webcam: Taxiway Tango",
+    "channel": "Adelaide Airport Limited",
+    "thumbnail": "https://i.ytimg.com/vi/2EsyjYsM7R8/hqdefault_live.jpg",
+    "query": "webcam live airport",
+    "location": [
+      -34.9281805,
+      138.5999312
+    ],
+    "locationName": "Adelaide, Australia",
+    "timezone": "Australia/Adelaide",
+    "region": "western-europe",
+    "fetchedAt": "2026-10-16T03:32:51.628Z"
+  },
+  {
+    "videoId": "iZRbml7fnXI",
+    "title": "MSY Airport  LIVE 24/7 • New Orleans",
+    "channel": "Flightradar24",
+    "thumbnail": "https://i.ytimg.com/vi/iZRbml7fnXI/hqdefault_live.jpg",
+    "query": "webcam live airport",
+    "location": [
+      29.9561422,
+      -90.0733934
+    ],
+    "locationName": "New Orleans",
+    "timezone": "America/Chicago",
+    "region": "western-europe",
+    "fetchedAt": "2026-10-16T03:32:51.629Z"
+  },
+  {
     "videoId": "0ocbzuEhp4I",
     "title": "【ライブカメラ】駒出池キャンプ場の今｜長野県佐久穂町・八千穂高原",
     "channel": "八千穂高原スキー場【公式チャンネル】",
@@ -152,9 +227,12 @@
     "channel": "OnTheSnow",
     "thumbnail": "https://i.ytimg.com/vi/KgE-3tr1IUg/hqdefault_live.jpg",
     "query": "webcam live",
-    "location": null,
-    "locationName": null,
-    "timezone": null,
+    "location": [
+      38.9,
+      -77.04
+    ],
+    "locationName": "United States",
+    "timezone": "America/New_York",
     "region": "eastern-europe",
     "fetchedAt": "2026-10-15T22:55:42.396Z"
   },
@@ -2815,80 +2893,5 @@
     "timezone": "America/Mexico_City",
     "region": "central-america-caribbean",
     "fetchedAt": "2026-10-14T13:23:27.796Z"
-  },
-  {
-    "videoId": "wyEi0OPai5g",
-    "title": "Webcam Rio de Janeiro Copacabana Posto 6",
-    "channel": "Homes in Rio",
-    "thumbnail": "https://i.ytimg.com/vi/wyEi0OPai5g/hqdefault_live.jpg",
-    "query": "cámara en vivo",
-    "location": [
-      -22.91,
-      -43.17
-    ],
-    "locationName": "Rio de Janeiro, Brazil",
-    "timezone": "America/Sao_Paulo",
-    "region": "central-america-caribbean",
-    "fetchedAt": "2026-10-14T13:23:27.796Z"
-  },
-  {
-    "videoId": "nCwtd38bKDM",
-    "title": "EN VIVO: Huracán Simon se intensifica a categoría 2 y tormenta tropical Trudy",
-    "channel": "NMás",
-    "thumbnail": "https://i.ytimg.com/vi/nCwtd38bKDM/hqdefault_live.jpg",
-    "query": "cámara en vivo",
-    "location": [
-      20.3333331,
-      -103.6666671
-    ],
-    "locationName": "Jalisco, Mexico",
-    "timezone": "America/Mexico_City",
-    "region": "central-america-caribbean",
-    "fetchedAt": "2026-10-14T13:23:30.157Z"
-  },
-  {
-    "videoId": "M_Qk3Bv0-So",
-    "title": "Cámara en Vivo y Directo desde Faro La Serena Chile - Gentileza Municipalidad La Serena",
-    "channel": "La Serena Drone",
-    "thumbnail": "https://i.ytimg.com/vi/M_Qk3Bv0-So/hqdefault_live.jpg",
-    "query": "cámara en vivo",
-    "location": [
-      -33.45,
-      -70.67
-    ],
-    "locationName": "Chile",
-    "timezone": "America/Santiago",
-    "region": "central-america-caribbean",
-    "fetchedAt": "2026-10-14T13:23:30.157Z"
-  },
-  {
-    "videoId": "t0wN-5gU2vs",
-    "title": "Live Webcam Playa Cala Agulla ☀️ Capdepera 🏖️ Mallorca 🌎 Baleares 🅻🅸🆅🅴",
-    "channel": "WEBCAMS ONLINE",
-    "thumbnail": "https://i.ytimg.com/vi/t0wN-5gU2vs/hqdefault_live.jpg",
-    "query": "cámara en vivo",
-    "location": [
-      39.613432,
-      2.8829185
-    ],
-    "locationName": "Mallorca",
-    "timezone": "Europe/Madrid",
-    "region": "central-america-caribbean",
-    "fetchedAt": "2026-10-14T13:23:30.157Z"
-  },
-  {
-    "videoId": "uaIhqF1hz0I",
-    "title": "Fremont Street LIVE ◆ CAMERA 2 - BRAND NEW ◆ 24/7 View of Downtown Las Vegas",
-    "channel": "Justin Clouse",
-    "thumbnail": "https://i.ytimg.com/vi/uaIhqF1hz0I/hqdefault_live.jpg",
-    "query": "cámara en vivo",
-    "location": [
-      36.17,
-      -115.14
-    ],
-    "locationName": "Las Vegas, USA",
-    "timezone": "America/Los_Angeles",
-    "region": "central-america-caribbean",
-    "fetchedAt": "2026-10-14T13:23:30.158Z"
   }
 ]
