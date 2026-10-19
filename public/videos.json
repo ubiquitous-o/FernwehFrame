@@ -1,5 +1,110 @@
 [
   {
+    "videoId": "Z-mRjv9yQ1g",
+    "title": "Live Camera - Shizhao【石桌即時影像美景直播】",
+    "channel": "CHEN POWER",
+    "thumbnail": "https://i.ytimg.com/vi/Z-mRjv9yQ1g/hqdefault_live.jpg",
+    "query": "即時影像 阿里山",
+    "location": [
+      23.4591664,
+      120.2930004
+    ],
+    "locationName": "Chiayi County, Taiwan",
+    "timezone": "Asia/Taipei",
+    "region": "greater-china",
+    "fetchedAt": "2026-10-19T04:16:18.734Z"
+  },
+  {
+    "videoId": "0i6dHQRAAyo",
+    "title": "⚠️ ALERTA AMARILLA CDMX | FRÍO 🥶 desde la MADRUGADA. Zócalo En Vivo",
+    "channel": "webcamsdemexico",
+    "thumbnail": "https://i.ytimg.com/vi/0i6dHQRAAyo/hqdefault_live.jpg",
+    "query": "cámara en vivo Mexico City",
+    "location": [
+      19.3207722,
+      -99.1514678
+    ],
+    "locationName": "Mexico City, Mexico",
+    "timezone": "America/Mexico_City",
+    "region": "central-america-caribbean",
+    "fetchedAt": "2026-10-19T04:16:18.734Z"
+  },
+  {
+    "videoId": "nZmAU2JcaMw",
+    "title": "🍁 LIVE SMOKIES FALL COLOR WEBCAMS 10.18.26 | Gatlinburg, Pigeon Forge &amp; the Great Smoky Mountains",
+    "channel": "Explore Tennessee with Paul & Sherry",
+    "thumbnail": "https://i.ytimg.com/vi/nZmAU2JcaMw/hqdefault_live.jpg",
+    "query": "live camera waterfall",
+    "location": [
+      35.7884241,
+      -83.5543329
+    ],
+    "locationName": "Pigeon Forge, Tennessee",
+    "timezone": "America/New_York",
+    "region": "western-europe",
+    "fetchedAt": "2026-10-19T04:16:18.734Z"
+  },
+  {
+    "videoId": "2cnEYELmqR8",
+    "title": "LISTEN AND WATCH LIVE METEORS | ORIONIDS AND OTHER METEORS",
+    "channel": "Alan Stankevitz",
+    "thumbnail": "https://i.ytimg.com/vi/2cnEYELmqR8/hqdefault_live.jpg",
+    "query": "live camera waterfall",
+    "location": [
+      43.7594117,
+      -91.3465263
+    ],
+    "locationName": "Hokah, Minnesota",
+    "timezone": "America/Chicago",
+    "region": "western-europe",
+    "fetchedAt": "2026-10-19T04:16:20.394Z"
+  },
+  {
+    "videoId": "OsCIHk8CeUU",
+    "title": "LIVE 24/7 Minnesota Pond Cam | Relaxing Waterfall Sounds, Fish &amp; Wildlife",
+    "channel": "Superior Ponds",
+    "thumbnail": "https://i.ytimg.com/vi/OsCIHk8CeUU/hqdefault_live.jpg",
+    "query": "live camera waterfall",
+    "location": [
+      46.73,
+      -94.69
+    ],
+    "locationName": "Minnesota, USA",
+    "timezone": "America/Chicago",
+    "region": "western-europe",
+    "fetchedAt": "2026-10-19T04:16:20.394Z"
+  },
+  {
+    "videoId": "Ry1vpf3qTQo",
+    "title": "Live Goldfish Pond &amp; Waterfall Sounds | Backyard Oasis, Another View",
+    "channel": "Glen Perry",
+    "thumbnail": "https://i.ytimg.com/vi/Ry1vpf3qTQo/hqdefault_live.jpg",
+    "query": "live camera waterfall",
+    "location": [
+      40.1275826,
+      -78.0627822
+    ],
+    "locationName": "Waterfall, USA",
+    "timezone": "America/New_York",
+    "region": "western-europe",
+    "fetchedAt": "2026-10-19T04:16:20.394Z"
+  },
+  {
+    "videoId": "pL9cFFiZkOo",
+    "title": "Littlehouse Live Two (Live Stream)",
+    "channel": "Littlehouse Live Two",
+    "thumbnail": "https://i.ytimg.com/vi/pL9cFFiZkOo/hqdefault_live.jpg",
+    "query": "live camera waterfall",
+    "location": [
+      38.9914109,
+      -94.6332768
+    ],
+    "locationName": "Prairie Village, Kansas",
+    "timezone": "America/Chicago",
+    "region": "western-europe",
+    "fetchedAt": "2026-10-19T04:16:21.754Z"
+  },
+  {
     "videoId": "vNEcRAR4Ru0",
     "title": "서울실시간 한강라이브 서강대교 Live Cam I &quot;SeogangBridge&quot;,Seoul,Korea I SeoulHanGangLive ソウル漢江ライブ 首尔汉江现场演出 한강라이브",
     "channel": "GiGAeyesliveTV City View",
@@ -149,9 +254,12 @@
     "channel": "Charter Group Birdcams ציפורים אונליין קבוצת צ'רטר",
     "thumbnail": "https://i.ytimg.com/vi/hU-Mjicgs6o/hqdefault_live.jpg",
     "query": "live camera nature",
-    "location": null,
-    "locationName": null,
-    "timezone": null,
+    "location": [
+      27.99,
+      -81.76
+    ],
+    "locationName": "Florida",
+    "timezone": "America/New_York",
     "region": "oceania",
     "fetchedAt": "2026-10-18T23:57:17.111Z"
   },
@@ -2863,107 +2971,5 @@
     "timezone": "Asia/Dubai",
     "region": "middle-east",
     "fetchedAt": "2026-10-17T13:29:46.345Z"
-  },
-  {
-    "videoId": "1Plr8TBU5vY",
-    "title": "✈️ LAX LIVE | Monday Oct 5 2026 | Archival | ADS-B + Real ATC | KLAX",
-    "channel": "Information Zulu",
-    "thumbnail": "https://i.ytimg.com/vi/1Plr8TBU5vY/hqdefault_live.jpg",
-    "query": "live camera Dubai",
-    "location": [
-      34.0536909,
-      -118.242766
-    ],
-    "locationName": "Los Angeles, California",
-    "timezone": "America/Los_Angeles",
-    "region": "middle-east",
-    "fetchedAt": "2026-10-17T13:29:46.346Z"
-  },
-  {
-    "videoId": "vJbHLH-LDdY",
-    "title": "LINK - 1 | DAY - 6 | EKLAVYA T20 WORLD CUP 2026",
-    "channel": "VKJ Studio",
-    "thumbnail": "https://i.ytimg.com/vi/vJbHLH-LDdY/hqdefault_live.jpg",
-    "query": "live camera Dubai",
-    "location": [
-      28.61,
-      77.21
-    ],
-    "locationName": "India",
-    "timezone": "Asia/Kolkata",
-    "region": "middle-east",
-    "fetchedAt": "2026-10-17T13:29:46.346Z"
-  },
-  {
-    "videoId": "zGlGodTfncQ",
-    "title": "Strand Bodyboard Collective Live, False Bay, Cape Town - Strand beach cam",
-    "channel": "Cape Ocean Adventures ",
-    "thumbnail": "https://i.ytimg.com/vi/zGlGodTfncQ/hqdefault_live.jpg",
-    "query": "webcam live Cape Town",
-    "location": [
-      -33.93,
-      18.42
-    ],
-    "locationName": "Cape Town, South Africa",
-    "timezone": "Africa/Johannesburg",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T13:29:46.346Z"
-  },
-  {
-    "videoId": "xQGZlljQlCM",
-    "title": "Muizenberg Wave Watchers: Surf Webcam",
-    "channel": "Muizenberg Wave Watchers",
-    "thumbnail": "https://i.ytimg.com/vi/xQGZlljQlCM/hqdefault_live.jpg",
-    "query": "webcam live Cape Town",
-    "location": [
-      -34.0978389,
-      18.4845708
-    ],
-    "locationName": "Muizenberg, South Africa",
-    "timezone": "Africa/Johannesburg",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T13:29:46.346Z"
-  },
-  {
-    "videoId": "1QH44L9PsAo",
-    "title": "LIVE Patrolling Webcam: Bikini Beach, GBYC &amp; Gordon’s Bay Harbour (Cape Town, South Africa)",
-    "channel": "Cape Ocean Adventures ",
-    "thumbnail": "https://i.ytimg.com/vi/1QH44L9PsAo/hqdefault_live.jpg",
-    "query": "webcam live Cape Town",
-    "location": [
-      -30.56,
-      22.94
-    ],
-    "locationName": "South Africa",
-    "timezone": "Africa/Johannesburg",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T13:29:46.346Z"
-  },
-  {
-    "videoId": "CZN6dqexX_4",
-    "title": "LIVE Rainforest Creek 🌿💧 | Relaxing Water Sounds for Sleep, Study &amp; Peace",
-    "channel": "Rainwalker Films",
-    "thumbnail": "https://i.ytimg.com/vi/CZN6dqexX_4/hqdefault_live.jpg",
-    "query": "直播 攝影機 rainforest",
-    "location": [
-      -16.9173782,
-      145.76794
-    ],
-    "locationName": "Far North Queensland, Australia",
-    "timezone": "Australia/Brisbane",
-    "region": "greater-china",
-    "fetchedAt": "2026-10-17T08:19:00.286Z"
-  },
-  {
-    "videoId": "Pf5_jAU5tiw",
-    "title": "Rain Sounds For Sleeping - Open Window Rain Sounds live - Peaceful Night in the Car in Misty Forest",
-    "channel": "Rain Sounds For Sleeping",
-    "thumbnail": "https://i.ytimg.com/vi/Pf5_jAU5tiw/hqdefault_live.jpg",
-    "query": "直播 攝影機 rainforest",
-    "location": null,
-    "locationName": null,
-    "timezone": null,
-    "region": "greater-china",
-    "fetchedAt": "2026-10-17T08:19:00.287Z"
   }
 ]
