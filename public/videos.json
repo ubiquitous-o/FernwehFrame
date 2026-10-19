@@ -1,5 +1,479 @@
 [
   {
+    "videoId": "BfqHmX1Uejo",
+    "title": "Feeling Good for No Reason ☕ Happy Bossa Jazz Under Golden Ginkgo Trees with Soft Female Vocals",
+    "channel": "Golden Notes",
+    "thumbnail": "https://i.ytimg.com/vi/BfqHmX1Uejo/hqdefault_live.jpg",
+    "query": "kamera na żywo Riga",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "eastern-europe",
+    "fetchedAt": "2026-10-19T12:25:09.094Z"
+  },
+  {
+    "videoId": "UQ0iJvC3aE0",
+    "title": "Italy Protest LIVE: Milan Protests Turn Violent | Tear Gas, Water Cannons &amp; Looting in Italy |Meloni",
+    "channel": "CNN-News18",
+    "thumbnail": "https://i.ytimg.com/vi/UQ0iJvC3aE0/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      41.9,
+      12.5
+    ],
+    "locationName": "Italy",
+    "timezone": "Europe/Rome",
+    "region": "eastern-europe",
+    "fetchedAt": "2026-10-19T12:25:09.094Z"
+  },
+  {
+    "videoId": "T2L3jh1daT4",
+    "title": "🔴 Weather WebCams from Poland / Pogoda w Polsce / Dane giełdowe - WebCamera.pl",
+    "channel": "WebCamera.pl",
+    "thumbnail": "https://i.ytimg.com/vi/T2L3jh1daT4/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      52.23,
+      21.01
+    ],
+    "locationName": "Poland",
+    "timezone": "Europe/Warsaw",
+    "region": "eastern-europe",
+    "fetchedAt": "2026-10-19T12:25:09.094Z"
+  },
+  {
+    "videoId": "i3FKvAVRtm4",
+    "title": "Protest Fury Engulfs France As 800,000 Take To Streets, Violent Clashes And Arson Spread | CRUX LIVE",
+    "channel": "CRUX",
+    "thumbnail": "https://i.ytimg.com/vi/i3FKvAVRtm4/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      48.86,
+      2.35
+    ],
+    "locationName": "France",
+    "timezone": "Europe/Paris",
+    "region": "eastern-europe",
+    "fetchedAt": "2026-10-19T12:25:09.094Z"
+  },
+  {
+    "videoId": "CUiQwao1Fe4",
+    "title": "France Student Protests LIVE Updates: Tear Gas, Water Cannons And Police Clashes As Paris Erupts",
+    "channel": "NDTV World",
+    "thumbnail": "https://i.ytimg.com/vi/CUiQwao1Fe4/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      48.86,
+      2.35
+    ],
+    "locationName": "France",
+    "timezone": "Europe/Paris",
+    "region": "eastern-europe",
+    "fetchedAt": "2026-10-19T12:25:09.094Z"
+  },
+  {
+    "videoId": "fJExRwl4HzU",
+    "title": "Zephyr Beach Club 🔴 Lamai Beach, Koh Samui, Thailand | Live Webcam",
+    "channel": "STREETS OF THAILAND",
+    "thumbnail": "https://i.ytimg.com/vi/fJExRwl4HzU/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      9.5013945,
+      99.9956193
+    ],
+    "locationName": "Koh Samui",
+    "timezone": "Asia/Jakarta",
+    "region": "eastern-europe",
+    "fetchedAt": "2026-10-19T12:25:09.095Z"
+  },
+  {
+    "videoId": "8OaIYrgIlT0",
+    "title": "🔴Albania Protests LIVE: Anti-Government Protesters Clash With Police In Tirana | Edi Rama | N18G",
+    "channel": "CNBC-TV18",
+    "thumbnail": "https://i.ytimg.com/vi/8OaIYrgIlT0/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      41.3281482,
+      19.8184435
+    ],
+    "locationName": "Tirana, Albania",
+    "timezone": "Europe/Tirane",
+    "region": "eastern-europe",
+    "fetchedAt": "2026-10-19T12:25:09.095Z"
+  },
+  {
+    "videoId": "gvcNcDaa9iA",
+    "title": "EALA vs PARRY • WTA Ningbo 2026 • LIVE Tennis Watchalong",
+    "channel": "TENNIS TALK with Cam Williams",
+    "thumbnail": "https://i.ytimg.com/vi/gvcNcDaa9iA/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      29.8719603,
+      121.5499635
+    ],
+    "locationName": "Ningbo, China",
+    "timezone": "Asia/Shanghai",
+    "region": "eastern-europe",
+    "fetchedAt": "2026-10-19T12:25:10.522Z"
+  },
+  {
+    "videoId": "GkBMgHwSIV0",
+    "title": "Miami Skyline LIVE | MacArthur Causeway Live Cam | Florida Cams",
+    "channel": "Ozolio Live",
+    "thumbnail": "https://i.ytimg.com/vi/GkBMgHwSIV0/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      27.99,
+      -81.76
+    ],
+    "locationName": "Florida, USA",
+    "timezone": "America/New_York",
+    "region": "eastern-europe",
+    "fetchedAt": "2026-10-19T12:25:10.522Z"
+  },
+  {
+    "videoId": "uxaitRNLf-I",
+    "title": "ITALY LIVE | Violent Clashes Rock Milan As Meloni Warns Protesters Against Setting Cities Ablaze",
+    "channel": "CRUX",
+    "thumbnail": "https://i.ytimg.com/vi/uxaitRNLf-I/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      41.9,
+      12.5
+    ],
+    "locationName": "Italy",
+    "timezone": "Europe/Rome",
+    "region": "eastern-europe",
+    "fetchedAt": "2026-10-19T12:25:10.522Z"
+  },
+  {
+    "videoId": "nadBQ4VPXOs",
+    "title": "Crazy raccoons. Live Camera, raccoons and opossums at night. Birds/squirrels",
+    "channel": "WildLifeCam",
+    "thumbnail": "https://i.ytimg.com/vi/nadBQ4VPXOs/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "eastern-europe",
+    "fetchedAt": "2026-10-19T12:25:10.524Z"
+  },
+  {
+    "videoId": "IjzXRg2p-Ek",
+    "title": "Skid Row Cam 1",
+    "channel": "Rescue Rescue",
+    "thumbnail": "https://i.ytimg.com/vi/IjzXRg2p-Ek/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "eastern-europe",
+    "fetchedAt": "2026-10-19T12:25:10.525Z"
+  },
+  {
+    "videoId": "VnFoqu-DJzc",
+    "title": "Paris After Protests LIVE: Paris Wakes to Damage After Unrest Across France Overnight",
+    "channel": "The Sunday Guardian",
+    "thumbnail": "https://i.ytimg.com/vi/VnFoqu-DJzc/hqdefault_live.jpg",
+    "query": "live camera",
+    "location": [
+      48.86,
+      2.35
+    ],
+    "locationName": "France",
+    "timezone": "Europe/Paris",
+    "region": "eastern-europe",
+    "fetchedAt": "2026-10-19T12:25:10.525Z"
+  },
+  {
+    "videoId": "mcwNJM9qrCs",
+    "title": "Bektaş Yaylası Canlı Yayın",
+    "channel": "Hasan Yayında",
+    "thumbnail": "https://i.ytimg.com/vi/mcwNJM9qrCs/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:10.526Z"
+  },
+  {
+    "videoId": "IST5-eLvVqE",
+    "title": "Kızıltaş Köyü Canlı Yayın Camera 2",
+    "channel": "Hasan Yayında Beldeler Canlı Yayın",
+    "thumbnail": "https://i.ytimg.com/vi/IST5-eLvVqE/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      40.6531617,
+      38.5172032
+    ],
+    "locationName": "Giresun, Turkey",
+    "timezone": "Europe/Istanbul",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:10.526Z"
+  },
+  {
+    "videoId": "aH1hEfFU6Rk",
+    "title": "Pursaklar Belediyesi Ankara Kedisi Koruma Yaşatma Ve Tanıtma Merkezi",
+    "channel": "Pursaklar Belediyesi",
+    "thumbnail": "https://i.ytimg.com/vi/aH1hEfFU6Rk/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      39.9207759,
+      32.8540497
+    ],
+    "locationName": "Ankara, Turkey",
+    "timezone": "Europe/Istanbul",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:12.267Z"
+  },
+  {
+    "videoId": "rdTbgYbWPMw",
+    "title": "Live Stream in a Forest! Enjoy the Natural Sites and Sounds of Western New York State",
+    "channel": "Eriegrove",
+    "thumbnail": "https://i.ytimg.com/vi/rdTbgYbWPMw/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      42.8149244,
+      -78.463243
+    ],
+    "locationName": "Western New York",
+    "timezone": "America/New_York",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:12.267Z"
+  },
+  {
+    "videoId": "D4KmaMir938",
+    "title": "Ege FM | Canlı İstek Yayını",
+    "channel": "Ege FM",
+    "thumbnail": "https://i.ytimg.com/vi/D4KmaMir938/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      50.7807772,
+      7.7331559
+    ],
+    "locationName": "EGE, Germany",
+    "timezone": "Europe/Berlin",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:12.267Z"
+  },
+  {
+    "videoId": "ANFMng6a370",
+    "title": "Tımarhane FM | Canlı İstek Yayını 🎶🎧",
+    "channel": "Tımarhane FM",
+    "thumbnail": "https://i.ytimg.com/vi/ANFMng6a370/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:12.268Z"
+  },
+  {
+    "videoId": "3Y_-HFMrKc4",
+    "title": "Seaside Northern lights / Aurora borealis live Ouluzipline.fi Nallikari West",
+    "channel": "Samimaka",
+    "thumbnail": "https://i.ytimg.com/vi/3Y_-HFMrKc4/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      45.993246,
+      -123.920213
+    ],
+    "locationName": "Seaside, Oregon",
+    "timezone": "America/Los_Angeles",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:12.269Z"
+  },
+  {
+    "videoId": "sRVRqp5RBEk",
+    "title": "15 🔴 Merze Yukarı - Kabahor Gölyayla Köyü Canlı Yayın",
+    "channel": "Golyayla Canlı Yayın 2",
+    "thumbnail": "https://i.ytimg.com/vi/sRVRqp5RBEk/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      40.9569617,
+      40.884428
+    ],
+    "locationName": "Rize, Turkey",
+    "timezone": "Europe/Istanbul",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:13.613Z"
+  },
+  {
+    "videoId": "WS9YVib5FII",
+    "title": "Hasretim Fm | Canlı İstek Yayını",
+    "channel": "Fatih🇹🇷",
+    "thumbnail": "https://i.ytimg.com/vi/WS9YVib5FII/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:13.614Z"
+  },
+  {
+    "videoId": "60tOXGSG80k",
+    "title": "Karen FM | Canlı İstek Yayını",
+    "channel": "K”AREN FM",
+    "thumbnail": "https://i.ytimg.com/vi/60tOXGSG80k/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": null,
+    "locationName": null,
+    "timezone": null,
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:13.615Z"
+  },
+  {
+    "videoId": "Sm1bLBK0uRE",
+    "title": "TIK TOK AZERBAYCAN CANLI YAYIN 7/24 🔴",
+    "channel": "🦅 Emin  🦅",
+    "thumbnail": "https://i.ytimg.com/vi/Sm1bLBK0uRE/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      40.3936294,
+      47.7872508
+    ],
+    "locationName": "Azerbaijan",
+    "timezone": "Asia/Baku",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:14.832Z"
+  },
+  {
+    "videoId": "9l62YWe0Okg",
+    "title": "TIK TOK AZERBAYCAN CANLI YAYIN 7/24 🔴",
+    "channel": "🦅 Emin  🦅",
+    "thumbnail": "https://i.ytimg.com/vi/9l62YWe0Okg/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      40.3936294,
+      47.7872508
+    ],
+    "locationName": "Azerbaijan",
+    "timezone": "Asia/Baku",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:14.832Z"
+  },
+  {
+    "videoId": "oyvlQg7wPPw",
+    "title": "Tik Tok Azerbaycan 7/24 canli yayin",
+    "channel": "Qara-Göygöl",
+    "thumbnail": "https://i.ytimg.com/vi/oyvlQg7wPPw/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      40.3936294,
+      47.7872508
+    ],
+    "locationName": "Azerbaijan",
+    "timezone": "Asia/Baku",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:14.832Z"
+  },
+  {
+    "videoId": "i0EQus2gXg8",
+    "title": "Tik Tok Azerbaycan 7/24 canli yayin",
+    "channel": "Qara-Göygöl",
+    "thumbnail": "https://i.ytimg.com/vi/i0EQus2gXg8/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      40.3936294,
+      47.7872508
+    ],
+    "locationName": "Azerbaijan",
+    "timezone": "Asia/Baku",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:14.832Z"
+  },
+  {
+    "videoId": "ijz70JQ5ZdM",
+    "title": "Tik Tok Azerbaycan 7/24 canli yayin",
+    "channel": "🦅Эмин 🦅",
+    "thumbnail": "https://i.ytimg.com/vi/ijz70JQ5ZdM/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      40.3936294,
+      47.7872508
+    ],
+    "locationName": "Azerbaijan",
+    "timezone": "Asia/Baku",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:14.832Z"
+  },
+  {
+    "videoId": "7ijxFw5Hv24",
+    "title": "Tik Tok Azerbaycan 7/24 canli yayin",
+    "channel": "🦅Эмин 🦅",
+    "thumbnail": "https://i.ytimg.com/vi/7ijxFw5Hv24/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      40.3936294,
+      47.7872508
+    ],
+    "locationName": "Azerbaijan",
+    "timezone": "Asia/Baku",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:14.832Z"
+  },
+  {
+    "videoId": "Bnb99o2rB_8",
+    "title": "Tik Tok Azerbaycan 7/24 canli yayin",
+    "channel": "🦅Эмин 🦅",
+    "thumbnail": "https://i.ytimg.com/vi/Bnb99o2rB_8/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      40.3936294,
+      47.7872508
+    ],
+    "locationName": "Azerbaijan",
+    "timezone": "Asia/Baku",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:14.832Z"
+  },
+  {
+    "videoId": "BXXWatjbnhE",
+    "title": "Tik Tok Azerbaycan 7/24 canli yayin",
+    "channel": "🦅Эмин 🦅",
+    "thumbnail": "https://i.ytimg.com/vi/BXXWatjbnhE/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      40.3936294,
+      47.7872508
+    ],
+    "locationName": "Azerbaijan",
+    "timezone": "Asia/Baku",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:14.832Z"
+  },
+  {
+    "videoId": "D-sCpbINN8M",
+    "title": "Tik Tok Azerbaycan 7/24 canli yayin",
+    "channel": "🦅Эмин 🦅",
+    "thumbnail": "https://i.ytimg.com/vi/D-sCpbINN8M/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      40.3936294,
+      47.7872508
+    ],
+    "locationName": "Azerbaijan",
+    "timezone": "Asia/Baku",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:14.832Z"
+  },
+  {
+    "videoId": "iNOfVBIjWIk",
+    "title": "Tik Tok Azerbaycan 7/24 canli yayin",
+    "channel": "Qara-Göygöl",
+    "thumbnail": "https://i.ytimg.com/vi/iNOfVBIjWIk/hqdefault_live.jpg",
+    "query": "canlı kamera",
+    "location": [
+      40.3755885,
+      49.8328009
+    ],
+    "locationName": "Baku, Azerbaijan",
+    "timezone": "Asia/Baku",
+    "region": "middle-east",
+    "fetchedAt": "2026-10-19T12:25:14.832Z"
+  },
+  {
     "videoId": "Z-mRjv9yQ1g",
     "title": "Live Camera - Shizhao【石桌即時影像美景直播】",
     "channel": "CHEN POWER",
@@ -660,51 +1134,6 @@
     "fetchedAt": "2026-10-18T17:07:05.298Z"
   },
   {
-    "videoId": "_haIWHF3r8A",
-    "title": "Massive Istanbul Flood LIVE : Severe Floods Hit Istanbul After Heaviest Rainfall in Decades",
-    "channel": "NewsX World",
-    "thumbnail": "https://i.ytimg.com/vi/_haIWHF3r8A/hqdefault_live.jpg",
-    "query": "live camera Istanbul",
-    "location": [
-      41.01,
-      28.98
-    ],
-    "locationName": "Istanbul, Turkey",
-    "timezone": "Europe/Istanbul",
-    "region": "middle-east",
-    "fetchedAt": "2026-10-18T17:07:05.298Z"
-  },
-  {
-    "videoId": "8tSCITfxC_E",
-    "title": "İstanbul&#39;da Sel Felaketi! 🔴 #Canlı Yayın ᴴᴰ - Sıcak Gelişmeler ve Son Dakika Haberleri",
-    "channel": "A Haber",
-    "thumbnail": "https://i.ytimg.com/vi/8tSCITfxC_E/hqdefault_live.jpg",
-    "query": "live camera Istanbul",
-    "location": [
-      41.006381,
-      28.9758715
-    ],
-    "locationName": "Istanbul, Turkey",
-    "timezone": "Europe/Istanbul",
-    "region": "middle-east",
-    "fetchedAt": "2026-10-18T17:07:05.298Z"
-  },
-  {
-    "videoId": "m6Greaolde4",
-    "title": "Albania Protests LIVE: Anti-Government Protest by Students in Tirana | Riot Police vs Students |N18G",
-    "channel": "CNBC-TV18",
-    "thumbnail": "https://i.ytimg.com/vi/m6Greaolde4/hqdefault_live.jpg",
-    "query": "live camera Istanbul",
-    "location": [
-      41.3281482,
-      19.8184435
-    ],
-    "locationName": "Tirana, Albania",
-    "timezone": "Europe/Tirane",
-    "region": "middle-east",
-    "fetchedAt": "2026-10-18T17:07:06.855Z"
-  },
-  {
     "videoId": "udRDI1uDdvQ",
     "title": "제주도실시간 성산일출봉라이브 Live Cam I &quot;Seongsan Ilchulbong&quot;, Jejudo,korea I SeongsanSunrisePark 济州岛城山日出峰 백색소음",
     "channel": "GiGAeyes Live TV",
@@ -718,21 +1147,6 @@
     "timezone": "Asia/Seoul",
     "region": "korea",
     "fetchedAt": "2026-10-18T17:07:06.855Z"
-  },
-  {
-    "videoId": "T_QsY01tIK0",
-    "title": "LGA Airport LIVE 24/7 • LaGuardia, New York",
-    "channel": "Flightradar24",
-    "thumbnail": "https://i.ytimg.com/vi/T_QsY01tIK0/hqdefault_live.jpg",
-    "query": "24/7 live cam Istanbul",
-    "location": [
-      40.71,
-      -74.01
-    ],
-    "locationName": "New York, USA",
-    "timezone": "America/New_York",
-    "region": "middle-east",
-    "fetchedAt": "2026-10-18T13:48:22.639Z"
   },
   {
     "videoId": "kAxmUDt6Zx4",
@@ -2539,437 +2953,5 @@
     "timezone": "Asia/Tokyo",
     "region": "japan",
     "fetchedAt": "2026-10-17T20:15:53.155Z"
-  },
-  {
-    "videoId": "Bs1CjAenya8",
-    "title": "【厚田の景観】OLA GA TOCHI CAFEライブカメラ 2026年10月18日",
-    "channel": "OLA GA TOCHI",
-    "thumbnail": "https://i.ytimg.com/vi/Bs1CjAenya8/hqdefault_live.jpg",
-    "query": "ライブカメラ 北海道",
-    "location": [
-      43.171677,
-      141.3159605
-    ],
-    "locationName": "石狩市, 日本",
-    "timezone": "Asia/Tokyo",
-    "region": "japan",
-    "fetchedAt": "2026-10-17T20:15:55.181Z"
-  },
-  {
-    "videoId": "EumV8hWX110",
-    "title": "北海道士別市朝日町中央士別滝の上線ライブカメラ",
-    "channel": "北海道士別市朝日町中央士別滝の上線ライブカメラ",
-    "thumbnail": "https://i.ytimg.com/vi/EumV8hWX110/hqdefault_live.jpg",
-    "query": "ライブカメラ 北海道",
-    "location": [
-      44.1785114,
-      142.4001645
-    ],
-    "locationName": "士別市, 日本",
-    "timezone": "Asia/Tokyo",
-    "region": "japan",
-    "fetchedAt": "2026-10-17T20:15:57.534Z"
-  },
-  {
-    "videoId": "xuwTWSJkWts",
-    "title": "北海道札幌市北区北七条西ライブカメラ",
-    "channel": "北海道札幌市北区北七条西ライブカメラ",
-    "thumbnail": "https://i.ytimg.com/vi/xuwTWSJkWts/hqdefault_live.jpg",
-    "query": "ライブカメラ 北海道",
-    "location": [
-      43.061936,
-      141.3542924
-    ],
-    "locationName": "札幌市, 日本",
-    "timezone": "Asia/Tokyo",
-    "region": "japan",
-    "fetchedAt": "2026-10-17T20:15:57.534Z"
-  },
-  {
-    "videoId": "GCDDBSkcVVg",
-    "title": "北海道釧路市武佐お天気ライブカメラ",
-    "channel": "北海道釧路市武佐お天気ライブカメラ",
-    "thumbnail": "https://i.ytimg.com/vi/GCDDBSkcVVg/hqdefault_live.jpg",
-    "query": "ライブカメラ 北海道",
-    "location": [
-      42.9849503,
-      144.3820491
-    ],
-    "locationName": "釧路市, 日本",
-    "timezone": "Asia/Tokyo",
-    "region": "japan",
-    "fetchedAt": "2026-10-17T20:15:57.534Z"
-  },
-  {
-    "videoId": "cdYyGzxY40U",
-    "title": "北海道天塩郡豊富町ライブカメラ",
-    "channel": "北海道天塩郡豊富町ライブカメラ",
-    "thumbnail": "https://i.ytimg.com/vi/cdYyGzxY40U/hqdefault_live.jpg",
-    "query": "ライブカメラ 北海道",
-    "location": [
-      45.1027805,
-      141.7775194
-    ],
-    "locationName": "豊富町, 日本",
-    "timezone": "Asia/Tokyo",
-    "region": "japan",
-    "fetchedAt": "2026-10-17T20:15:57.534Z"
-  },
-  {
-    "videoId": "y8qHmoejZ7g",
-    "title": "北海道釧路市春採ライブカメラ",
-    "channel": "北海道釧路市春採ライブカメラ",
-    "thumbnail": "https://i.ytimg.com/vi/y8qHmoejZ7g/hqdefault_live.jpg",
-    "query": "ライブカメラ 北海道",
-    "location": [
-      42.9849503,
-      144.3820491
-    ],
-    "locationName": "釧路市, 日本",
-    "timezone": "Asia/Tokyo",
-    "region": "japan",
-    "fetchedAt": "2026-10-17T20:15:57.534Z"
-  },
-  {
-    "videoId": "ZDTgDG-r-Aw",
-    "title": "【LIVE】深夜の散歩配信　渋谷スクランブル交差点ライブカメラ Shibuya Scramble Crossing Live Camera 2026/10/17",
-    "channel": "TOKYO Live Camera TV",
-    "thumbnail": "https://i.ytimg.com/vi/ZDTgDG-r-Aw/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      35.6633709,
-      139.6964952
-    ],
-    "locationName": "Shibuya, Tokyo, Japan",
-    "timezone": "Asia/Tokyo",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.652Z"
-  },
-  {
-    "videoId": "AwDYkFrxbTo",
-    "title": "LIVE On Cam: Smoke Rises Over Aden as Houthi Bombs Yemen&#39;s Presidential Palace | Firstpost Live",
-    "channel": "Firstpost",
-    "thumbnail": "https://i.ytimg.com/vi/AwDYkFrxbTo/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      16.3471243,
-      47.8915271
-    ],
-    "locationName": "Yemen",
-    "timezone": "Asia/Riyadh",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.652Z"
-  },
-  {
-    "videoId": "_ZT4zheDgFc",
-    "title": "PARIS LIVE: CHAOS ERUPTS! Massive Protests Shake France as Tensions Explode in the Streets of Paris!",
-    "channel": "MIRROR NOW",
-    "thumbnail": "https://i.ytimg.com/vi/_ZT4zheDgFc/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      48.86,
-      2.35
-    ],
-    "locationName": "France",
-    "timezone": "Europe/Paris",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.652Z"
-  },
-  {
-    "videoId": "M8mIfCBKpqU",
-    "title": "Skid Row Cam2 Weingart Center - Los Angeles, CA.",
-    "channel": "Rescue Rescue",
-    "thumbnail": "https://i.ytimg.com/vi/M8mIfCBKpqU/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      34.05,
-      -118.24
-    ],
-    "locationName": "Los Angeles, USA",
-    "timezone": "America/Los_Angeles",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.653Z"
-  },
-  {
-    "videoId": "6h4IGR61eUo",
-    "title": "🔴Live Cam Yokohama Japan :横浜汽車道ライブカメラ",
-    "channel": "横浜汽車道ライブカメラ /Live Cam Yokohama Japan",
-    "thumbnail": "https://i.ytimg.com/vi/6h4IGR61eUo/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      35.44,
-      139.64
-    ],
-    "locationName": "Yokohama, Japan",
-    "timezone": "Asia/Tokyo",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.653Z"
-  },
-  {
-    "videoId": "Hc_MVqTyLK4",
-    "title": "Mount Washington Cog Railway Live Webcam",
-    "channel": "Mount Washington Cog Railway",
-    "thumbnail": "https://i.ytimg.com/vi/Hc_MVqTyLK4/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      38.91,
-      -77.04
-    ],
-    "locationName": "Washington, USA",
-    "timezone": "America/New_York",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.653Z"
-  },
-  {
-    "videoId": "BvaNtRp_2pM",
-    "title": "Webcam Lanzarote - Live Stream from the Beachbar in Costa Teguise",
-    "channel": "Beach Bar Lanzarote",
-    "thumbnail": "https://i.ytimg.com/vi/BvaNtRp_2pM/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      29.0397081,
-      -13.6362916
-    ],
-    "locationName": "Lanzarote",
-    "timezone": "Atlantic/Canary",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.653Z"
-  },
-  {
-    "videoId": "30aYcPIXaJU",
-    "title": "[LIVE] Kabukicho Live Camera Stream 2 2026/10/17 18:00",
-    "channel": "Kabukicho Live Camera",
-    "thumbnail": "https://i.ytimg.com/vi/30aYcPIXaJU/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      35.6768601,
-      139.7638947
-    ],
-    "locationName": "Tokyo, Japan",
-    "timezone": "Asia/Tokyo",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.653Z"
-  },
-  {
-    "videoId": "abznaq3M8Uo",
-    "title": "Paris, France Student Protests &amp; Albania Student Protests LIVE | Middle East &amp; Russia-Ukraine War",
-    "channel": "WorldConflictLive247",
-    "thumbnail": "https://i.ytimg.com/vi/abznaq3M8Uo/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      39.3014159,
-      -76.5888477
-    ],
-    "locationName": "Middle East",
-    "timezone": "America/New_York",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.653Z"
-  },
-  {
-    "videoId": "ac0v_QwqYfw",
-    "title": "🟢 Montego Bay Live 24/7 | Sam Sharpe Square, Jamaica | See Jamaica",
-    "channel": "See Jamaica ",
-    "thumbnail": "https://i.ytimg.com/vi/ac0v_QwqYfw/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      18.11,
-      -77.3
-    ],
-    "locationName": "Jamaica",
-    "timezone": "America/Jamaica",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.654Z"
-  },
-  {
-    "videoId": "aVdCJd_Zw78",
-    "title": "🔴LIVE Notting Hill Gate Station - London 4K Webcam",
-    "channel": "Notting Hill Gate Cam",
-    "thumbnail": "https://i.ytimg.com/vi/aVdCJd_Zw78/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      51.51,
-      -0.13
-    ],
-    "locationName": "London, England",
-    "timezone": "Europe/London",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.654Z"
-  },
-  {
-    "videoId": "LS1-Ykhiguo",
-    "title": "オノデンch【秋葉原ライブカメラ　Akihabara live camera】",
-    "channel": "オノデンch",
-    "thumbnail": "https://i.ytimg.com/vi/LS1-Ykhiguo/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      35.7018928,
-      139.7743684
-    ],
-    "locationName": "Akihabara, Tokyo, Japan",
-    "timezone": "Asia/Tokyo",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.654Z"
-  },
-  {
-    "videoId": "wJsOXySDNos",
-    "title": "🟢 Santa Cruz, St Elizabeth, Jamaica LIVE 24/7 | See Jamaica",
-    "channel": "See Jamaica ",
-    "thumbnail": "https://i.ytimg.com/vi/wJsOXySDNos/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      37.050096,
-      -121.99059
-    ],
-    "locationName": "Santa Cruz, California",
-    "timezone": "America/Los_Angeles",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.654Z"
-  },
-  {
-    "videoId": "dL0vVMwEBrU",
-    "title": "Soi Buakhao, Pattaya Live, Thailand",
-    "channel": "ole petter løbak (ice_baby)",
-    "thumbnail": "https://i.ytimg.com/vi/dL0vVMwEBrU/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      15.87,
-      100.99
-    ],
-    "locationName": "Thailand",
-    "timezone": "Asia/Jakarta",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.654Z"
-  },
-  {
-    "videoId": "KQ3YxUYxe5Y",
-    "title": "BALD EAGLE Live Cam 2 Traverse City, MI #baldeagle #eaglelivecam #wildlife #nature",
-    "channel": "Great Lakes Bald Eagle Cam",
-    "thumbnail": "https://i.ytimg.com/vi/KQ3YxUYxe5Y/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      44.7606481,
-      -85.6165976
-    ],
-    "locationName": "Traverse City, Michigan",
-    "timezone": "America/Detroit",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.654Z"
-  },
-  {
-    "videoId": "4rI7ybCy7Jk",
-    "title": "Maria&#39;s Cam 4a Rachel Store #philippines #davaocity",
-    "channel": "Maria Deseo - Philippines Live Webcam",
-    "thumbnail": "https://i.ytimg.com/vi/4rI7ybCy7Jk/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      14.6,
-      120.98
-    ],
-    "locationName": "Philippines",
-    "timezone": "Asia/Manila",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.654Z"
-  },
-  {
-    "videoId": "Yq8WmXplhrU",
-    "title": "🔴【LIVE】沖縄ライブカメラ・那覇 国際通り〈県庁北口側〉 /Okinawa Live Camera 24/7",
-    "channel": "バクノビジョン",
-    "thumbnail": "https://i.ytimg.com/vi/Yq8WmXplhrU/hqdefault_live.jpg",
-    "query": "live camera",
-    "location": [
-      26.34,
-      127.77
-    ],
-    "locationName": "Okinawa, Japan",
-    "timezone": "Asia/Tokyo",
-    "region": "africa",
-    "fetchedAt": "2026-10-17T16:53:03.654Z"
-  },
-  {
-    "videoId": "3SIwRaLZrZk",
-    "title": "Zürichsee Live Webcam 24/7 – Aurora Livecam Dürnten | Alpenblick, Wetter &amp; Patrouille Suisse",
-    "channel": "metacube",
-    "thumbnail": "https://i.ytimg.com/vi/3SIwRaLZrZk/hqdefault_live.jpg",
-    "query": "webcam live aurora",
-    "location": [
-      39.7405111,
-      -104.830994
-    ],
-    "locationName": "Aurora, Colorado",
-    "timezone": "America/Denver",
-    "region": "south-asia",
-    "fetchedAt": "2026-10-17T13:29:43.328Z"
-  },
-  {
-    "videoId": "XXmUxYSoMr0",
-    "title": "LIVE Iceland NOW 🇮🇸 | 4K Aurora Borealis Real-Time Sky Camera – Iceland",
-    "channel": "Geimfarinn",
-    "thumbnail": "https://i.ytimg.com/vi/XXmUxYSoMr0/hqdefault_live.jpg",
-    "query": "webcam live aurora",
-    "location": [
-      64.15,
-      -21.94
-    ],
-    "locationName": "Iceland",
-    "timezone": "Africa/Abidjan",
-    "region": "south-asia",
-    "fetchedAt": "2026-10-17T13:29:43.329Z"
-  },
-  {
-    "videoId": "tY-FFLw8tsw",
-    "title": "Heathrow Airport Live -  Saturday 17th October 2026",
-    "channel": "Flight Focus 365",
-    "thumbnail": "https://i.ytimg.com/vi/tY-FFLw8tsw/hqdefault_live.jpg",
-    "query": "live camera Dubai",
-    "location": [
-      51.467739,
-      -0.4587801
-    ],
-    "locationName": "Heathrow Airport",
-    "timezone": "Europe/London",
-    "region": "middle-east",
-    "fetchedAt": "2026-10-17T13:29:43.329Z"
-  },
-  {
-    "videoId": "kurHp0OIJz4",
-    "title": "LIVE | Elon Musk Reveals Tesla Flying Car Vision, Roadster Claims Spark Buzz | VERTEX",
-    "channel": "VERTEX",
-    "thumbnail": "https://i.ytimg.com/vi/kurHp0OIJz4/hqdefault_live.jpg",
-    "query": "live camera Dubai",
-    "location": null,
-    "locationName": null,
-    "timezone": null,
-    "region": "middle-east",
-    "fetchedAt": "2026-10-17T13:29:43.331Z"
-  },
-  {
-    "videoId": "ACpUvxjsEDg",
-    "title": "LIVE | Elon Musk Unveils Tesla Flying Car, Claims Roadster Can Fly and Hit 60 MPH in Under 1 Second",
-    "channel": "APT",
-    "thumbnail": "https://i.ytimg.com/vi/ACpUvxjsEDg/hqdefault_live.jpg",
-    "query": "live camera Dubai",
-    "location": [
-      31.2638905,
-      -98.5456116
-    ],
-    "locationName": "Texas, United States",
-    "timezone": "America/Chicago",
-    "region": "middle-east",
-    "fetchedAt": "2026-10-17T13:29:44.860Z"
-  },
-  {
-    "videoId": "VFykaPmTyAs",
-    "title": "⭐️Badminton Plays Live 171026 Tambay LS⭐️#isdaan #lapagan #badminton #badmintonlovers #badmintonlife",
-    "channel": "Badminton Plays",
-    "thumbnail": "https://i.ytimg.com/vi/VFykaPmTyAs/hqdefault_live.jpg",
-    "query": "live camera Dubai",
-    "location": [
-      25.0742823,
-      55.1885624
-    ],
-    "locationName": "Dubai, United Arab Emirates",
-    "timezone": "Asia/Dubai",
-    "region": "middle-east",
-    "fetchedAt": "2026-10-17T13:29:46.345Z"
   }
 ]
